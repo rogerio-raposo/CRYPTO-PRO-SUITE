@@ -19,6 +19,8 @@ A submetodologia Microcaps avalia, de forma relativa e baseada em evidências, a
 
 Não é um motor de previsão de preço, retorno, MFE, market timing ou alpha.
 
+**Princípio metodológico:** Price = outcome, não Fundamental Ground Truth.
+
 # 2. Dependência de narrativa
 
 A seleção e avaliação de Narrative Opportunity ocorrem upstream, fora do cálculo do Potential. O Ranking recebe a narrativa como contexto de entrada e avalia o Asset–Narrative Fit.
@@ -26,6 +28,8 @@ A seleção e avaliação de Narrative Opportunity ocorrem upstream, fora do cá
 # 3. Universo e elegibilidade
 
 O universo Microcaps utiliza como referência market cap inferior a **US$100 milhões** no checkpoint de elegibilidade.
+
+**Princípio de seleção:** elegibilidade permissiva; scoring seletivo.
 
 Ordem preferencial de prova PIT:
 1. Direct PIT Snapshot;
@@ -123,7 +127,7 @@ Missing data reduz Confidence; não deve ser convertido em nota artificial.
 Risk Trend: Improving / Stable / Increasing.  
 Confidence Trend: Improving / Stable / Declining.
 
-Lifecycle events devem ser tratados explicitamente. Não há transferência automática de score entre predecessor e successor asset.
+Lifecycle events devem ser tratados explicitamente. Não há transferência automática de score entre predecessor e successor asset. Coverage gap não equivale a ausência econômica real.
 
 # 9. Potential Trend — state machine
 
@@ -198,6 +202,8 @@ Uma execução Microcaps deve produzir, por ativo elegível:
 - Scoring Confidence.
 
 O Radar de Ativos Promissores pode destacar ativos Emerging/Accelerating sem necessariamente reproduzir o topo do ranking.
+
+Uma execução deve preservar identificação da metodologia aplicada (`methodology_version`) e o checkpoint temporal correspondente.
 
 # 13. Validation Layer
 
