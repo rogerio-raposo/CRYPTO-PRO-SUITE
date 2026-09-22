@@ -7,11 +7,42 @@ The MRT represents the chain:
 
 `SRC → RH → relation / impact → documentary target`
 
-## Current high-level matrix
+## Detailed MRT — SRC-0001
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0001 | SRC-0001 | Analysis interface | Establishes PRO shorthand | Traced |
+| RH-0002 | SRC-0001 | Analysis/infographic workflow | Refines execution of PRO + infographic | Traced |
+| RH-0003 | SRC-0001 | Data governance | Requires verifiable analytical inputs | Traced |
+| RH-0004 | SRC-0001 | Acquisition architecture | Early acquisition inside BTC PRO | Traced |
+| RH-0005 | SRC-0001 | Data-source policy | Binance primary + fallback policy | Traced |
+| RH-0006 | SRC-0001 | Validation | Partial acquisition tests | Traced |
+| RH-0007 | SRC-0001 | Implementation | Auditable collector/snapshot | Traced |
+| RH-0008 | SRC-0001 | Architecture | Drives externalized automated acquisition | Traced |
+| RH-0009 | SRC-0001 | Data Feed | Establishes MVP | Traced |
+| RH-0010 | SRC-0001 | Documentation | Development documentation standard | Traced |
+| RH-0011 | SRC-0001 | Development governance | Review before expansion | Traced |
+| RH-0012 | SRC-0001 | Validation | Sprint Review | Traced |
+| RH-0013 | SRC-0001 | Documentation | Formalizes SPEC | Traced |
+| RH-0014 | SRC-0001 | Documentation | Formalizes ARCHITECTURE | Traced |
+| RH-0015 | SRC-0001 | Documentation | Implements DOCUMENTATION_STANDARD | Traced |
+| RH-0016 | SRC-0001 | Repository structure | Reorganization initially deferred | Traced |
+| RH-0017 | SRC-0001 | Repository structure | Target structure decided | Traced |
+| RH-0018 | SRC-0001 | Implementation | Reorganization executed | Traced |
+| RH-0019 | SRC-0001 | Audit | Structural/documentary audit | Traced |
+| RH-0020 | SRC-0001 | Validation | Operational workflow test | Traced |
+| RH-0021 | SRC-0001 | Git governance | PR/review/merge/main validation | Traced |
+| RH-0022 | SRC-0001 | Operational governance | Explicit authorization safeguard | Traced |
+| RH-0023 | SRC-0001 | Work organization | Data Feed evolution moved to dedicated conversation | Traced |
+
+### Provenance incident
+
+The pilot attribution error involving Macro/Rotation/Ranking/CSE is not normalized away. It is linked to `RPD-2026-0001` and marked resolved.
+
+## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
 |---|---|---|
-| SRC-0001 | RH-0001–0023 | Pilot provenance incident resolved |
 | SRC-0002 | RH-0024–0043 | Ranking continuity remains open pending complete Roadmap |
 | SRC-0003 | RH-0044–0053 | — |
 | SRC-0004 | RH-0054–0077 | ED-001 collision tracked in RPD |
@@ -30,5 +61,3 @@ The MRT represents the chain:
 ## Relation vocabulary
 
 `DERIVA_DE`, `REFINA`, `IMPLEMENTA`, `FORMALIZA`, `VALIDA`, `CONTRADIZ`, `SUBSTITUI`, `SUPERADO_POR`, `DEPENDE_DE`, `RELACIONADO_A`.
-
-Detailed RH-to-document mapping will be persisted only from validated evidence; it must not be reconstructed from memory.
