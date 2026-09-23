@@ -211,6 +211,59 @@ RH-0098–0100 prove the operational monitoring experiment. They do **not** by t
 
 A present reconstruction backlog item remains to evaluate whether this monitor, or a redesigned version, should later become an operational implementation of the previously contemplated `MACRO ALERT (extraordinário)`. This is a future evaluation, not a historical approval.
 
+## Detailed records — SRC-0017 — Roadmap do Crypto Pro (partial archived source)
+
+The archived Roadmap was read longitudinally. It is **not the full/latest conversation**. The user has explicitly established that the unavailable continuation later recovered project context more consistently. Accordingly, absence from this archived portion is not negative evidence, and early lost-context reconstruction is not automatically authoritative merely because it appears in the dialogue.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0101 | Producer–consumer separation between Data Feed and analytical modules | RECUPERADO → REAFIRMADO | C3 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0102 | Independent execution of analytical modules reaffirmed as an architectural principle | DECIDIDO ANTERIORMENTE → RECUPERADO → REAFIRMADO | C3 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0103 | Definitive Data Feed acquisition scope remains open after an initially asserted limiting principle was challenged and corrected | INTERPRETAÇÃO APRESENTADA COMO PRINCÍPIO → QUESTIONADA → RETIFICADA → ABERTO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0104 | Snapshot preserved as an initial strategy rather than a permanent architectural limit | DECIDIDO PARA MVP → IMPLEMENTADO → PRESERVADO COMO ESTÁGIO INICIAL | C3 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0105 | Principle of Resumability conceptually approved | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0106 | Memory defined as discovery/context mechanism, not normative evidence | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0107 | Decision State and Implementation State formally separated | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0108 | Decision persistence established as a continuity requirement | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0109 | PROJECT_STATUS conceived as the operational resumption checkpoint | PROPOSTO → DECIDIDO CONCEITUALMENTE | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0110 | Resume Protocol conceptually approved | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0111 | Decision/documentation/implementation divergences must not be silently normalized | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0112 | Continuity governance should reuse existing Suite governance rather than create a parallel protocol | PROPOSTO → REFINADO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0113 | Session Closeout approved as complement to the Resume Protocol | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0114 | Decision Log/Register distinguished from Changelog | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0115 | English approved as official project/product language | PROPOSTO → DECIDIDO; IMPLEMENTAÇÃO PARCIAL/NÃO CONCLUÍDA | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0116 | Functional recovery should prioritize Crypto before Equities | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0117 | Analytical objective, model result and user communication explicitly separated | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0118 | Recovery Checkpoint 001 instituted on 15/09/2026 | DECIDIDO → IMPLEMENTADO COMO CHECKPOINT | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0119 | Functional module review paused to prioritize persistence of continuity governance | DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0120 | Constitution should not be modified before documentary-authority verification | DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0121 | Physical documentary structure should arise from demonstrated need, not mandatory taxonomy | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0122 | General decisions and Architecture Decisions remain conceptually distinct | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0123 | DECISION_REGISTER.md initially preferred over a decisions/ directory | PROPOSTO → DECIDIDO NO ESTÁGIO REGISTRADO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0124 | CRYPTO PRO SUITE should have its own repository, independent from the Data Feed repository | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0125 | Initial physical repository structure should be materialized progressively | PROPOSTO → DECIDIDO | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0126 | PROJECT_STATUS.md and PRODUCT_BACKLOG.md placed at repository root as a reversible low-impact choice | PROPOSTO → DECIDIDO COMO ESCOLHA REVERSÍVEL | C4 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+| RH-2026-0127 | Master Document identified as recovery work rather than recreation | RECUPERADO → REAFIRMADO | C3 | SRC-0017 — Roadmap do Crypto Pro (archived partial source) |
+
+### Longitudinal authority controls
+
+The early explanation of a supposed general product logic in SRC-0017 is **not promoted to an RH**. At that point the conversation was explicitly operating with lost context; later recovery/correction is known to exist outside the archived portion.
+
+Statements in this source that retrospectively describe older project history require independent corroboration. By contrast, genuinely new September governance decisions can be historical evidence of those September decisions.
+
+The archived Roadmap therefore remains:
+
+**EXAMINED — PARTIAL SOURCE / KNOWN CONTINUATION UNAVAILABLE.**
+
+It must not be used to close the Ranking methodology, the final module purposes, the definitive Suite architecture, or the final documentary structure.
+
+### Open dependencies
+
+- `RPD-2026-0002` remains **OPEN**: Ranking methodological continuity awaits the latest/full Roadmap export.
+- `RPD-2026-0007` remains **OPEN**: legacy module-versioning roadmap versus later decision to defer formal module versioning.
+- The exact Matrix of Authority, a full repository tree, and an `AGENTS.md` implementation/location are not promoted beyond what the source actually establishes.
+- Claims that the Data Feed documentation had already used a particular `AD-001` lineage require verification against the original Data Feed sources rather than retrospective assertion here.
+
 ## Remaining migration checkpoint
 
 | Source | RH range / result |
