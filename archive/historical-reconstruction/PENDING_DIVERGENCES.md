@@ -6,7 +6,7 @@ Checkpoint: 2026-09-22
 | RPD | Subject | Status |
 |---|---|---|
 | RPD-2026-0001 | Pilot provenance error: Macro/Rotation/Ranking/CSE events initially attributed to SRC-0001 | **RESOLVED** |
-| RPD-2026-0002 | Ranking methodological continuity pending latest/full `Roadmap do Crypto Pro` source | **OPEN** |
+| RPD-2026-0002 | Ranking methodological continuity pending latest/full `Roadmap do Crypto Pro` source | **RESOLVED — SOURCE RECOVERED** |
 | RPD-2026-0003 | Historical collision involving ED-001 | **DIVERGENT / OPEN** |
 | RPD-2026-0004 | Exact original content of `00 - Constituição — Draft 0.1` not recovered from SRC-0005 | **OPEN** |
 | RPD-2026-0005 | Exact original content of `Protocolo Editorial — Draft 0.1` not recovered from SRC-0006 | **OPEN** |
@@ -53,7 +53,7 @@ A material succession is now documented:
 
 This is treated as methodological evolution/supersession, not as correction of the earlier historical record.
 
-The latest/full Roadmap export remains necessary to reconstruct the complete Ranking methodology and the deliberative path that led to the current Microcaps Draft.
+The complete Roadmap export was subsequently recovered. The source gap that motivated this RPD is therefore resolved. This does **not** mean that the complete Ranking methodology is itself closed; it means the missing-source condition has been removed and the recovered continuation can now be used to reconstruct the deliberative path.
 
 
 ## RPD-2026-0008 — Misnamed Ranking validation DOCX / content duplicates Microcaps methodology
@@ -69,3 +69,19 @@ A copy supplied directly for inspection contains **Ranking Institucional Simplif
 **Impact:** reinforces that the full Ranking methodology remains open; does not close RPD-2026-0002.
 
 **Resolution:** the misnamed/misplaced DOCX was removed from `03-componentes/23-ranking/validacao/` by the repository owner after the mismatch was identified. The historical RPD is retained for auditability; no SRC or RH was created from the duplicate artifact.
+
+
+## RPD-2026-0009 — Complete SRC-0017 recovered but canonical archive replacement pending
+
+**Status:** OPEN — OPERATIONAL PERSISTENCE
+
+The complete `Roadmap do Crypto Pro` conversation was recovered from the 2026-09-21 export and examined through the canonical `current_node` ancestry chain.
+
+- recovered canonical textual messages: **517**;
+- recovered source period: **2026-09-15–2026-09-20**;
+- the terminal user message `Sig` is incomplete in the original conversation because that conversation ended abnormally after the ChatGPT conversation-time limit was reached;
+- this terminal condition is not treated as export truncation.
+
+The repository currently still contains the earlier 217-message archival copy at `archive/historical-sources/conversations/roadmap-do-crypto-pro.md`. The complete Markdown is approximately 1 MB and could not be safely replaced through the current text-write connector in this session.
+
+**Resolution condition:** replace the archived conversation file with the complete 517-message canonical Markdown and update its manifest/integrity metadata. Historical analysis in the meantime must use the recovered complete source, not infer absence from the older repository copy.
