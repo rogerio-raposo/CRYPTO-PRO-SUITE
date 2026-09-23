@@ -200,6 +200,22 @@ Retrospective assertions about older history remain dependent on corroboration. 
 
 `RPD-2026-0002` and `RPD-2026-0007` remain open.
 
+## Detailed MRT — SRC-0018 — Microcaps Methodology Draft 0.1
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0128–0132 | SRC-0018 | Construct / scope / eligibility | Construct, upstream narrative dependency, PIT eligibility, futures supersession, asset identity | Traced — Microcaps scope only |
+| RH-0133–0137 | SRC-0018 | Scoring architecture | Potential weights/gate, evidence roles, temporal registry, confidence layers, parallel risk/operability/lifecycle | Traced — Microcaps scope only |
+| RH-0138–0140 | SRC-0018 | Trend / detection / audit | Potential Trend state machine, Detection Framework, Fundamental Event Ledger | Traced — Microcaps scope only |
+| RH-0141–0144 | SRC-0018 | Outputs / validation / boundaries | Minimum outputs, validation separation, non-claims, architectural boundaries | Traced — Microcaps scope only |
+| RH-0145–0146 | SRC-0018 | Governance / backlog | MEL backlog and non-autonomous role; anti-retrospective recalibration/version governance | Traced — Microcaps scope only |
+
+### Succession relation
+
+`RH-0131` supersedes the **current Microcaps applicability** of the earlier futures/perpetual eligibility rule in `RH-0032–0033`. This is a temporal methodological succession, not a correction or deletion of the earlier records.
+
+SRC-0018 cannot close the full Ranking domain because the document explicitly limits its normative scope to Microcaps.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
