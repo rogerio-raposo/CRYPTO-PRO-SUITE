@@ -19,10 +19,10 @@ These files are reconstruction infrastructure, not current normative project doc
 
 ## Current reconstruction checkpoint
 
-- Consolidated RH range: `RH-2026-0001` through `RH-2026-0157`
-- Current consolidated RH count: **157**
+- Consolidated RH range: `RH-2026-0001` through `RH-2026-0166`
+- Current consolidated RH count: **166**
 - Catalogued SRC range: `SRC-0001` through `SRC-0020`
-- `SRC-0017 — Roadmap do Crypto Pro`: **EXAMINED — PARTIAL SOURCE / CONTINUITY PENDING**
+- `SRC-0017 has been recovered as a complete 517-message conversation through 2026-09-20; the older 217-message archive copy still awaits replacement (RPD-2026-0009).
 - The complete/latest Roadmap export is known to exist but is not yet available.
 - Ranking reconstruction remains open pending that continuation.
 - Microcaps current chain recovered: `SRC-0019` validation → `SRC-0018` normative methodology.
