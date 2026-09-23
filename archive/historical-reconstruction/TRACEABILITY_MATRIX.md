@@ -216,6 +216,23 @@ Retrospective assertions about older history remain dependent on corroboration. 
 
 SRC-0018 cannot close the full Ranking domain because the document explicitly limits its normative scope to Microcaps.
 
+## Detailed MRT — SRC-0019–0020 — Microcaps validation provenance
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0147–0148 | SRC-0019 | Pilot closure / weights | Closes three-pilot experimental phase; freezes weights against post-hoc recalibration | Traced |
+| RH-0149–0151 | SRC-0019 | Trend / detection / ledger | Operational validation of trend states, detection/expiration and audit ledger | Traced |
+| RH-0152–0153 | SRC-0019 | Validation limits / adverse regime | Preserves negative findings and fundamental-vs-price separation evidence | Traced |
+| RH-0154–0155 | SRC-0019 | Stop rule / methodology-base | Final mandatory gate satisfied; selects mature components; no fourth mandatory pilot | Traced |
+| RH-0156–0157 | SRC-0019 | MEL / documentary transition | MEL backlog; validated elements proceed to normative Microcaps draft | Traced; RH-0157 → SRC-0018 |
+| No autonomous RH | SRC-0020 | Provenance index | Confirms validation-folder scope and pre-v1.0 provenance role | Corroborative only |
+
+### Evidence chain
+
+`SRC-0019 validation evidence → RH-0147–0157 → SRC-0018 normative Microcaps methodology`.
+
+This chain strengthens the provenance of the current Microcaps draft without extending its authority to the complete Ranking Institucional Simplificado methodology.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
