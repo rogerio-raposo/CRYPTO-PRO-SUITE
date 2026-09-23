@@ -39,11 +39,39 @@ The MRT represents the chain:
 
 The pilot attribution error involving Macro/Rotation/Ranking/CSE is not normalized away. It is linked to `RPD-2026-0001` and marked resolved.
 
+## Detailed MRT — SRC-0002
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0024 | SRC-0002 | Narratives | Radar scoring + phase | Traced |
+| RH-0025 | SRC-0002 | Methodology | NTF matrix | Traced |
+| RH-0026 | SRC-0002 | Operations | Weekly monitoring | Traced |
+| RH-0027 | SRC-0002 | Operations | Semi-automatic Level 1 | Traced |
+| RH-0028 | SRC-0002 | Universe | Initial fixed 15-asset Principal universe | Traced; historical state |
+| RH-0029 | SRC-0002 | Microcaps | Parallel < US$100M ranking | Traced |
+| RH-0030 | SRC-0002 | Methodology | Conviction Index = NTF + Momentum | Traced |
+| RH-0031 | SRC-0002 | History | Weekly comparable history | Traced |
+| RH-0032 | SRC-0002 | Eligibility | Futures mandatory for Microcaps | Traced |
+| RH-0033 | SRC-0002 | Eligibility | Eligibility before NTF | Traced |
+| RH-0034 | SRC-0002 | Output | Fixed Top 10 superseded by variable N | Traced |
+| RH-0035 | SRC-0002 | Universe | Periodic reconstruction of Microcaps universe | Traced |
+| RH-0036 | SRC-0002 | Eligibility | Futures liquidity criterion | Traced |
+| RH-0037 | SRC-0002 | Data sources | Reference exchanges incl. later OKX | Traced |
+| RH-0038 | SRC-0002 | Audit | Internal checklist excluded from report | Traced |
+| RH-0039 | SRC-0002 | Output architecture | Ranking / Watchlist / Promising Radar separation | Traced |
+| RH-0040 | SRC-0002 | Output | Principal Driver retained | Traced |
+| RH-0041 | SRC-0002 | Version governance | Formal module versioning deferred | Traced |
+| RH-0042 | SRC-0002 | Output methodology | Confidence added without replacing Driver | Traced |
+| RH-0043 | SRC-0002 | Output architecture | NTF + Driver + Confidence consolidated | Traced |
+
+### Ranking continuity gate
+
+`RPD-2026-0002` remains **OPEN**. The rows above are traceable to SRC-0002 but do not establish closure of the Ranking domain. Final continuity review depends on the latest/full SRC-0017.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
 |---|---|---|
-| SRC-0002 | RH-0024–0043 | Ranking continuity remains open pending complete Roadmap |
 | SRC-0003 | RH-0044–0053 | — |
 | SRC-0004 | RH-0054–0077 | ED-001 collision tracked in RPD |
 | SRC-0005 | — | Original Constitution Draft 0.1 content not recovered |
