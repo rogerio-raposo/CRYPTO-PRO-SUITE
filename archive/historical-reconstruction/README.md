@@ -13,6 +13,7 @@ These files are reconstruction infrastructure, not current normative project doc
 - `HISTORICAL_REGISTER.md` — master historical record (RH)
 - `TRACEABILITY_MATRIX.md` — traceability matrix (MRT)
 - `PENDING_DIVERGENCES.md` — pending items and divergences (RPD)
+- `CPS_Protocolo_Reconstrucao_Historica_Rastreabilidade_Working_Draft_Piloto01.md` — reconstruction protocol (Working / Non-Normative)
 
 ## Current reconstruction checkpoint
 
@@ -24,7 +25,7 @@ These files are reconstruction infrastructure, not current normative project doc
 - Ranking reconstruction remains open pending that continuation.
 - Microcaps current chain recovered: `SRC-0019` validation → `SRC-0018` normative methodology.
 - `RPD-2026-0008` resolved after removal of a misnamed/misplaced duplicate DOCX.
-- Historical Reconstruction Protocol latest working draft is **not yet persisted in this repository**; this is a checkpoint gap to be closed.
+- Historical Reconstruction Protocol latest working draft is persisted as `CPS_Protocolo_Reconstrucao_Historica_Rastreabilidade_Working_Draft_Piloto01.md` (status: Working / Non-Normative).
 
 ## Epistemic rule
 
