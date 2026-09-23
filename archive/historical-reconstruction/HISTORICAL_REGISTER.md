@@ -7,7 +7,7 @@ Checkpoint: 2026-09-22
 
 - Consolidated identifiers: `RH-2026-0001` … `RH-2026-0127`
 - Consolidated count: **127**
-- Detailed persistence status: **SRC-0001–0002 MIGRATED / REMAINDER IN PROGRESS**
+- Detailed persistence status: **SRC-0001–0003 MIGRATED / REMAINDER IN PROGRESS**
 - No RH may be backfilled from model memory merely to complete this file.
 
 ## Detailed records — SRC-0001 — Análise de Criptomoedas
@@ -77,11 +77,33 @@ The archived conversation supports the historical sequence above, including the 
 
 This source does **not** close the Ranking methodology. `RPD-2026-0002` remains **OPEN** pending the latest/full `Roadmap do Crypto Pro`. No absence in the currently archived Roadmap portion may be used as evidence against a later Ranking decision.
 
+## Detailed records — SRC-0003 — Modelo Liquidez Global BTC
+
+These records were re-checked against the canonical archived conversation. The source documents the transition from a proposed BTC-specific macro/flow block to an independent, modular CRYPTO PRO SUITE architecture.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0044 | Macro and institutional-flow analysis initially proposed inside BTC PRO, then rejected as the target architecture | PROPOSTO → QUESTIONADO → REJEITADO COMO ARQUITETURA-ALVO | C4 | SRC-0003 |
+| RH-2026-0045 | Asset-specific analysis separated conceptually from market-wide macro/liquidity analysis | DECIDIDO | C4 | SRC-0003 |
+| RH-2026-0046 | Independent `CRYPTO MACRO PRO` created as the macro/liquidity layer | PROPOSTO → DECIDIDO | C4 | SRC-0003 |
+| RH-2026-0047 | Initial quantitative CRYPTO MACRO PRO structure and test established | PROPOSTO → TESTADO | C4 | SRC-0003 |
+| RH-2026-0048 | Macro scoring refined from a single aggregate approach toward three independent indices plus a consolidated result | PROPOSTO → REFINADO → DECIDIDO | C4 | SRC-0003 |
+| RH-2026-0049 | The integrated architecture explicitly named `CRYPTO PRO SUITE` | PROPOSTO → DECIDIDO | C4 | SRC-0003 |
+| RH-2026-0050 | Suite modules established as independently executable/on-demand components | DECIDIDO | C4 | SRC-0003 |
+| RH-2026-0051 | Functional differentiation among Suite modules established to reduce overlap | DECIDIDO → REFINADO | C4 | SRC-0003 |
+| RH-2026-0052 | Ranking Institucional Simplificado explicitly preserved as an independent component | QUESTIONADO → REAFIRMADO / DECIDIDO | C4 | SRC-0003 |
+| RH-2026-0053 | Master Document consolidation and Changelog creation selected as next governance/documentation action | DECIDIDO | C4 | SRC-0003 |
+
+### SRC-0003 audit note
+
+The source preserves an important architectural reversal: the initial `BTC PRO – Painel Macro & Fluxo Institucional` proposal is historical evidence of deliberation, not the final architecture. The user's objection led to separation between reusable asset analysis and market-wide macro context.
+
+The source also contains exploratory module descriptions and sequencing proposals. Only the validated decisions represented above are promoted to RH status; later project sources may refine module names, boundaries and dependencies.
+
 ## Remaining migration checkpoint
 
 | Source | RH range / result |
 |---|---|
-| SRC-0003 | RH-2026-0044–0053 — pending detailed migration |
 | SRC-0004 | RH-2026-0054–0077 — pending detailed migration |
 | SRC-0005 | No new RH |
 | SRC-0006 | No new RH |
