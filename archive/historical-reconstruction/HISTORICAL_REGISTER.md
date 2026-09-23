@@ -264,6 +264,40 @@ It must not be used to close the Ranking methodology, the final module purposes,
 - The exact Matrix of Authority, a full repository tree, and an `AGENTS.md` implementation/location are not promoted beyond what the source actually establishes.
 - Claims that the Data Feed documentation had already used a particular `AD-001` lineage require verification against the original Data Feed sources rather than retrospective assertion here.
 
+## Detailed records — SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1
+
+SRC-0018 is a **post-export, current versioned methodological artifact dated 22/09/2026**. Its own scope statement is controlling: it is normative for the **Microcaps submethodology only** and does not define the complete Ranking Institucional Simplificado methodology.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0128 | Microcaps construct formalized as relative, evidence-based quality/evolution within a predefined narrative; price outcomes excluded from construct | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0129 | Narrative Opportunity placed upstream; Ranking evaluates Asset–Narrative Fit rather than selecting the narrative inside Potential | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0130 | Microcaps eligibility formalized at market cap < US$100M with permissive eligibility/selective scoring and PIT evidence hierarchy | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0131 | Futures/perpetuals removed as Microcaps eligibility filter; Operability separated from Potential | DECISÃO ANTERIOR → SUPERADA / NOVA REGRA FORMALIZADA | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0132 | Canonical asset identity and lifecycle events required before historical reconstruction | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0133 | Potential Score formalized with five dimensions and weights 25/25/15/20/15 plus Fit Gate ≥3/5 | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0134 | Evidence-role taxonomy and anti-double-counting/NA interpretation rules formalized | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0135 | Point-in-time temporal governance and Data Source Registry formalized, including known_at_score_time | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0136 | Confidence architecture separated into Datum, Dimension, Scoring and Eligibility Confidence; missing data reduces confidence rather than score | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0137 | Risk, Operability and Lifecycle State made parallel to Potential and non-automatic ranking reorder dimensions | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0138 | Potential Trend formalized as seven-state evidence-driven state machine | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0139 | Detection Framework formalized: Emerging Candidate, posterior-evidence confirmation, ~90-day expiration and preserved Detection Date | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0140 | Fundamental Event Ledger established as score-independent audit infrastructure | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0141 | Minimum Microcaps execution outputs and methodology/checkpoint identification formalized | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0142 | Validation Layer separated from Potential; price/return/MFE/MAE/EOY/Time-to-MFE are validation outcomes, not scoring inputs | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0143 | Explicit non-claims formalized: no demonstrated return prediction, MFE ordering, alpha or systematic repricing anticipation | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0144 | Architectural boundaries formalized: narrative upstream; diversification/one-per-narrative outside Ranking; Microcaps remains independent | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0145 | MEL retained in backlog as diagnostic/proposal layer without autonomous methodological changes; v1 inclusion deferred | FORMALIZADO COMO BACKLOG / ADIADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+| RH-2026-0146 | Change governance prohibits retrospective recalibration from pilot outcomes; future changes require justification, decision record and new methodology version | FORMALIZADO | C4 | SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 |
+
+### SRC-0018 audit note
+
+These records describe the state formalized by the Microcaps Draft 0.1. They do not retroactively rewrite earlier RHs. Where SRC-0018 conflicts with an earlier Microcaps rule, the relation is treated as methodological succession.
+
+In particular, RH-0131 **SUPERSEDES the current applicability** of the earlier futures/perpetual eligibility rule represented by RH-0032–0033 for Microcaps, while RH-0032–0033 remain valid historical records of the earlier methodology.
+
+The document's provenance section points to `03-componentes/23-ranking/validacao/microcaps/`, especially the Microcaps methodological-validation Draft. Those supporting artifacts should be inventoried separately before their empirical/deliberative content is promoted into additional RHs.
+
 ## Remaining migration checkpoint
 
 | Source | RH range / result |
