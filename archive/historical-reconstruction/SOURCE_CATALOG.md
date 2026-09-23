@@ -23,6 +23,7 @@ Checkpoint: 2026-09-22
 | SRC-0016 | Resumo do projeto CRYPTO PRO SUITE | 2026-09-15 | Secondary evidence | Examined; corroborative only |
 | SRC-0017 | Roadmap do Crypto Pro | 2026-09-15–2026-09-16 (archived portion) | Primary deliberative | **Examined — partial source / continuity pending** |
 
+| SRC-0018 | Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 | 2026-09-22 | Current versioned methodological artifact | Examined; Microcaps-only scope; post-export source |
 ## Important limitation
 
 The archived `SRC-0017` is not the latest/full conversation. Its continuation is known to contain a more consistent recovery of project context. Therefore, absence from the archived portion must not be interpreted as evidence that a later decision did not occur.
