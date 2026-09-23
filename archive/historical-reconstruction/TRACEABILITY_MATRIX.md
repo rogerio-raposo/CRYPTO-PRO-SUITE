@@ -142,13 +142,28 @@ RH-0078 and RH-0079 document successive architectural states: the five-module Ar
 
 `RPD-2026-0006` remains **OPEN** because SRC-0011 explicitly cites `Constituição v1.0` as its architectural base and that exact version has not been located.
 
+## Detailed MRT — SRC-0007
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0089 | SRC-0007 | Governance | Master Document operationalizes governance under Constitution | Traced |
+| RH-0090 | SRC-0007 | Editorial process | Section-level editorial microcycles | Traced |
+| RH-0091 | SRC-0007 | Architecture | Sprint 0 reaffirmed as Marco Zero/baseline | Traced |
+| RH-0092 | SRC-0007 | Document hierarchy | Constitution → Master Document → operational artifacts | Traced |
+| RH-0093 | SRC-0007 | Requirements | Map superior normative requirements before drafting | Traced |
+| RH-0094 | SRC-0007 | Engineering artifact | Temporary Blueprint + four provisional diagrams | Traced |
+| RH-0095 | SRC-0007 | Architecture knowledge | MDA refined to EAC; EAC postponed | Traced |
+
+### Editorial-engineering condition
+
+The Blueprint and EAC are preserved according to their actual historical states. Neither is promoted into the official collection by this reconstruction: the Blueprint is temporary and the EAC was explicitly postponed.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
 |---|---|---|
 | SRC-0005 | — | Original Constitution Draft 0.1 content not recovered |
 | SRC-0006 | — | Original Editorial Protocol Draft 0.1 content not recovered |
-| SRC-0007 | RH-0089–0095 | — |
 | SRC-0012 | RH-0096 | — |
 | SRC-0013 | RH-0097 | — |
 | SRC-0014 | — | No historical decision promoted |
