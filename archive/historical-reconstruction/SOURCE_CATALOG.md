@@ -21,11 +21,13 @@ Checkpoint: 2026-09-22
 | SRC-0014 | Indicador de Média Móvel | 2026-08-11 | Primary deliberative | Examined; no new RH |
 | SRC-0015 | Liquidez Macro BTC | 2026-08-27–2026-09-03 | Primary deliberative | Examined |
 | SRC-0016 | Resumo do projeto CRYPTO PRO SUITE | 2026-09-15 | Secondary evidence | Examined; corroborative only |
-| SRC-0017 | Roadmap do Crypto Pro | 2026-09-15–2026-09-16 (archived portion) | Primary deliberative | **Examined — partial source / continuity pending** |
+| SRC-0017 | Roadmap do Crypto Pro | 2026-09-15–2026-09-20 | Primary deliberative | **Complete conversation recovered and examined; 517 canonical textual messages. Repository archive copy still awaits replacement with the complete export.** |
 
 | SRC-0018 | Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1 | 2026-09-22 | Current versioned methodological artifact | Examined; Microcaps-only scope; post-export source |
 | SRC-0020 | Microcaps — Validação — README | 2026-09-22 or repository-current | Documentary index/context artifact | Examined; provenance/scope context only; no autonomous RH |
 | SRC-0019 | Ranking Institucional Simplificado — Microcaps — Validação Metodológica e Encerramento dos Pilotos — Draft 0.1 | 2026-09-22 | Intermediate empirical/methodological validation artifact | Examined; records three-pilot validation and pre-v1.0 stop rule |
-## Important limitation
+## SRC-0017 recovery note
 
-The archived `SRC-0017` is not the latest/full conversation. Its continuation is known to contain a more consistent recovery of project context. Therefore, absence from the archived portion must not be interpreted as evidence that a later decision did not occur.
+A newer export recovered the complete source conversation through its actual terminal state: 517 canonical textual messages, updated through 2026-09-20. The final user message (`Sig`) is incomplete in the source conversation because the ChatGPT conversation itself ended abnormally after reaching its conversation-time limit; it is not treated as export truncation.
+
+The previous 217-message repository copy was therefore a partial archival snapshot, not the complete source. Historical interpretation must use the recovered 517-message source. Replacement of the large canonical Markdown file in `archive/historical-sources/conversations/` remains an operational persistence task; until that write is completed, the catalog records the distinction explicitly.
