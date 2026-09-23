@@ -158,6 +158,22 @@ RH-0078 and RH-0079 document successive architectural states: the five-module Ar
 
 The Blueprint and EAC are preserved according to their actual historical states. Neither is promoted into the official collection by this reconstruction: the Blueprint is temporary and the EAC was explicitly postponed.
 
+## Detailed MRT — SRC-0012 to SRC-0015
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0096 | SRC-0012 | BTC governance | BIP-110 monitor considered then deferred | Traced; not incorporated |
+| RH-0097 | SRC-0013 | Tokenomics | Tokenomics/score explored without final adoption | Traced; undecided |
+| RH-0098 | SRC-0015 | Macro monitoring | Fed/yields/DXY/ETFs/TGA-buybacks operational driver set | Traced; operational experiment |
+| RH-0099 | SRC-0015 | Automation | Material-change liquidity monitor authorized and executed | Traced; implemented |
+| RH-0100 | SRC-0015 | Validation | Monitor used as empirical CRYPTO MACRO PRO test bed | Traced; C3 |
+
+### Negative evidence / non-promotion
+
+`SRC-0014 — Indicador de Média Móvel` produces no autonomous RH: it does not prove formal selection of a moving-average set for BTC PRO/ASSET PRO.
+
+The macro-liquidity monitor is traced as an operational experiment and validation aid. Exact alert thresholds and its full driver set are not promoted to permanent CRYPTO MACRO PRO methodology by this reconstruction.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
