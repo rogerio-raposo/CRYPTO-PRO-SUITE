@@ -192,13 +192,13 @@ The source is therefore retained for **corroboration and discovery only**. Quali
 | RH-0121–0123 | SRC-0017 | Documentary structure | Need-driven structure; general vs architecture decisions; initial DECISION_REGISTER preference | Traced — partial-source constraints apply |
 | RH-0124–0127 | SRC-0017 | Repository/recovery | Independent Suite repo; progressive structure; root status/backlog; Master Document recovery | Traced — partial-source constraints apply |
 
-### Partial-source control
+### SRC-0017 recovery control
 
-All RH-0101–0127 are traceable to the archived portion of SRC-0017, but the source is known to have a later continuation that is not yet available. Therefore the matrix does **not** interpret absence from this copy as negative evidence and does not use it to close architecture, Ranking, module-purpose, or documentary-structure questions.
+The earlier 217-message archive copy was superseded for historical interpretation by a recovered complete 517-message export of the same conversation. The source ends with an incomplete user message (`Sig`) because the original conversation itself terminated abnormally after reaching the ChatGPT conversation-time limit; this is not treated as export truncation.
 
-Retrospective assertions about older history remain dependent on corroboration. New September decisions are traceable as September decisions. The early lost-context “general product logic” explanation is excluded from the historical register as authoritative architecture.
+Retrospective assertions about older history remain dependent on corroboration. New September decisions are traceable as September decisions. The early lost-context “general product logic” explanation remains excluded from the historical register as authoritative architecture.
 
-`RPD-2026-0002` and `RPD-2026-0007` remain open.
+`RPD-2026-0002` is resolved as a missing-source condition. `RPD-2026-0007` remains open. `RPD-2026-0009` tracks replacement of the older repository archive copy with the complete canonical Markdown.
 
 ## Detailed MRT — SRC-0018 — Microcaps Methodology Draft 0.1
 
@@ -244,8 +244,25 @@ This chain strengthens the provenance of the current Microcaps draft without ext
 | SRC-0014 | — | No historical decision promoted |
 | SRC-0015 | RH-0098–0100 | Experimental monitoring not promoted to permanent methodology |
 | SRC-0016 | — | Secondary/corroborative evidence only |
-| SRC-0017 (partial) | RH-0101–0127 | Complete continuation unavailable; gate review required when received |
+| SRC-0017 (complete recovered source) | RH-0101–0127; RH-0158–0166; corroborates RH-0128–0157 | Repository archival copy replacement pending under RPD-2026-0009 |
 
 ## Relation vocabulary
 
 `DERIVA_DE`, `REFINA`, `IMPLEMENTA`, `FORMALIZA`, `VALIDA`, `CONTRADIZ`, `SUBSTITUI`, `SUPERADO_POR`, `DEPENDE_DE`, `RELACIONADO_A`.
+
+
+## Detailed MRT — SRC-0017 complete continuation
+
+| RH / relation | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0158–0160 | SRC-0017 | Product scope / recovery method | Crypto-only scope; functional baseline; interface-driven recovery | Traced |
+| RH-0161–0162 | SRC-0017 | Rotation / research support | Two-layer rotation architecture; lightweight Research Knowledge Base | Traced |
+| RH-0163–0165 | SRC-0017 | Module boundaries | Institutional Flow three-class scope; Asset PRO deep technical boundary; narrow supply-dynamics treatment | Traced |
+| RH-0166 | SRC-0017 | CSE / portfolio construction | Portfolio Construction kept as CSE capability/layer rather than independent module | Traced |
+| Corroboration → RH-0128–0157 | SRC-0017 | Microcaps deliberative provenance | Supplies the deliberative path later formalized/validated by SRC-0018–0019 | Traced — no duplicate RH creation |
+
+### Cross-source chain
+
+`SRC-0017 deliberation → SRC-0019 validation evidence → SRC-0018 normative Microcaps methodology`.
+
+This chain closes the principal provenance gap behind the current Microcaps methodology while preserving the distinction between deliberative, validation and normative authority.
