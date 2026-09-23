@@ -1,7 +1,7 @@
 # Historical Reconstruction — Working Registers
 
 Status: **WORKING / NON-NORMATIVE**  
-Last updated: 2026-09-22
+Last updated: 2026-09-23
 
 This directory persists the working control artifacts used by the CRYPTO PRO SUITE historical reconstruction process.
 
@@ -22,11 +22,11 @@ These files are reconstruction infrastructure, not current normative project doc
 - Consolidated RH range: `RH-2026-0001` through `RH-2026-0166`
 - Current consolidated RH count: **166**
 - Catalogued SRC range: `SRC-0001` through `SRC-0020`
-- `SRC-0017 has been recovered as a complete 517-message conversation through 2026-09-20; the older 217-message archive copy still awaits replacement (RPD-2026-0009).
-- The complete/latest Roadmap export is known to exist but is not yet available.
-- Ranking reconstruction remains open pending that continuation.
+- `SRC-0017` is recovered and canonically archived as a complete 517-message conversation through 2026-09-20.
+- Ranking reconstruction may proceed from the complete recovered Roadmap; completion of the general Ranking methodology remains a separate methodological question.
 - Microcaps current chain recovered: `SRC-0019` validation → `SRC-0018` normative methodology.
 - `RPD-2026-0008` resolved after removal of a misnamed/misplaced duplicate DOCX.
+- `RPD-2026-0009` resolved after replacement of the partial Roadmap archive with the complete canonical source and manifest update.
 - Historical Reconstruction Protocol latest working draft is persisted as `CPS_Protocolo_Reconstrucao_Historica_Rastreabilidade_Working_Draft_Piloto01.md` (status: Working / Non-Normative).
 
 ## Epistemic rule
