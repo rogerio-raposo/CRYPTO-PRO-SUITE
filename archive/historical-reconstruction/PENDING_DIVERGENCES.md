@@ -38,3 +38,19 @@ Therefore:
 - do not describe Constitution v1.0 as merely an erroneous reference in the Manual;
 - keep the RPD open for recovery of the exact artifact/content or stronger identity evidence;
 - distinguish this early Constitution v1.0 from the later Marco Zero reuse/reset of the v1.0 version label.
+
+
+## RPD-2026-0002 — Refinement after SRC-0018
+
+`SRC-0018 — Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1` (22/09/2026) provides a current versioned methodological artifact for the **Microcaps submethodology only**.
+
+It explicitly states that it is normative only for Microcaps and does not define the complete Ranking Institucional Simplificado methodology. Therefore the RPD cannot be closed.
+
+A material succession is now documented:
+
+- earlier SRC-0002 / RH-0032–0033: futures/perpetual market availability became a Microcaps eligibility requirement;
+- SRC-0018: **futures/perpetuals are not an eligibility filter** and Operability is parallel to Potential.
+
+This is treated as methodological evolution/supersession, not as correction of the earlier historical record.
+
+The latest/full Roadmap export remains necessary to reconstruct the complete Ranking methodology and the deliberative path that led to the current Microcaps Draft.
