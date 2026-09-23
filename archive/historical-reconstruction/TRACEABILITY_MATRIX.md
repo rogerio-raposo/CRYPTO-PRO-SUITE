@@ -120,6 +120,28 @@ RH-0044 and RH-0045 must be read together: the early proposal to embed macro/flo
 
 `RPD-2026-0003` remains associated with SRC-0004 because the historical `ED-001` identifier collision is not resolved by this migration. The detailed records preserve the decision content without silently choosing a conflicting identifier lineage.
 
+## Detailed MRT — SRC-0008 to SRC-0011
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0078 | SRC-0008 | Architecture | Architecture v1.0 formalizes five-module baseline | Traced |
+| RH-0079 | SRC-0009 | Governance / architecture | Constitution v1.1 formalizes CSE + three layers | Traced |
+| RH-0080 | SRC-0010 | Change control | CHANGELOG v1.0 records 30/06 baseline and roadmap | Traced |
+| RH-0081 | SRC-0011 | Methodology | Transversal Methodological Manual created | Traced; draft |
+| RH-0082 | SRC-0011 | Scoring | Common 0–100 scale + confidence | Traced; draft |
+| RH-0083 | SRC-0011 | Indicators | Leading / Coincident / Lagging taxonomy | Traced; draft |
+| RH-0084 | SRC-0011 | Normalization | Permitted methods + preference order | Traced; draft |
+| RH-0085 | SRC-0011 | Weights | Consensus → evidence → dynamic roadmap | Traced; roadmap |
+| RH-0086 | SRC-0011 | Metric | Crypto Predictive Score specification | Traced; not empirically validated |
+| RH-0087 | SRC-0011 | Metric | Turning Point Score specification | Traced; not empirically validated |
+| RH-0088 | SRC-0011 | Governance | Cross-Suite reporting/version rules | Traced; draft |
+
+### Documentary evolution and open dependency
+
+RH-0078 and RH-0079 document successive architectural states: the five-module Architecture v1.0 and the later Constitution v1.1 with CSE/three layers. They are preserved as evolution, not silently reconciled.
+
+`RPD-2026-0006` remains **OPEN** because SRC-0011 explicitly cites `Constituição v1.0` as its architectural base and that exact version has not been located.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
@@ -127,8 +149,6 @@ RH-0044 and RH-0045 must be read together: the early proposal to embed macro/flo
 | SRC-0005 | — | Original Constitution Draft 0.1 content not recovered |
 | SRC-0006 | — | Original Editorial Protocol Draft 0.1 content not recovered |
 | SRC-0007 | RH-0089–0095 | — |
-| SRC-0008–0010 | RH-0078–0080 | — |
-| Manual Metodológico v1.0 Draft | RH-0081–0088 | Constitution v1.0 reference unresolved |
 | SRC-0012 | RH-0096 | — |
 | SRC-0013 | RH-0097 | — |
 | SRC-0014 | — | No historical decision promoted |
