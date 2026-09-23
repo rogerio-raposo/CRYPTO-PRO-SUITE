@@ -87,11 +87,43 @@ The pilot attribution error involving Macro/Rotation/Ranking/CSE is not normaliz
 
 RH-0044 and RH-0045 must be read together: the early proposal to embed macro/flow analysis in BTC PRO was superseded by the decision to separate asset analysis from market-wide macro analysis. The rejected proposal is preserved rather than silently erased.
 
+## Detailed MRT — SRC-0004
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0054 | SRC-0004 | Macro | Further consolidation of CRYPTO MACRO PRO | Traced |
+| RH-0055 | SRC-0004 | CSE | Decision Engine refined/renamed to CSE | Traced |
+| RH-0056 | SRC-0004 | CSE | Integrates evidence into strategic posture; execution remains human | Traced |
+| RH-0057 | SRC-0004 | Decision governance | Separates strategic output from automatic trading | Traced |
+| RH-0058 | SRC-0004 | Architecture | Three-layer Analysis / Decision-Strategy / Execution architecture | Traced |
+| RH-0059 | SRC-0004 | Architecture | One strategic question / responsibility per module | Traced |
+| RH-0060 | SRC-0004 | Methodology | Traceability and auditability principle | Traced |
+| RH-0061 | SRC-0004 | Traceability | Strategic conclusions reference originating evidence/reports | Traced |
+| RH-0062 | SRC-0004 | Governance | Constitution as highest stable structural artifact | Traced |
+| RH-0063 | SRC-0004 | Governance | Different evolution rates for constitutional/technical/operational artifacts | Traced |
+| RH-0064 | SRC-0004 | Documentation | Four-volume documentary collection | Traced |
+| RH-0065 | SRC-0004 | Documentation | Volume I — Governance | Traced |
+| RH-0066 | SRC-0004 | Documentation | Volume II — Methodology | Traced |
+| RH-0067 | SRC-0004 | Documentation | Volume III — Components | Traced |
+| RH-0068 | SRC-0004 | Documentation | Volume IV — Knowledge/State/history | Traced |
+| RH-0069 | SRC-0004 | Governance | Marco Zero naming/version baseline | Traced |
+| RH-0070 | SRC-0004 | Editorial process | Controlled sprints/micro-cycles | Traced |
+| RH-0071 | SRC-0004 | Source of truth | Official artifacts over conversational memory | Traced |
+| RH-0072 | SRC-0004 | Editorial process | One document per conversation | Traced |
+| RH-0073 | SRC-0004 | Editorial governance | Editorial Protocol + opening prompt | Traced |
+| RH-0074 | SRC-0004 | Documentation | Constitution Draft 0.1 generated | Traced |
+| RH-0075 | SRC-0004 | Documentation | Concept material separated from Official Collection | Traced |
+| RH-0076 | SRC-0004 | Governance | Documentary Contract concept | Traced |
+| RH-0077 | SRC-0004 | Validation | Observation/review gate before authoritative change | Traced |
+
+### Governance traceability condition
+
+`RPD-2026-0003` remains associated with SRC-0004 because the historical `ED-001` identifier collision is not resolved by this migration. The detailed records preserve the decision content without silently choosing a conflicting identifier lineage.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
 |---|---|---|
-| SRC-0004 | RH-0054–0077 | ED-001 collision tracked in RPD |
 | SRC-0005 | — | Original Constitution Draft 0.1 content not recovered |
 | SRC-0006 | — | Original Editorial Protocol Draft 0.1 content not recovered |
 | SRC-0007 | RH-0089–0095 | — |
