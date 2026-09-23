@@ -7,7 +7,7 @@ Checkpoint: 2026-09-22
 
 - Consolidated identifiers: `RH-2026-0001` … `RH-2026-0127`
 - Consolidated count: **127**
-- Detailed persistence status: **RH-0001–0095 MIGRATED / REMAINDER IN PROGRESS**
+- Detailed persistence status: **RH-0001–0100 MIGRATED / REMAINDER IN PROGRESS**
 - No RH may be backfilled from model memory merely to complete this file.
 
 ## Detailed records — SRC-0001 — Análise de Criptomoedas
@@ -184,6 +184,32 @@ These records were re-checked against the canonical archived conversation. SRC-0
 The source contains several assistant proposals that were subsequently refined. The records above follow the accepted trajectory rather than promoting every intermediate proposal.
 
 In particular, the Blueprint remains a **temporary engineering artifact**, not a member of the official collection. The EAC is likewise not treated as already produced: the conversation explicitly postpones its consolidation until after Volume I.
+
+## Detailed records — SRC-0012 to SRC-0015
+
+This batch covers exploratory complements to BTC PRO and the later operational macro-liquidity monitor. The records preserve the distinction between an explored/proposed enhancement and a formally incorporated Suite methodology.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0096 | BIP-110 / Bitcoin governance monitoring considered as a possible BTC PRO complement, but not prioritized for incorporation | PROPOSTO → CONSIDERADO → ADIADO | C4 | SRC-0012 — O que é BIP-110 |
+| RH-2026-0097 | Tokenomics explored as a possible analytical expansion, including a possible Tokenomics Score, without a final incorporation decision | PROPOSTO → EXPLORADO → ESCOPO REDUZIDO PROPOSTO → NÃO DECIDIDO | C4 | SRC-0013 — Importância do Tokenomics |
+| RH-2026-0098 | Operational BTC-liquidity monitoring centered on Fed/policy expectations, Treasury yields, DXY, spot BTC ETF flows, Treasury/TGA/buybacks and other material macro drivers | PROPOSTO → ACEITO PARA MONITORAMENTO → EXECUTADO | C4 | SRC-0015 — Liquidez Macro BTC |
+| RH-2026-0099 | Automatic monitoring authorized to notify only on material changes in the BTC liquidity regime | PROPOSTO → AUTORIZADO → IMPLEMENTADO → EXECUTADO REPETIDAMENTE | C4 | SRC-0015 |
+| RH-2026-0100 | The operational monitor used as an empirical test bed for the CRYPTO MACRO PRO framework | PROPOSTO → UTILIZADO COMO TESTE CONTÍNUO | C3 | SRC-0015 |
+
+### SRC-0014 — Indicador de Média Móvel
+
+No autonomous RH is created from SRC-0014. The source does not provide sufficient project evidence to conclude that a specific EMA/SMA set was formally selected for ASSET PRO or BTC PRO.
+
+### Audit constraints for SRC-0012–0015
+
+RH-0096 does **not** establish a permanent Bitcoin governance module. The user's final position was to consider whether other BTC PRO complements should have higher priority.
+
+RH-0097 proves exploration of tokenomics and possible scoring/data acquisition approaches, not adoption of a Tokenomics module or score into the Suite.
+
+RH-0098–0100 prove the operational monitoring experiment. They do **not** by themselves establish permanent incorporation of its thresholds or exact driver set into the formal CRYPTO MACRO PRO methodology.
+
+A present reconstruction backlog item remains to evaluate whether this monitor, or a redesigned version, should later become an operational implementation of the previously contemplated `MACRO ALERT (extraordinário)`. This is a future evaluation, not a historical approval.
 
 ## Remaining migration checkpoint
 
