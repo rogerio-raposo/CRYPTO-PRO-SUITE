@@ -7,7 +7,7 @@ Checkpoint: 2026-09-22
 
 - Consolidated identifiers: `RH-2026-0001` … `RH-2026-0127`
 - Consolidated count: **127**
-- Detailed persistence status: **RH-0001–0088 MIGRATED / REMAINDER IN PROGRESS**
+- Detailed persistence status: **RH-0001–0095 MIGRATED / REMAINDER IN PROGRESS**
 - No RH may be backfilled from model memory merely to complete this file.
 
 ## Detailed records — SRC-0001 — Análise de Criptomoedas
@@ -165,13 +165,32 @@ The records below were verified directly against the archived Markdown documents
 
 The Manual explicitly names `CRYPTO PRO SUITE - Constituição v1.0` as its architectural base. That referenced Constitution version has not been located in the reconstruction corpus; `RPD-2026-0006` remains **OPEN**.
 
+## Detailed records — SRC-0007 — 01 - Documento Mestre
+
+These records were re-checked against the canonical archived conversation. SRC-0007 documents the operationalization of Volume I governance and the engineering discipline adopted for the Master Document.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0089 | The Volume I Master Document established as the operationalization instrument for governance, subordinate to the Constitution and without duplicating constitutional content | PROPOSTO → DECIDIDO → REFINADO | C4 | SRC-0007 |
+| RH-2026-0090 | Master-document drafting adopted section-by-section editorial microcycles with structural, technical, editorial and integration review before approval | PROPOSTO → DECIDIDO | C4 | SRC-0007 |
+| RH-2026-0091 | Sprint 0 reaffirmed as the architectural Marco Zero/baseline to be formalized rather than reinvented by the Master Document | DECIDIDO → REAFIRMADO | C4 | SRC-0007 |
+| RH-2026-0092 | Operational documentary hierarchy established: Constitution defines superior rules; Master Document operationalizes them; operational artifacts execute procedures | DECIDIDO | C4 | SRC-0007 |
+| RH-2026-0093 | Superior normative requirements must be identified and mapped before subordinate Master Document chapters are drafted | DECIDIDO | C4 | SRC-0007 |
+| RH-2026-0094 | A temporary Master Document Blueprint adopted as an engineering artifact, including planned diagrams for Collection Architecture, Documentary Governance Flow, Document Lifecycle and Official-Document Relationships | PROPOSTO → DECIDIDO | C4 | SRC-0007 |
+| RH-2026-0095 | Auxiliary architecture artifact evolved from MDA to EAC and was postponed until after completion of Volume I | MDA PROPOSTO → DECIDIDO COMO ARTEFATO INTERNO → RENOMEADO/REFINADO PARA EAC → EAC ADIADO | C4 | SRC-0007 |
+
+### SRC-0007 audit note
+
+The source contains several assistant proposals that were subsequently refined. The records above follow the accepted trajectory rather than promoting every intermediate proposal.
+
+In particular, the Blueprint remains a **temporary engineering artifact**, not a member of the official collection. The EAC is likewise not treated as already produced: the conversation explicitly postpones its consolidation until after Volume I.
+
 ## Remaining migration checkpoint
 
 | Source | RH range / result |
 |---|---|
 | SRC-0005 | No new RH |
 | SRC-0006 | No new RH |
-| SRC-0007 | RH-2026-0089–0095 — pending detailed migration |
 | SRC-0012 | RH-2026-0096 — pending detailed migration |
 | SRC-0013 | RH-2026-0097 — pending detailed migration |
 | SRC-0014 | No new RH |
