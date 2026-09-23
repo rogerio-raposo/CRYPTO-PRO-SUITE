@@ -5,9 +5,9 @@ Checkpoint: 2026-09-22
 
 ## Control
 
-- Consolidated identifiers: `RH-2026-0001` … `RH-2026-0127`
-- Consolidated count: **127**
-- Detailed persistence status: **RH-0001–0100 MIGRATED / REMAINDER IN PROGRESS**
+- Consolidated identifiers: `RH-2026-0001` … `RH-2026-0157`
+- Consolidated count: **157**
+- Detailed persistence status: **RH-0001–0157 MIGRATED; SRC-0017 remains partial and subject to later continuation review**
 - No RH may be backfilled from model memory merely to complete this file.
 
 ## Detailed records — SRC-0001 — Análise de Criptomoedas
@@ -328,18 +328,9 @@ RH-0157 links the validation artifact to the later normative draft: the source's
 
 SRC-0020 (validation README) creates no autonomous RH. It corroborates that the folder preserves provenance for pre-v1.0 Microcaps pilots and does not represent the full Ranking methodology.
 
-## Remaining migration checkpoint
+## Current open reconstruction checkpoint
 
-| Source | RH range / result |
-|---|---|
-| SRC-0005 | No new RH |
-| SRC-0006 | No new RH |
-| SRC-0012 | RH-2026-0096 — pending detailed migration |
-| SRC-0013 | RH-2026-0097 — pending detailed migration |
-| SRC-0014 | No new RH |
-| SRC-0015 | RH-2026-0098–0100 — pending detailed migration |
-| SRC-0016 | No new RH |
-| SRC-0017 (partial) | RH-2026-0101–0127 — pending detailed migration and later gate review |
+Detailed migration is complete through RH-0157 for the currently inventoried sources. This does **not** close historical reconstruction: SRC-0017 is a known partial source; Ranking integral methodology remains open; and RPD items govern unresolved documentary gaps.
 
 ## Gate
 
