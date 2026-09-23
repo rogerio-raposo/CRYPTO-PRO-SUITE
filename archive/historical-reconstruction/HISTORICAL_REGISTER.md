@@ -7,7 +7,7 @@ Checkpoint: 2026-09-22
 
 - Consolidated identifiers: `RH-2026-0001` … `RH-2026-0127`
 - Consolidated count: **127**
-- Detailed persistence status: **SRC-0001–0003 MIGRATED / REMAINDER IN PROGRESS**
+- Detailed persistence status: **SRC-0001–0004 MIGRATED / REMAINDER IN PROGRESS**
 - No RH may be backfilled from model memory merely to complete this file.
 
 ## Detailed records — SRC-0001 — Análise de Criptomoedas
@@ -100,11 +100,47 @@ The source preserves an important architectural reversal: the initial `BTC PRO �
 
 The source also contains exploratory module descriptions and sequencing proposals. Only the validated decisions represented above are promoted to RH status; later project sources may refine module names, boundaries and dependencies.
 
+## Detailed records — SRC-0004 — Concepção + Sprint 0
+
+These records were re-checked against the canonical archived conversation. SRC-0004 is a major transition source: it records architectural consolidation, creation/refinement of the CSE, formal governance, the documentary collection, and the Marco Zero/editorial process.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0054 | CRYPTO MACRO PRO architecture and methodological role further consolidated | REFINADO → CONSOLIDADO | C4 | SRC-0004 |
+| RH-2026-0055 | Crypto Decision Engine concept renamed/refined into CRYPTO STRATEGY ENGINE (CSE) | PROPOSTO → REFINADO → DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0056 | CSE established as integrator of analytical evidence into strategic posture, while final execution remains human | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0057 | Decision-oriented outputs separated from automatic buy/sell execution | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0058 | Three-layer architecture established: Analysis, Decision/Strategy, and Execution | PROPOSTO → REFINADO → DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0059 | Principle of one strategic question / single responsibility per module established | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0060 | Traceability/auditability established as a foundational methodological principle | PROPOSTO → DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0061 | Strategic conclusions designed to reference the evidence/reports that originated them | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0062 | Constitution established as the highest, stable governance artifact for structural rules | DECIDIDO → FORMALIZADO | C4 | SRC-0004 |
+| RH-2026-0063 | Documentary governance differentiated stable constitutional rules from more frequently evolving technical/operational artifacts | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0064 | Four-volume documentary collection established for Governance, Methodology, Components, and Knowledge/State/history | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0065 | Volume I — Governance defined to contain Constitution, Master Document, Changelog and Official Glossary | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0066 | Volume II — Methodology defined around Methodological Manual, ITMM Blueprint, ITMM and Operational Manual | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0067 | Volume III — Components defined for Macro, Rotation, Institutional, Ranking, Asset and CSE | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0068 | Volume IV — Knowledge/State/history defined for catalog, indicator sheets, sources, STATE and historical records | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0069 | Marco Zero adopted: documents restart from the newly defined naming/version baseline | PROPOSTO PELO USUÁRIO → DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0070 | Editorial development organized into controlled sprints/micro-cycles rather than uncontrolled document generation | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0071 | Official documentary artifacts established as source of truth over conversational memory | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0072 | One-document-per-conversation working discipline adopted for controlled editorial development | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0073 | Editorial Protocol established to govern document creation/review and include an official opening prompt | DECIDIDO → IMPLEMENTADO EM DRAFT | C4 | SRC-0004 |
+| RH-2026-0074 | Constitution Draft 0.1 generated as the starting artifact for the new governance cycle | DECIDIDO → IMPLEMENTADO | C4 | SRC-0004 |
+| RH-2026-0075 | Material de Concepção distinguished from the Coleção Oficial | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0076 | Documentary Contract concept established to define role, authority and relationships of project documents | DECIDIDO | C4 | SRC-0004 |
+| RH-2026-0077 | Observation/validation process established so editorial findings are reviewed before becoming authoritative documentary changes | DECIDIDO | C4 | SRC-0004 |
+
+### SRC-0004 audit note
+
+The conversation contains substantial architectural exploration and multiple intermediate formulations. The RH set above preserves the validated decision trajectory rather than treating every assistant proposal as authoritative.
+
+The source is also linked to `RPD-2026-0003`, which preserves the unresolved historical collision involving `ED-001`. No silent normalization of that identifier is performed here.
+
 ## Remaining migration checkpoint
 
 | Source | RH range / result |
 |---|---|
-| SRC-0004 | RH-2026-0054–0077 — pending detailed migration |
 | SRC-0005 | No new RH |
 | SRC-0006 | No new RH |
 | SRC-0008–0010 | RH-2026-0078–0080 — pending detailed migration |
