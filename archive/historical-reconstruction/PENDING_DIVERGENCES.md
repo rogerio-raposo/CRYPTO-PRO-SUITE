@@ -1,7 +1,7 @@
 # Pending Items and Divergences Register (RPD)
 
 Status: **WORKING / NON-NORMATIVE**  
-Checkpoint: 2026-09-22
+Checkpoint: 2026-09-23
 
 | RPD | Subject | Status |
 |---|---|---|
@@ -12,6 +12,8 @@ Checkpoint: 2026-09-22
 | RPD-2026-0005 | Exact original content of `Protocolo Editorial — Draft 0.1` not recovered from SRC-0006 | **OPEN** |
 | RPD-2026-0006 | Constitution v1.0 referenced by Manual Metodológico: SRC-0004 proves that a Constitution v1.0 was treated as an already concluded artifact before the Manual was generated, but the exact file/content is not present in the recovered documentary corpus. Possible relationship with Arquitetura v1.0 remains unproven. | **REFINED / OPEN** |
 | RPD-2026-0007 | Legacy module-versioning roadmap versus later decision to defer formal module versioning until Suite launch | **OPEN** |
+| RPD-2026-0008 | Misnamed Ranking validation DOCX duplicated Microcaps methodology | **RESOLVED — DOCUMENTARY HYGIENE** |
+| RPD-2026-0009 | Complete SRC-0017 recovered but canonical archive replacement pending | **RESOLVED — PERSISTENCE COMPLETED** |
 
 ## Handling rule
 
@@ -73,7 +75,7 @@ A copy supplied directly for inspection contains **Ranking Institucional Simplif
 
 ## RPD-2026-0009 — Complete SRC-0017 recovered but canonical archive replacement pending
 
-**Status:** OPEN — OPERATIONAL PERSISTENCE
+**Status:** RESOLVED — PERSISTENCE COMPLETED
 
 The complete `Roadmap do Crypto Pro` conversation was recovered from the 2026-09-21 export and examined through the canonical `current_node` ancestry chain.
 
@@ -82,6 +84,6 @@ The complete `Roadmap do Crypto Pro` conversation was recovered from the 2026-09
 - the terminal user message `Sig` is incomplete in the original conversation because that conversation ended abnormally after the ChatGPT conversation-time limit was reached;
 - this terminal condition is not treated as export truncation.
 
-The repository currently still contains the earlier 217-message archival copy at `archive/historical-sources/conversations/roadmap-do-crypto-pro.md`. The complete Markdown is approximately 1 MB and could not be safely replaced through the current text-write connector in this session.
+The earlier 217-message archival copy at `archive/historical-sources/conversations/roadmap-do-crypto-pro.md` was replaced by the complete 517-message canonical Markdown.
 
-**Resolution condition:** replace the archived conversation file with the complete 517-message canonical Markdown and update its manifest/integrity metadata. Historical analysis in the meantime must use the recovered complete source, not infer absence from the older repository copy.
+**Resolution:** replacement verified on 2026-09-23. Current Git blob SHA: `a025047ca82e84d7907d0c17f11b1d1043323454`. The conversations manifest was updated to the same blob SHA. The operational persistence gap is closed.
