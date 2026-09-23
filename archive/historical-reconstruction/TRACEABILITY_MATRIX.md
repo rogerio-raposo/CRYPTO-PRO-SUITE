@@ -182,6 +182,24 @@ It creates **no autonomous RH**. Its useful statements are retrospective summari
 
 The source is therefore retained for **corroboration and discovery only**. Qualitative maturity labels, visual progress bars, the assistant's reconstruction of the exact project stopping point, and recommendations for resumption are not promoted into historical facts solely from SRC-0016.
 
+## Detailed MRT — SRC-0017 (partial archived Roadmap)
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0101–0104 | SRC-0017 | Data Feed architecture | Producer–consumer, module autonomy, open acquisition scope, snapshot-first | Traced — partial-source constraints apply |
+| RH-0105–0112 | SRC-0017 | Continuity governance | Resumability, memory/evidence boundary, state separation, persistence, Resume Protocol, divergence handling | Traced — partial-source constraints apply |
+| RH-0113–0120 | SRC-0017 | Recovery governance | Session Closeout, Decision Register, language decision, Crypto-first recovery, analytical separation, checkpoint, pause, Constitution gate | Traced — partial-source constraints apply |
+| RH-0121–0123 | SRC-0017 | Documentary structure | Need-driven structure; general vs architecture decisions; initial DECISION_REGISTER preference | Traced — partial-source constraints apply |
+| RH-0124–0127 | SRC-0017 | Repository/recovery | Independent Suite repo; progressive structure; root status/backlog; Master Document recovery | Traced — partial-source constraints apply |
+
+### Partial-source control
+
+All RH-0101–0127 are traceable to the archived portion of SRC-0017, but the source is known to have a later continuation that is not yet available. Therefore the matrix does **not** interpret absence from this copy as negative evidence and does not use it to close architecture, Ranking, module-purpose, or documentary-structure questions.
+
+Retrospective assertions about older history remain dependent on corroboration. New September decisions are traceable as September decisions. The early lost-context “general product logic” explanation is excluded from the historical register as authoritative architecture.
+
+`RPD-2026-0002` and `RPD-2026-0007` remain open.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
