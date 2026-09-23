@@ -14,6 +14,7 @@ These files are reconstruction infrastructure, not current normative project doc
 - `TRACEABILITY_MATRIX.md` — traceability matrix (MRT)
 - `PENDING_DIVERGENCES.md` — pending items and divergences (RPD)
 - `CPS_Protocolo_Reconstrucao_Historica_Rastreabilidade_Working_Draft_Piloto01.md` — reconstruction protocol (Working / Non-Normative)
+- `CPS_Prompt_Retomada_Projeto.md` — operational recovery prompt for rebuilding project context from persisted repository evidence
 
 ## Current reconstruction checkpoint
 
