@@ -7,7 +7,7 @@ Checkpoint: 2026-09-22
 
 - Consolidated identifiers: `RH-2026-0001` … `RH-2026-0127`
 - Consolidated count: **127**
-- Detailed persistence status: **SRC-0001–0004 MIGRATED / REMAINDER IN PROGRESS**
+- Detailed persistence status: **RH-0001–0088 MIGRATED / REMAINDER IN PROGRESS**
 - No RH may be backfilled from model memory merely to complete this file.
 
 ## Detailed records — SRC-0001 — Análise de Criptomoedas
@@ -137,14 +137,40 @@ The conversation contains substantial architectural exploration and multiple int
 
 The source is also linked to `RPD-2026-0003`, which preserves the unresolved historical collision involving `ED-001`. No silent normalization of that identifier is performed here.
 
+## Detailed records — SRC-0008 to SRC-0011 — Recovered documents and Methodological Manual
+
+The records below were verified directly against the archived Markdown documents. They represent documentary formalization or draft-methodology states; a draft state is not silently promoted to final normative authority.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0078 | Architecture v1.0 formally documented the five-module independent architecture and its `Por quê? → Para onde? → Quem? → O quê? → Quando?` logic | FORMALIZADO | C4 | SRC-0008 — Arquitetura v1.0 |
+| RH-2026-0079 | Constitution v1.1 formally documented the three-layer architecture, CSE, one-question-per-module principle, strategic-posture philosophy and human final decision | FORMALIZADO | C4 | SRC-0009 — Constituição v1.1 |
+| RH-2026-0080 | CHANGELOG v1.0 formally recorded the 30/06/2026 architecture baseline, preservation of Ranking, Capital Rotation scope and Asset PRO technical scope | FORMALIZADO | C4 | SRC-0010 — CHANGELOG v1.0 |
+| RH-2026-0081 | A transversal Methodological Manual was created to define common construction, interpretation and evolution rules for Suite modules | PROPOSTO → DECIDIDO → IMPLEMENTADO EM DRAFT | C4 | SRC-0011 — Manual Metodológico v1.0 Draft |
+| RH-2026-0082 | Common 0–100 scoring scale plus explicit confidence level established in the Methodological Manual draft | IMPLEMENTADO EM DRAFT | C4 | SRC-0011 |
+| RH-2026-0083 | Indicators classified as Leading, Coincident and Lagging, with different methodological roles | PROPOSTO → INCORPORADO AO MANUAL | C4 | SRC-0011 |
+| RH-2026-0084 | Permitted normalization methods and preference order established for heterogeneous indicators | IMPLEMENTADO EM DRAFT | C4 | SRC-0011 |
+| RH-2026-0085 | Weighting roadmap established: technical-consensus weights → historically evidence-based weights → dynamic regime-dependent weights | DECIDIDO COMO ROADMAP | C4 | SRC-0011 |
+| RH-2026-0086 | Crypto Predictive Score (CPS) specified as an indicator predictive-quality metric | PROPOSTO → ESPECIFICADO EM DRAFT | C4 historical / not empirically validated | SRC-0011 |
+| RH-2026-0087 | Turning Point Score specified as a regime-change probability metric | PROPOSTO → PROTOTIPADO → ESPECIFICADO EM DRAFT | C4 historical / not empirically validated | SRC-0011 |
+| RH-2026-0088 | Common report, language, invalidation, changelog and version-governance rules standardized across the Suite in the draft manual | IMPLEMENTADO EM DRAFT | C4 | SRC-0011 |
+
+### Documentary audit notes
+
+**RH-0078 → RH-0079 preserves evolution rather than contradiction.** Architecture v1.0 contains five analytical modules and no CSE; Constitution v1.1 subsequently formalizes CSE and the three-layer architecture.
+
+**RH-0080 is historically dated 30/06/2026.** Its “Próximas versões” roadmap is evidence of the state recorded by that Changelog, not proof that those later module versions were actually implemented.
+
+**SRC-0011 remains a Draft.** Its methodological specifications are historically proven as draft content, but CPS and Turning Point Score are not thereby empirically validated.
+
+The Manual explicitly names `CRYPTO PRO SUITE - Constituição v1.0` as its architectural base. That referenced Constitution version has not been located in the reconstruction corpus; `RPD-2026-0006` remains **OPEN**.
+
 ## Remaining migration checkpoint
 
 | Source | RH range / result |
 |---|---|
 | SRC-0005 | No new RH |
 | SRC-0006 | No new RH |
-| SRC-0008–0010 | RH-2026-0078–0080 — pending detailed migration |
-| Manual Metodológico v1.0 Draft | RH-2026-0081–0088 — pending detailed migration |
 | SRC-0007 | RH-2026-0089–0095 — pending detailed migration |
 | SRC-0012 | RH-2026-0096 — pending detailed migration |
 | SRC-0013 | RH-2026-0097 — pending detailed migration |
