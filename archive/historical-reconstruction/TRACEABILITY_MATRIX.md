@@ -68,11 +68,29 @@ The pilot attribution error involving Macro/Rotation/Ranking/CSE is not normaliz
 
 `RPD-2026-0002` remains **OPEN**. The rows above are traceable to SRC-0002 but do not establish closure of the Ranking domain. Final continuity review depends on the latest/full SRC-0017.
 
+## Detailed MRT — SRC-0003
+
+| RH | SRC | Category / object | Principal relation / impact | Traceability status |
+|---|---|---|---|---|
+| RH-0044 | SRC-0003 | Architecture | BTC-specific macro/flow proposal rejected as target architecture | Traced |
+| RH-0045 | SRC-0003 | Architecture | Separates asset analysis from market-wide macro layer | Traced |
+| RH-0046 | SRC-0003 | Module | Creates independent CRYPTO MACRO PRO | Traced |
+| RH-0047 | SRC-0003 | Methodology | Initial quantitative macro structure/test | Traced |
+| RH-0048 | SRC-0003 | Methodology | Refines Macro Score into three indices + consolidated result | Traced |
+| RH-0049 | SRC-0003 | Suite architecture | Names CRYPTO PRO SUITE | Traced |
+| RH-0050 | SRC-0003 | Execution model | Independent/on-demand module execution | Traced |
+| RH-0051 | SRC-0003 | Module boundaries | Functional differentiation of modules | Traced |
+| RH-0052 | SRC-0003 | Ranking | Preserves Ranking as independent component | Traced |
+| RH-0053 | SRC-0003 | Governance | Master Document consolidation + Changelog | Traced |
+
+### Architectural reversal
+
+RH-0044 and RH-0045 must be read together: the early proposal to embed macro/flow analysis in BTC PRO was superseded by the decision to separate asset analysis from market-wide macro analysis. The rejected proposal is preserved rather than silently erased.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
 |---|---|---|
-| SRC-0003 | RH-0044–0053 | — |
 | SRC-0004 | RH-0054–0077 | ED-001 collision tracked in RPD |
 | SRC-0005 | — | Original Constitution Draft 0.1 content not recovered |
 | SRC-0006 | — | Original Editorial Protocol Draft 0.1 content not recovered |
