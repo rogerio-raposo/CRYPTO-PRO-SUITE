@@ -174,6 +174,14 @@ The Blueprint and EAC are preserved according to their actual historical states.
 
 The macro-liquidity monitor is traced as an operational experiment and validation aid. Exact alert thresholds and its full driver set are not promoted to permanent CRYPTO MACRO PRO methodology by this reconstruction.
 
+## SRC-0016 — Secondary retrospective source
+
+`SRC-0016 — Resumo do projeto CRYPTO PRO SUITE` was reviewed as **Class E / secondary evidence**.
+
+It creates **no autonomous RH**. Its useful statements are retrospective summaries of events already represented by stronger primary or documentary evidence, including the project/module architecture, Volume structure, Constitution and Editorial Protocol drafts, Master Document work, Ranking development, CRYPTO MACRO PRO, and the Data Feed repository.
+
+The source is therefore retained for **corroboration and discovery only**. Qualitative maturity labels, visual progress bars, the assistant's reconstruction of the exact project stopping point, and recommendations for resumption are not promoted into historical facts solely from SRC-0016.
+
 ## High-level matrix — remaining sources
 
 | Source | Historical records | Open traceability condition |
