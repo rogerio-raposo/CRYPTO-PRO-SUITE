@@ -54,3 +54,16 @@ A material succession is now documented:
 This is treated as methodological evolution/supersession, not as correction of the earlier historical record.
 
 The latest/full Roadmap export remains necessary to reconstruct the complete Ranking methodology and the deliberative path that led to the current Microcaps Draft.
+
+
+## RPD-2026-0008 — Misnamed Ranking validation DOCX / content duplicates Microcaps methodology
+
+**Status:** OPEN — DOCUMENTARY HYGIENE / NO NEW HISTORICAL SOURCE
+
+**Observed artifact:** `03-componentes/23-ranking/validacao/Ranking_Institucional_Simplificado_Validacao_Metodologica_Draft_0.1.docx` (GitHub blob SHA `39afbcd1e70c890633f8186dc03965b76e8185d4`).
+
+A copy supplied directly for inspection contains **Ranking Institucional Simplificado — Microcaps — Metodologia — Draft 0.1**, explicitly normative only for Microcaps and explicitly not the complete Ranking methodology. Its substantive content corresponds to SRC-0018 rather than to a general Ranking validation document.
+
+**Reconstruction treatment:** do not register the DOCX as a new historical source and do not infer existence of a completed general Ranking validation from its filename. Treat it as an apparent filename/content mismatch or misplaced duplicate until repository hygiene is resolved.
+
+**Impact:** reinforces that the full Ranking methodology remains open; does not close RPD-2026-0002.
