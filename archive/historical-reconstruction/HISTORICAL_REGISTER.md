@@ -298,6 +298,36 @@ In particular, RH-0131 **SUPERSEDES the current applicability** of the earlier f
 
 The document's provenance section points to `03-componentes/23-ranking/validacao/microcaps/`, especially the Microcaps methodological-validation Draft. Those supporting artifacts should be inventoried separately before their empirical/deliberative content is promoted into additional RHs.
 
+## Detailed records — SRC-0019 — Microcaps Validation Methodology Draft 0.1
+
+SRC-0019 is the empirical/methodological validation artifact cited by SRC-0018. It records the closure of three pre-v1.0 pilots and the decisions drawn from those pilots. It is evidence of **operational/methodological validation**, not statistical proof of predictive investment performance.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0147 | Three-pilot Microcaps validation phase formally closed as pre-v1.0 experimental validation; pilots are not statistical proof of alpha, return prediction or market timing | VALIDAÇÃO EXPERIMENTAL → ENCERRADA | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0148 | Pilot outcomes judged insufficient to recalibrate Potential weights; 25/25/15/20/15 frozen against post-hoc adjustment | TESTADO → MANTIDO / CONGELADO | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0149 | Potential Trend including Stabilizing validated operationally across the pilot program, including adverse-regime testing | TESTADO → VALIDADO OPERACIONALMENTE | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0150 | Candidate → Confirmation and three-checkpoint Candidate Expiration validated operationally; expiration adopted for methodology-base | TESTADO → VALIDADO → ADOTADO | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0151 | Fundamental Event Ledger validated as useful independent audit infrastructure and adopted for methodology-base | PROPOSTO → TESTADO → VALIDADO → ADOTADO | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0152 | Pilot evidence did not demonstrate monotonic Potential-to-outcome relation, return prediction, MFE ordering, alpha or systematic repricing anticipation | TESTADO → NÃO DEMONSTRADO | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0153 | Third pilot in 2021–2022 adverse regime demonstrated operational separation of fundamental thesis evolution from token-price decline | TESTADO → EVIDÊNCIA OPERACIONAL | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0154 | Third pilot predefined as final mandatory pre-v1.0 gate; criteria met and fourth pilot explicitly rejected as a v1.0 condition | GATE DEFINIDO → ATENDIDO → QUARTO PILOTO REJEITADO COMO CONDIÇÃO | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0155 | Mature Microcaps components selected for methodology-base after pilots, while experimental metrics remain outside normative core | VALIDAÇÃO → SELEÇÃO PARA METODOLOGIA-BASE | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0156 | MEL preserved as internal Ranking backlog component, non-autonomous, with v1 inclusion deferred until other planned modules close | PROPOSTO → REFINADO → BACKLOG / ADIADO | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+| RH-2026-0157 | Next documentary step set as conversion of validated elements into normative Microcaps methodology, separating experimental questions | DECIDIDO → IMPLEMENTADO POR SRC-0018 | C4 | SRC-0019 — Microcaps Validation Methodology Draft 0.1 |
+
+### Pilot evidence preserved
+
+The source records three distinct pilot roles: the first exposed historical eligibility, identity, market-cap reconstruction and evidence-separation problems; the second tested AI/RWA over 31/12/2023–31/12/2024 and found no robust monotonic Potential/outcome relation; the third tested GameFi/P2E and DeFi 2.0 over 31/12/2021–31/12/2022 in an adverse regime, with emphasis on negative trend states and fundamental-versus-price separation.
+
+Individual asset examples and numeric pilot outcomes remain source-level empirical evidence and are not each promoted to separate RHs unless they encode an independently changeable methodological decision.
+
+### Relation to SRC-0018
+
+RH-0157 links the validation artifact to the later normative draft: the source's declared next step—convert validated elements into a normative Microcaps methodology—was subsequently implemented by SRC-0018 on the same date.
+
+SRC-0020 (validation README) creates no autonomous RH. It corroborates that the folder preserves provenance for pre-v1.0 Microcaps pilots and does not represent the full Ranking methodology.
+
 ## Remaining migration checkpoint
 
 | Source | RH range / result |
