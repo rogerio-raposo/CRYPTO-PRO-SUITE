@@ -1,7 +1,7 @@
 # CRYPTO PRO SUITE — Historical Sources Manifest
 
 **Status:** corpus histórico arquivado  
-**Atualização:** 22/09/2026  
+**Atualização:** 23/09/2026  
 **Escopo:** 13 conversas canônicas + 5 documentos recuperados em Markdown  
 **Formato canônico no repositório:** Markdown (`.md`)  
 **Integridade:** Git blob SHA (hash de conteúdo nativo do Git)
@@ -24,7 +24,7 @@
 | `protocolo-editorial-draft-0.1.md` | `b230182f9ed37e3ac18570fbad1c92a77993c13b` |
 | `ranking-institucional-simplificado.md` | `acbdb7a9888d683b7850036b28f98af5b4665cc8` |
 | `resumo-do-projeto-crypto-pro-suite.md` | `640b6713b6769df74c67e1028bb7e031ce33485e` |
-| `roadmap-do-crypto-pro.md` | `40e300cd13e1c2e56e1fe4264befa967a8db2b96` |
+| `roadmap-do-crypto-pro.md` | `a025047ca82e84d7907d0c17f11b1d1043323454` |
 
 ## Documentos recuperados
 
