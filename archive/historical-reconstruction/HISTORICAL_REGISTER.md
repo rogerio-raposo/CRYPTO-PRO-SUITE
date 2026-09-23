@@ -330,7 +330,31 @@ SRC-0020 (validation README) creates no autonomous RH. It corroborates that the 
 
 ## Current open reconstruction checkpoint
 
-Detailed migration is complete through RH-0157 for the currently inventoried sources. This does **not** close historical reconstruction: SRC-0017 is a known partial source; Ranking integral methodology remains open; and RPD items govern unresolved documentary gaps.
+Detailed migration is complete through RH-0166 for the currently examined material. SRC-0017 has now been recovered as a complete 517-message conversation; its earlier missing-source condition is resolved, while replacement of the older 217-message repository archive copy remains an operational persistence item (RPD-2026-0009).
+
+## Detailed records — SRC-0017 complete continuation
+
+The recovered continuation materially clarifies the September recovery and the deliberative path into the Microcaps methodology. The following RHs are new project-level decisions not already represented by the later Microcaps-specific artifacts.
+
+| RH | Title / historical event | Trajectory / state | Confidence | Primary source |
+|---|---|---|---|---|
+| RH-2026-0158 | CRYPTO PRO SUITE scope fixed as cryptocurrency-only; other asset classes may be external context but are not product objects, and any future expansion belongs to a separate project after Suite completion | DECIDIDO | C4 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0159 | Functional product baseline reaffirmed as Macro → Capital Rotation → Institutional Flow → Ranking → Asset PRO, with distinct questions and module boundaries | RECUPERADO → RATIFICADO | C4 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0160 | Recovery method changed from fully sequential Product→Methodology→Requirements to interface-driven recovery: establish high-level product, then recover each module's function plus enough methodology to define its output/boundary before proceeding downstream | DECIDIDO | C4 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0161 | Capital Rotation methodological architecture provisionally organized into intermarket rotation plus intramarket crypto rotation, using multiple evidence families rather than a single rotation indicator | PROPOSTO → ACEITO COMO BASE DE DESENVOLVIMENTO | C3 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0162 | Research Knowledge Base established as a deliberately lightweight methodology-support mechanism organized by research questions, not as a new permanent documentation subproject | DECIDIDO | C4 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0163 | Institutional Flow scope closed around three evidence classes: Investment Product Flows, Strategic Institutional Activity, and Structural Institutional Adoption; RWA/DeFi structural adoption is distinguished from market narrative momentum | DECIDIDO | C4 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0164 | Asset PRO intrinsic scope closed as individual deep technical analysis/timing; aggregate market/segment rotation belongs upstream, while Ranking should not duplicate full technical analysis | DECIDIDO | C4 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0165 | Full tokenomics rejected as a Ranking component; supply dynamics retained as a narrower complementary/alert dimension, with concentration primarily treated as risk rather than selection score | DECIDIDO | C4 | SRC-0017 — complete Roadmap continuation |
+| RH-2026-0166 | Portfolio Construction retained provisionally as a capability/layer of the CSE rather than a new independent module; allocation, concentration, diversification, risk limits and rebalancing remain outside Ranking selection | DECIDIDO / PROVISÓRIO QUANTO À FORMA FINAL | C4 | SRC-0017 — complete Roadmap continuation |
+
+### SRC-0017 continuation — Microcaps corroboration
+
+The continuation also supplies the missing deliberative provenance for the later Microcaps artifacts. It directly documents the path that was subsequently formalized/validated in SRC-0018–0019, including: removal of futures/perpetuals as an eligibility filter; Narrative Opportunity as an upstream gate; five asset dimensions with 25/25/15/20/15 provisional weights and Fit ≥3/5; separation of Potential, Risk, Confidence and Operability; rejection of the one-microcap-per-narrative rule; global ranking across eligible narratives; per-datum source hierarchy/Data Source Registry; point-in-time validation discipline; thesis-versus-market-outcome separation; rolling Potential Trend; and controlled historical pilots.
+
+These are treated primarily as **deliberative provenance/corroboration** for RH-0128–0157 rather than duplicated as new RHs. Where SRC-0018 or SRC-0019 later formalizes or validates the same concept, those later artifacts retain their stronger normative/validation role.
+
+The complete source ends during the second historical pilot, immediately after the decision to begin blind scoring of the strict 31/12/2023 universe. Later SRC-0019 documents the completed three-pilot validation program and SRC-0018 the resulting normative Microcaps draft.
 
 ## Gate
 
