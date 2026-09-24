@@ -57,6 +57,23 @@ Durante todo o trabalho:
 - não atribua versão formal, status normativo ou aprovação a um artefato sem base documental ou decisão explícita;
 - novas decisões tomadas nesta conversa deverão ser claramente diferenciadas de decisões históricas recuperadas.
 
+## 2A. Freshness Gate
+
+Antes de concluir a recuperação do contexto específico e iniciar o Diagnóstico de Partida:
+
+1. Verifique em `archive/historical-reconstruction/README.md` o checkpoint atual da reconstrução, incluindo:
+   - o maior identificador `RH` registrado;
+   - o intervalo de `SRC` catalogado;
+   - os `RPD` ainda abertos ou recentemente resolvidos que possam afetar o domínio.
+
+2. Confirme que `HISTORICAL_REGISTER.md` e `TRACEABILITY_MATRIX.md` foram examinados até esse checkpoint, e não apenas por busca temática ou por ocorrências do nome do módulo.
+
+3. Considere também decisões recentes que afetem o domínio por interface, dependência ou limite de escopo, mesmo quando o respectivo RH esteja titulado sob outro módulo ou componente upstream/downstream.
+
+4. Se um intervalo recente de RHs não for considerado materialmente relevante ao domínio, registre explicitamente essa exclusão e sua justificativa no Diagnóstico de Partida.
+
+5. Não conclua o Diagnóstico de Partida com uma faixa de RHs inferior ao checkpoint vigente sem explicar documentalmente por que os registros posteriores não afetam o domínio.
+
 ## 3. Diagnóstico de partida
 
 Antes de produzir ou modificar documentação normativa, apresente um **Diagnóstico de Partida do Domínio**, contendo:
