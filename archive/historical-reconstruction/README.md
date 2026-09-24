@@ -34,3 +34,8 @@ These files are reconstruction infrastructure, not current normative project doc
 Memory may assist discovery, but it is not historical evidence. Historical claims must be supported by registered sources. Absence from a known partial source is not negative evidence.
 
 The detailed RH and MRT registers are being persisted incrementally. No missing detail may be reconstructed from memory merely to complete a table.
+
+
+## Module-conversation initialization control
+
+`CPS_Template_Abertura_Conversa_Modulo.md` now includes a **Freshness Gate**. Before a module/domain conversation can finalize its Diagnóstico de Partida, it must verify the current reconstruction checkpoint, examine RH/MRT through that checkpoint, consider upstream/downstream interface decisions, and explicitly justify any recent RH interval excluded as immaterial.
