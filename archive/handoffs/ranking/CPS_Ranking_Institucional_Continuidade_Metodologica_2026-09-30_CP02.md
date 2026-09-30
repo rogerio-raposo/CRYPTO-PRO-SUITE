@@ -3,7 +3,7 @@
 
 **Data do checkpoint:** 30/09/2026  
 **Checkpoint:** CP02  
-**Checkpoint anterior:** archive/handoffs/ranking/CPS_Ranking_Institucional_Continuidade_Metodologica_2026-09-30_CP02.md  
+**Checkpoint anterior:** archive/handoffs/ranking/CPS_Ranking_Institucional_Continuidade_Metodologica_2026-09-30.md  
 **Status:** documento de continuidade de conversa; **não é documento normativo final**  
 **Finalidade:** permitir a retomada do desenvolvimento em nova conversa sem depender da memória do modelo e sem regressão metodológica.
 
@@ -826,9 +826,9 @@ Ainda **não definidos**:
 
 # 27. Próximo passo exato
 
-A conversa foi interrompida **antes da Etapa 19**.
+Este trecho pertence ao checkpoint anterior e é **superado pela atualização CP02 das seções 32–36**.
 
-## **Etapa 19 — Catálogo de indicadores candidatos e teste de universalidade**
+## **Ponto vigente: ver Seção 34 — Etapa 22**
 
 Objetivo:
 para cada indicador potencial, classificar se é:
@@ -892,7 +892,7 @@ Na próxima conversa, usar o seguinte prompt:
 > 6. não inicie automaticamente nova elaboração normativa ou metodológica antes da revisão desse diagnóstico;
 > 7. se não houver alteração material, confirme expressamente que o handoff permanece válido e retome do ponto indicado nele.
 >
-> **Ponto de retomada esperado neste checkpoint:** Etapa 19 — Catálogo de indicadores candidatos e teste de universalidade.
+> **Ponto de retomada esperado neste checkpoint:** Etapa 22 — Modelo de avaliação dos constructos e comparabilidade semântica.
 
 ## 29.1 Regra do processo único
 
@@ -943,8 +943,9 @@ Assim, a continuidade deixa de depender do contexto residual do ChatGPT.
 **Arquitetura causal:** suficientemente madura para prosseguir.  
 **Constructos:** definidos em nível conceitual.  
 **Evidência:** arquitetura inicial definida.  
+**Aplicabilidade e roteamento de indicadores:** Etapas 19–21 concluídas em nível metodológico de trabalho.  
 **Operacionalização quantitativa:** ainda não iniciada.  
-**Próximo passo:** Etapa 19.  
+**Próximo passo:** Etapa 22.  
 **Documento:** continuidade de trabalho, não norma final.
 ---
 
