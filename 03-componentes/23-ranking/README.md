@@ -10,5 +10,6 @@ O módulo completo ainda está em desenvolvimento. A metodologia **Microcaps** �
 
 - `metodologia/` — especificações normativas do Ranking e de suas submetodologias.
 - `validacao/` — pilotos, testes, evidências e decisões metodológicas, organizados por escopo.
+- `BACKLOG.md` — pendências operacionais e metodológicas deliberadamente adiadas; não normativo.
 
 O Ranking permanece independente dos demais módulos. Narrative Opportunity é upstream e pertence à camada de rotação; construção de portfólio pertence ao CSE, não ao Ranking.
