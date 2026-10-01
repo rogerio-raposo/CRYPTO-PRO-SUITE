@@ -27,7 +27,7 @@ Essa separação não constitui conclusão jurídica sobre permissões de uso. A
 
 | Fonte | Spot catalog / status | Order book | Timestamp | Volume/history | Pair metadata | Technical review | Operational dry-run | Pilot status | Commercial approval |
 |---|---|---|---|---|---|---|---|---|---|
-| Binance | SUPPORTED | SUPPORTED* | SUPPORTED | SUPPORTED | SUPPORTED | PASS WITH OPEN ITEM | PENDING | PENDING | DEFERRED |
+| Binance | SUPPORTED | SUPPORTED — 1000 níveis validados no probe | SUPPORTED | SUPPORTED | SUPPORTED | PASS | TECHNICAL PROBE PASS (1 run) | TECHNICALLY ELIGIBLE | DEFERRED |
 | Bybit | SUPPORTED | SUPPORTED — até 1000 níveis spot | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
 | OKX | SUPPORTED | SUPPORTED — books até 400; books-full até 5000 | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
 | Bitget | SUPPORTED | SUPPORTED — até 1000 níveis | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
@@ -49,7 +49,20 @@ Essa separação não constitui conclusão jurídica sobre permissões de uso. A
 ## 4. Evidência técnica resumida
 
 ### Binance
-A infraestrutura pública já é usada pelo Data Feed v1.0 para Binance Spot/BTCUSDT. O PCP-01 acrescenta catálogo multiativo, status, order book e turnover. A primeira implementação experimental será feita aqui para minimizar variáveis de engenharia.
+A infraestrutura pública já é usada pelo Data Feed v1.0 para Binance Spot/BTCUSDT. O primeiro probe experimental do PCP-01 foi executado com sucesso no GitHub Actions em 2026-10-01.
+
+Registro operacional:
+- workflow run: `36809639883`;
+- commit testado: `0c02c23918df830f0c3adfabdd23fd8406f607cc`;
+- símbolo: `BTCUSDT`;
+- resultado: `PASS`;
+- 1000 bids + 1000 asks recebidos;
+- depth visível em ambos os lados superior ao child order de ~USD 208,3k;
+- catálogo spot retornado: 3680 mercados;
+- 7 dias de turnover obtidos;
+- artifact digest: `sha256:574ffb2f74b08ad824f55a1c51ce443f2e208db43c3d21a708588cb0ccf795c1`.
+
+Esse resultado valida o caminho técnico inicial, mas não substitui o dry-run temporal de dois ciclos horários exigido antes de UFT/T0.
 
 ### Bybit
 A API V5 documenta instrumentos spot, order book, klines/turnover e timestamps suficientes para adaptação experimental.
