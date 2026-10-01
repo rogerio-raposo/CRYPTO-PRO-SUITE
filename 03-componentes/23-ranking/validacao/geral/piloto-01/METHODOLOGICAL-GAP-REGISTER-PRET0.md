@@ -132,3 +132,29 @@ Structural Position uses the full **CA-PASS Functional Reference Class within SM
 **Relation to BL-RANK-001:** this defect supports testing Critical Event Watch, but the immediate issue is evidence-pack completeness even within a single run.
 
 **requires_method_change:** NO new construct. Operational evidence-control protocol must be strengthened before official T0 freeze.
+---
+
+## MGR-008 — AUM / Franchise-Mediated Token Value Thesis Gap
+
+**Stage:** Relationship / Economic Capture / phenomenon alignment
+**Status:** OPEN — diagnostic hypothesis registered
+
+**Trigger:** ONDO PRE-T0 Materiality FAIL versus Ondo's observable leadership and institutional scale in tokenized RWAs/Treasuries.
+
+**Problem:** the current Economic Capture construct privileges current explicit token-level transmission. It may under-represent cases where the project's institutional franchise, AUM scale/quality, distribution network and strategic control create market value through expected future monetization or governance option value before explicit token cash-flow rights exist.
+
+**Verified context:** Ondo reported >USD 2.5bn TVL across tokenized products in January 2026, #1 positioning in tokenized Treasuries by TVL/holders/integrations, and subsequently >USD 1bn TVL in tokenized stocks with >70% reported market share. Institutional integrations include Franklin Templeton, Talos/Gate, Broadridge and institutional in-kind conversion infrastructure.
+
+**User-raised thesis to test, not adopted as fact:** ONDO's token value thesis may be linked to the volume and institutional quality of AUM/flows captured by the Ondo franchise, particularly U.S.-Treasury and broader RWA tokenization.
+
+**Distinction from MGR-006:**
+- MGR-006: prospective institutional validation before materialization (QNT pattern);
+- MGR-008: live institutional franchise/AUM with weakly explicit current token-level value transmission (ONDO pattern).
+
+**Risk:** a Ranking designed to identify assets positioned to capture the next institutional flow may become too restrictive if it equates economically relevant prospective capture only with already-realized mandatory token economics.
+
+**Anti-overfit treatment:** preserve ONDO `Exposure E4/C4`, `Capture E1/C3`, `Materiality CONFIRMED FAIL` in the frozen PRE-T0 result. No ONDO-specific promotion.
+
+**Required test:** design a symmetric diagnostic for franchise/AUM-mediated prospective token capture across the Run A assets before deciding whether Economic Capture anchors need refinement or whether the information belongs in another construct/qualifier.
+
+**requires_method_change:** UNDETERMINED. No methodology change authorized.
