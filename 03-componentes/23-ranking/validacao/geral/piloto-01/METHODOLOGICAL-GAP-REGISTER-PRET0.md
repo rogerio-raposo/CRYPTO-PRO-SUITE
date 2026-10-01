@@ -116,7 +116,7 @@ Structural Position uses the full **CA-PASS Functional Reference Class within SM
 ## MGR-007 — Evidence Completeness / Material Event Retrieval Failure
 
 **Stage:** Evidence Registry / Freshness control
-**Status:** OPEN — execution-quality defect identified
+**Status:** RESOLVED FOR PRE-T0 BASELINE — permanent control required at T0
 
 **Problem:** the original PRE-T0 Evidence Registry declared an evidence cut of 2026-10-01 but omitted the 2026-09-24 The Clearing House / Quant announcement, a clearly material pre-cut event.
 
@@ -131,7 +131,18 @@ Structural Position uses the full **CA-PASS Functional Reference Class within SM
 
 **Relation to BL-RANK-001:** this defect supports testing Critical Event Watch, but the immediate issue is evidence-pack completeness even within a single run.
 
-**requires_method_change:** NO new construct. Operational evidence-control protocol must be strengthened before official T0 freeze.
+**Resolution:** the 12-asset Material Event Completeness Audit was executed under a separately frozen protocol. It found additional omitted evidence for PLUME, OP, ADA, LINK, ONDO, RSR, INJ and SYRUP, in addition to the previously corrected QNT case. APT, SUI and HYPE received no material-omission finding under the defined audit process.
+
+Relationship decision changes from the audit:
+- QNT: Exposure/Confidence correction already handled; Materiality unchanged FAIL;
+- INJ: Capture Confidence C3 → C4; Materiality unchanged PASS;
+- no other Relationship E-state or Materiality result changed.
+
+Other material evidence was routed to the correct owner (notably ADA → future Accessibility/prospective validation; RSR → Frictions).
+
+**T0 control:** the same completeness discipline must be repeated before the official T0 Evidence Pack freeze; PRE-T0 resolution does not waive that requirement.
+
+**requires_method_change:** NO new construct. Operational evidence-control protocol adopted.
 ---
 
 ## MGR-008 — AUM / Franchise-Mediated Token Value Thesis Gap
