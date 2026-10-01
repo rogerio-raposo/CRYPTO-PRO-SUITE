@@ -1,7 +1,7 @@
 # PCP-01 — Candidate Discovery Register
 
-**Status:** DISCOVERY COMPLETE / CURRENT ADMISSION PENDING  
-**Discovery freeze:** 2026-10-01  
+**Status:** CURRENT ADMISSION COMPLETE / SAMPLING PENDING  
+**As-of:** 2026-10-01  
 **Flow Vector:** FV-01 — Institutional Tokenization & Onchain Capital Markets Infrastructure
 
 ## Discovery ontology
@@ -15,54 +15,51 @@
 | LIQ | Liquidity / Market Infrastructure |
 | CMP | Compliance / Identity / Access |
 
-## Frozen discovery pool
+## Admission outcome
 
-The following 26 symbols are the union of the two pre-registered discovery routes after intersection with the captured Binance SMU.
+| Symbol | Admission | Next status |
+|---|---|---|
+| ADA | CA-PASS | eligible for sampling |
+| ALGO | CA-PASS | eligible for sampling |
+| APT | CA-PASS | eligible for sampling |
+| ARB | CA-PASS | eligible for sampling |
+| ATOM | CA-IND | outside Run A sample unless resolved in a later revision |
+| AVAX | CA-PASS | eligible for sampling |
+| BNB | CA-PASS | eligible for sampling |
+| GNO | CA-IND | outside Run A sample unless resolved in a later revision |
+| HBAR | CA-PASS | eligible for sampling |
+| HYPE | CA-PASS | eligible for sampling |
+| ICP | CA-IND | outside Run A sample unless resolved in a later revision |
+| INJ | CA-PASS | eligible for sampling |
+| LINK | CA-PASS | eligible for sampling |
+| ONDO | CA-PASS | eligible for sampling |
+| OP | CA-PASS | eligible for sampling |
+| OSMO | CA-IND | outside Run A sample unless resolved in a later revision |
+| PLUME | CA-PASS | eligible for sampling |
+| POL | CA-PASS | eligible for sampling |
+| QNT | CA-PASS | eligible for sampling |
+| RSR | CA-PASS | eligible for sampling |
+| SOL | CA-PASS | eligible for sampling |
+| SUI | CA-PASS | eligible for sampling |
+| SYRUP | CA-PASS | eligible for sampling |
+| TRX | CA-PASS | eligible for sampling |
+| XLM | CA-PASS | eligible for sampling |
+| ZK | CA-PASS | eligible for sampling |
 
-| Provisional symbol | Discovery route | Current Admission | Canonicalization |
-|---|---|---|---|
-| ADA | DS-02 network | PENDING | PENDING |
-| ALGO | DS-01 protocol + network evidence route | PENDING | PENDING |
-| APT | DS-02 network | PENDING | PENDING |
-| ARB | DS-02 network | PENDING | PENDING |
-| ATOM | DS-02 network mapping hypothesis | PENDING | PENDING |
-| AVAX | DS-02 network | PENDING | PENDING |
-| BNB | DS-02 network | PENDING | PENDING |
-| GNO | DS-02 network | PENDING | PENDING |
-| HBAR | DS-02 network | PENDING | PENDING |
-| HYPE | DS-02 network | PENDING | PENDING |
-| ICP | DS-02 network | PENDING | PENDING |
-| INJ | DS-01 protocol | PENDING | PENDING |
-| LINK | DS-01 protocol | PENDING | PENDING |
-| ONDO | DS-01 protocol | PENDING | PENDING |
-| OP | DS-02 network | PENDING | PENDING |
-| OSMO | DS-02 network | PENDING | PENDING |
-| PLUME | DS-01 protocol + DS-02 network | PENDING | PENDING |
-| POL | DS-02 network | PENDING | PENDING |
-| QNT | DS-01 protocol | PENDING | PENDING |
-| RSR | DS-01 protocol | PENDING | PENDING |
-| SOL | DS-02 network | PENDING | PENDING |
-| SUI | DS-02 network | PENDING | PENDING |
-| SYRUP | DS-01 protocol | PENDING | PENDING |
-| TRX | DS-02 network | PENDING | PENDING |
-| XLM | DS-01 protocol + DS-02 network | PENDING | PENDING |
-| ZK | DS-02 network | PENDING | PENDING |
+Totals:
+- CA-PASS: 22
+- CA-IND: 4
+- CA-FAIL: 0
 
-## Rules for the next stage
+Detailed rationales and source references are maintained in `CURRENT-ADMISSION-REGISTER.md`.
 
-No candidate is `CA-PASS` yet.
+## Sampling rule reminder
 
-For each candidate, the Current Admission review must:
-- resolve the economic/token identity from authoritative sources;
-- identify at least one active FV-01 function;
-- formulate an economically testable Asset–Vector hypothesis;
-- support the hypothesis with admissible Tier 1–3 evidence;
-- assign `CA-PASS`, `CA-FAIL`, or `CA-IND`.
+Because the admitted pool exceeds 12, deterministic stratified sampling is required.
 
-A discovery label or CoinGecko category is never sufficient for `CA-PASS`.
+The functional reference classes and allocation rule must be frozen **before** applying the pseudo-random draw.
 
-## Sampling
+Seed already pre-registered:
+`PCP01-FV01`.
 
-Sampling is **not yet executed**. It occurs only after Current Admission.
-
-If the CA-PASS pool exceeds 12, the deterministic sampling rule must be frozen before selection is applied.
+No asset may be manually inserted or removed because its later construct profile appears desirable or undesirable.
