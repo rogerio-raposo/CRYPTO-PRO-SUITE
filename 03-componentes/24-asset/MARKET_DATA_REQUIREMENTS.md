@@ -287,7 +287,7 @@ Any repair, substitution or reconstruction must preserve provenance.
 
 Asset PRO requires a formal Data Sufficiency Gate before analytical state generation.
 
-Three top-level states are proposed:
+Four top-level operational states are proposed:
 
 ### SUFFICIENT
 Required data are complete and reliable enough for the requested analytical scope.
@@ -298,7 +298,10 @@ Analysis remains possible, but one or more limitations materially reduce coverag
 ### INSUFFICIENT
 Required data are missing, stale, inconsistent or unreliable enough that the requested conclusion cannot be produced defensibly.
 
-"Insufficient" is not negative market evidence. It is an analytical availability state.
+### SUSPENDED
+A previously active analytical assessment cannot currently be refreshed or validated because critical data availability has been lost.
+
+"Insufficient" and "Suspended" are not negative market evidence. They are analytical availability states.
 
 ---
 
@@ -330,7 +333,7 @@ The minimum initial data contract should support:
 6. timestamps and freshness;
 7. data-gap and validation flags;
 8. enough history for CTF/PTF/TTF analysis;
-9. status sufficient to classify data as SUFFICIENT / DEGRADED / INSUFFICIENT.
+9. status sufficient to classify data as SUFFICIENT / DEGRADED / INSUFFICIENT / SUSPENDED where applicable.
 
 This minimum is sufficient to build the first operational versions of D1, D2, baseline D3, proxy-based D4 and D5.
 
