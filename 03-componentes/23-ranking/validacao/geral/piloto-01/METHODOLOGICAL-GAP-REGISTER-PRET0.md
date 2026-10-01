@@ -82,3 +82,49 @@ Structural Position uses the full **CA-PASS Functional Reference Class within SM
 - later Data Feed/source expansion can test coverage sensitivity in a separate run.
 
 **requires_method_change:** NO for PCP-01. This is a coverage limitation and future sensitivity-test requirement.
+
+---
+
+## MGR-006 — Prospective Institutional Validation / Future-Capture Gap
+
+**Stage:** Relationship / Materiality
+**Status:** OPEN — diagnostic pre-registered
+
+**Trigger:** QNT exception review.
+
+**Problem:** the current Economic Capture construct is anchored to demonstrable current token-level transmission. A systemically significant institutional selection can materially increase expected future adoption and market expectations before a current mandatory token-capture mechanism is observable.
+
+**Controlled QNT result under unchanged rules:**
+- Exposure = E3 / C4;
+- Capture = E1 / C4;
+- Materiality = Confirmed FAIL.
+
+**Risk:** the Ranking may deliberately miss assets where institutional validation precedes realized token capture, even when that validation may be informative about the next institutional-flow regime.
+
+**Anti-overfit treatment:** no QNT-specific rule change.
+
+**Diagnostic:** apply `PROSPECTIVE-INSTITUTIONAL-VALIDATION-SHADOW-TEST.md` symmetrically to all Run A assets.
+
+**requires_method_change:** UNDETERMINED. Decision deferred until the shadow test is executed.
+
+---
+
+## MGR-007 — Evidence Completeness / Material Event Retrieval Failure
+
+**Stage:** Evidence Registry / Freshness control
+**Status:** OPEN — execution-quality defect identified
+
+**Problem:** the original PRE-T0 Evidence Registry declared an evidence cut of 2026-10-01 but omitted the 2026-09-24 The Clearing House / Quant announcement, a clearly material pre-cut event.
+
+**Impact:** material for QNT Exposure Confidence and potentially for other assets if similar omissions exist.
+
+**Treatment:**
+- preserve the original frozen registry;
+- use the versioned QNT supplement rather than rewriting history;
+- before T0, perform an explicit asset-by-asset Material Event Completeness Check for the full Run A sample;
+- search at minimum primary project sources plus direct institutional/issuer counterparties over a defined recent window;
+- record both positive and negative search results.
+
+**Relation to BL-RANK-001:** this defect supports testing Critical Event Watch, but the immediate issue is evidence-pack completeness even within a single run.
+
+**requires_method_change:** NO new construct. Operational evidence-control protocol must be strengthened before official T0 freeze.
