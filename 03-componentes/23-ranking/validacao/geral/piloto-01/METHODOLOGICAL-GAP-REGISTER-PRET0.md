@@ -166,3 +166,22 @@ Future fee-switch approval/activation would constitute new evidence and could tr
 **Implementation:** `ONDO-DIAGNOSTIC-RESOLUTION-PRET0.md`.
 
 **requires_method_change:** NO.
+---
+
+## MGR-009 — Structural Position comparator heterogeneity
+
+**Stage:** Structural Position
+**Status:** OPEN — non-blocking for PCP-01 PRE-T0
+
+**Problem:** Position comparators within a Functional Reference Class do not expose perfectly homogeneous metrics. FR-SET sources use different definitions of tokenized value / represented assets / holders, and FR-MKT combines trading, tokenization-market infrastructure and institutional credit.
+
+**Impact:** raw quantitative ranking would be invalid or misleading. FR-MKT in particular contains partially non-substitutable subfunctions.
+
+**Current treatment:**
+- no arithmetic normalization of TVL/AUM/partnership counts;
+- use convergent semantic evidence across activity, institutional footprint, breadth, persistence and functional centrality;
+- cap FR-MKT Position Confidence at C3 in PCP-01;
+- preserve source-specific definitions rather than silently harmonizing them;
+- interpret every Position state strictly within the frozen PCP-01 PRU.
+
+**requires_method_change:** UNDETERMINED. Test again in later pilots before changing Functional Reference Class architecture.
