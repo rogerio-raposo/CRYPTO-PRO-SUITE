@@ -2825,11 +2825,12 @@ Após readiness:
 ### Run integrity
 
 Distinguir:
-- source-side unavailability = evidência/condição do mercado;
+- venue/market unavailability documentada pela própria venue = possível evidência operacional de Accessibility/market status;
+- API/source transport failure = falha de aquisição de dados, não evidência de baixa liquidez ou baixo mérito do ativo;
 - collector-side failure = falha técnica do piloto.
 
-Se collector-side failure afetar >25% dos capture events planejados de forma sistêmica:
-> marcar run como TECHNICALLY INVALID e repetir, sem reinterpretar isso como baixa liquidez dos ativos.
+Se collector-side failure ou API/source transport failure sistêmica afetar >25% dos capture events planejados:
+> marcar o run como TECHNICALLY INVALID e repetir, sem reinterpretar a falha de dados como condição econômica dos ativos.
 
 ---
 
