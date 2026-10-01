@@ -1,156 +1,104 @@
 # PCP-01 — QPS Capability Matrix
 
-**Status:** revisão documental concluída; dry-run e avaliação jurídico-comercial pendentes  
+**Status:** revisão documental técnica concluída; dry-run operacional pendente  
 **QPS:** Qualified Pilot Source  
 **As-of da revisão:** 2026-09-30  
 **Natureza:** artefato experimental; não normativo
 
-Nenhuma fonte candidata é considerada QPS apenas por ter sido historicamente utilizada ou preferida. A qualificação exige três camadas independentes:
+## 1. Regra vigente do PCP-01
 
-1. **Technical Capability** — a API documentada fornece os campos necessários.
-2. **Operational Validation** — o endpoint funciona com estabilidade suficiente no dry-run.
-3. **Use-Rights / Commercial Governance** — o uso pretendido é compatível com os termos/licenciamento aplicáveis.
+Para o **piloto metodológico**, a qualificação da fonte fica deliberadamente separada da futura aprovação comercial.
 
-A aprovação técnica não substitui as outras duas.
+### Pilot Source Qualification
 
-## 1. Matriz de capacidade
+Uma fonte pode alimentar o PCP-01 quando:
 
-| Fonte | Spot catalog / status | Order book | Timestamp | Volume/history | Pair metadata | Technical review | Operational dry-run | Use-rights review | Estado PCP-01 |
+1. **Technical Capability = PASS** — a API fornece os campos necessários;
+2. **Operational Validation = PASS** — o adapter e os endpoints funcionam com estabilidade suficiente no dry-run;
+3. provenance, timestamps, falhas e limitações podem ser preservados de forma auditável.
+
+### Commercial Source Approval
+
+Licenciamento, redistribuição, uso em SaaS e demais direitos comerciais permanecem registrados como dependência futura, mas **não bloqueiam a validação metodológica interna do PCP-01**.
+
+Essa separação não constitui conclusão jurídica sobre permissões de uso. Apenas retira a aprovação comercial do caminho crítico deste experimento.
+
+## 2. Matriz de capacidade
+
+| Fonte | Spot catalog / status | Order book | Timestamp | Volume/history | Pair metadata | Technical review | Operational dry-run | Pilot status | Commercial approval |
 |---|---|---|---|---|---|---|---|---|---|
-| Binance | SUPPORTED | SUPPORTED* | SUPPORTED | SUPPORTED | SUPPORTED | PASS WITH OPEN ITEM | PENDING | UNRESOLVED | PENDING |
-| Bybit | SUPPORTED | SUPPORTED — até 1000 níveis spot | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | RESTRICTIVE / REVIEW REQUIRED | LEGAL HOLD |
-| OKX | SUPPORTED | SUPPORTED — books até 400; books-full até 5000 | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | COMMERCIAL USE REQUIRES WRITTEN LICENSING | LEGAL HOLD |
-| Bitget | SUPPORTED | SUPPORTED — até 1000 níveis | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | RESTRICTIVE / REVIEW REQUIRED | LEGAL HOLD |
-| MEXC | SUPPORTED | SUPPORTED — REST até 5000 níveis | PARTIAL** | SUPPORTED | SUPPORTED | PASS WITH LIMITATION | PENDING | COMMERCIAL DATA USE RESTRICTED WITHOUT CONSENT | LEGAL HOLD |
+| Binance | SUPPORTED | SUPPORTED* | SUPPORTED | SUPPORTED | SUPPORTED | PASS WITH OPEN ITEM | PENDING | PENDING | DEFERRED |
+| Bybit | SUPPORTED | SUPPORTED — até 1000 níveis spot | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
+| OKX | SUPPORTED | SUPPORTED — books até 400; books-full até 5000 | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
+| Bitget | SUPPORTED | SUPPORTED — até 1000 níveis | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
+| MEXC | SUPPORTED | SUPPORTED — REST até 5000 níveis | PARTIAL** | SUPPORTED | SUPPORTED | PASS WITH LIMITATION | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
 
-* A documentação pública da Binance confirma a infraestrutura de market data spot e o uso do endpoint público dedicado; a capacidade de profundidade spot deve ser confirmada no dry-run do adaptador antes de qualificação operacional definitiva.
+* A capacidade efetiva de profundidade e a suficiência para o child order do PCP-01 devem ser confirmadas no dry-run.
 
-** O endpoint REST de depth da MEXC fornece update ID, mas não apresenta timestamp de geração no payload documentado; o piloto deverá preservar `observed_at` local e, se necessário, usar streams que fornecem `sendtime`. Isso é limitação de provenance temporal, não falha automática.
+** O endpoint REST de depth da MEXC não fornece no payload documentado um timestamp de geração equivalente ao de algumas outras venues; o piloto deve preservar `observed_at` local e registrar a limitação temporal.
 
-## 2. Evidência técnica resumida
+## 3. Interpretação dos estados
+
+- `TECHNICALLY ELIGIBLE` — documentação técnica suficiente para justificar implementação experimental do adapter.
+- `PENDING` — depende de dry-run ou verificação técnica ainda aberta.
+- `PILOT QUALIFIED` — Technical Capability PASS + Operational Validation PASS + provenance adequada.
+- `PILOT QUALIFIED WITH LIMITATIONS` — utilizável no piloto com limitação explicitamente registrada.
+- `NOT QUALIFIED` — incapaz de atender ao contrato mínimo do PCP-01.
+- `COMMERCIAL APPROVAL = DEFERRED` — questão propositalmente fora do caminho crítico da validação metodológica.
+
+## 4. Evidência técnica resumida
 
 ### Binance
-
-A documentação oficial atual:
-- define market data público como security type `NONE`;
-- recomenda `data-api.binance.vision` para market-data-only;
-- documenta timestamps em milissegundos e rate limits;
-- o Data Feed v1.0 já usa Binance Spot para BTCUSDT, mas ainda não implementa o capture de microstructure requerido pelo PCP-01.
-
-**Estado:** capacidade técnica plausível/forte, mas order-book pilot capture e direitos de uso comercial ainda precisam de fechamento explícito.
+A infraestrutura pública já é usada pelo Data Feed v1.0 para Binance Spot/BTCUSDT. O PCP-01 acrescenta catálogo multiativo, status, order book e turnover. A primeira implementação experimental será feita aqui para minimizar variáveis de engenharia.
 
 ### Bybit
-
-A API V5 documenta:
-- `/v5/market/instruments-info` para instrumentos spot;
-- `/v5/market/orderbook` com até 1000 níveis para spot;
-- `/v5/market/kline` com volume e turnover;
-- timestamps nos retornos.
-
-**Estado:** tecnicamente apta para adaptação ao PCP-01, sujeita a dry-run.
+A API V5 documenta instrumentos spot, order book, klines/turnover e timestamps suficientes para adaptação experimental.
 
 ### OKX
-
-A API V5 documenta:
-- instrumentos públicos;
-- `/api/v5/market/books` com até 400 níveis por lado;
-- `/api/v5/market/books-full` com até 5000 níveis;
-- candles e historical candles;
-- timestamps de geração do book.
-
-**Estado:** tecnicamente forte para Capacity, mas juridicamente bloqueada para rota comercial sem licença/consentimento escrito identificado.
+A API V5 documenta instrumentos, books com diferentes profundidades, candles/historical candles e timestamps de geração do book.
 
 ### Bitget
-
-A documentação V3 documenta:
-- market data spot;
-- order book com até 1000 níveis;
-- timestamp de geração;
-- candles com base volume e quote turnover;
-- catálogo de símbolos/market endpoints.
-
-**Estado:** tecnicamente apta, sujeita a dry-run e revisão de direitos.
+A API V3 documenta market data spot, order book, timestamps, candles e metadata de símbolos.
 
 ### MEXC
+A Spot API V3 documenta exchangeInfo, depth, klines e streams de depth. A principal ressalva inicial é a provenance temporal do snapshot REST.
 
-A Spot API V3 documenta:
-- `/api/v3/exchangeInfo`;
-- `/api/v3/depth` com até 5000 níveis;
-- klines com base e quote volume;
-- streams de depth com `sendtime`;
-- informações de moeda/rede em endpoints adicionais.
+## 5. Decisão operacional
 
-**Estado:** tecnicamente apta com ressalva temporal para snapshots REST e sujeita a dry-run.
+O PCP-01 deve avançar pela rota:
 
-## 3. Revisão de direitos de uso
+```text
+Technical review
+      ↓
+Implement one adapter
+      ↓
+Operational dry-run
+      ↓
+PILOT QUALIFIED SOURCE
+      ↓
+Methodological pilot
+```
 
-### OKX — RED FLAG explícito
+A primeira fonte experimental será **Binance**, porque:
+- já existe integração estável no Data Feed;
+- reduz o número de mudanças simultâneas;
+- permite validar primeiro o schema, provenance e capture pipeline;
+- não implica preferência metodológica ou aprovação comercial permanente.
 
-O API Agreement vigente declara que market data público permanece sujeito às restrições de uso e que uso comercial, redistribuição e uso em plataforma de análise exigem consentimento/licenciamento apropriado.
+As demais fontes devem ser adicionadas somente se o piloto exigir maior cobertura, multi-venue Capacity ou teste de sensibilidade.
 
-**Tratamento:** `LEGAL HOLD` até licença ou autorização escrita compatível com o produto.
+## 6. Governança comercial
 
-### Bybit — RED FLAG explícito
+A revisão de direitos comerciais já realizada permanece preservada como informação de governança, mas não determina o Run A.
 
-Os API Terms & Conditions proíbem reempacotar/revender Service Data e comercialmente explorar as APIs sem autorização aplicável.
+Antes de qualquer produção/comercialização da Suite, deverá existir um **Commercial Source Approval Gate** independente.
 
-**Tratamento:** `LEGAL HOLD`.
-
-### MEXC — RED FLAG explícito
-
-Os Terms of Use proíbem, sem consentimento escrito, usos comerciais de market data incluindo data feeds/streaming e serviços que obtenham lucro com esses dados.
-
-**Tratamento:** `LEGAL HOLD`.
-
-### Bitget — RED FLAG / ambiguidade
-
-Os Terms of Use restringem uso dos Services para resale/commercial purposes sem acordo escrito; os API Key Terms também reservam direitos amplos sobre API-related data. Há materiais Bitget que mencionam limited commercial use em contextos específicos, mas isso não deve ser presumido aplicável ao PCP-01 ou ao produto comercial sem confirmação jurídica/documental.
-
-**Tratamento:** `LEGAL HOLD`.
-
-### Binance — direitos comerciais não fechados nesta revisão
-
-A documentação oficial incentiva integrações, dashboards, analytics e serviços internos e fornece public market data endpoints. Entretanto, esta revisão não encontrou texto suficientemente específico para concluir direitos de redistribuição/uso comercial do market data no produto planejado.
-
-**Tratamento:** `UNRESOLVED`; obter confirmação/licença aplicável antes de qualquer publicação comercial.
-
-## 4. Regra de qualificação revisada
-
-Uma fonte só poderá receber `QUALIFIED` para o PCP-01 quando:
-
-- **Technical Capability = PASS**;
-- **Operational Dry-run = PASS**;
-- **Use-Rights = ACCEPTABLE FOR THE PILOT USE CASE**.
-
-Para a futura operação comercial, haverá um gate separado:
-
-> **Commercial Source Approval**
-
-Uma QPS do piloto não se transforma automaticamente em fonte comercial.
-
-## 5. Decisão atual
-
-Nenhuma das cinco fontes está autorizada ainda como `QUALIFIED` completa.
-
-- Binance: `PENDING` por dry-run + direitos de uso não fechados.
-- Bybit: `LEGAL HOLD`.
-- OKX: `LEGAL HOLD`.
-- Bitget: `LEGAL HOLD`.
-- MEXC: `LEGAL HOLD`.
-
-Isso não invalida o desenho do PCP-01. Significa que a próxima implementação deve ser **adapter-based e source-agnostic**, e que o run oficial só pode ser ativado quando houver pelo menos uma combinação de fontes tecnicamente e juridicamente admissíveis para o uso experimental definido.
-
-## 6. Fontes oficiais consultadas
+## 7. Fontes documentais técnicas
 
 - Binance Developer Documentation — Spot REST API / public market data.
-- Binance API Product / Developer portal.
 - Bybit V5 API — Instruments Info, Orderbook, Kline.
-- Bybit API Terms & Conditions.
 - OKX API V5 — instruments, books, candles.
-- OKX API Agreement (2026-03-26).
 - Bitget API V3 — Market Data.
-- Bitget Terms of Use / API Key Terms.
 - MEXC Spot API V3.
-- MEXC User Agreement.
 
-Os termos devem ser revisitados no momento da ativação, pois podem ser alterados unilateralmente pelas plataformas.
+Os endpoints e limites devem ser reconfirmados durante implementação/dry-run.
