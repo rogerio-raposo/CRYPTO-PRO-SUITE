@@ -88,7 +88,7 @@ Structural Position uses the full **CA-PASS Functional Reference Class within SM
 ## MGR-006 — Prospective Institutional Validation / Future-Capture Gap
 
 **Stage:** Relationship / Materiality
-**Status:** OPEN — diagnostic pre-registered
+**Status:** OPEN — shadow diagnostic executed; integration decision deferred
 
 **Trigger:** QNT exception review.
 
@@ -105,7 +105,11 @@ Structural Position uses the full **CA-PASS Functional Reference Class within SM
 
 **Diagnostic:** apply `PROSPECTIVE-INSTITUTIONAL-VALIDATION-SHADOW-TEST.md` symmetrically to all Run A assets.
 
-**requires_method_change:** UNDETERMINED. Decision deferred until the shadow test is executed.
+**Shadow-test result:** IV/PM/PTC appears to capture a distinct prospective-validation pattern for QNT (IV3 / PM2 / PTC1) that is not represented by Materiality alone. This is descriptive evidence, not proof of predictive value.
+
+**Decision:** keep the diagnostic outside Ranking merit and Materiality. Revisit only after broader/outcome-oriented validation and Critical Event Watch testing.
+
+**requires_method_change:** UNDETERMINED. No methodology change authorized.
 
 ---
 
