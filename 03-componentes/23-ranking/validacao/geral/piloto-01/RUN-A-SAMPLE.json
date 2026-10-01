@@ -1,0 +1,37 @@
+{
+  "seed": "PCP01-FV01",
+  "protocol_commit": "022fba8f087a474185f7522bcb0c8ab5a68dc0c9",
+  "algorithm": "sha256-ascending",
+  "allocation": {
+    "FR-SET": 5,
+    "FR-MID": 2,
+    "FR-ISS": 2,
+    "FR-MKT": 3
+  },
+  "selected": [
+    "CPS-PLUME",
+    "CPS-OP",
+    "CPS-APT",
+    "CPS-ADA",
+    "CPS-SUI",
+    "CPS-LINK",
+    "CPS-QNT",
+    "CPS-ONDO",
+    "CPS-RSR",
+    "CPS-INJ",
+    "CPS-HYPE",
+    "CPS-SYRUP"
+  ],
+  "non_selected": [
+    "CPS-ZK",
+    "CPS-POL",
+    "CPS-HBAR",
+    "CPS-XLM",
+    "CPS-SOL",
+    "CPS-TRX",
+    "CPS-BNB",
+    "CPS-ALGO",
+    "CPS-ARB",
+    "CPS-AVAX"
+  ]
+}
