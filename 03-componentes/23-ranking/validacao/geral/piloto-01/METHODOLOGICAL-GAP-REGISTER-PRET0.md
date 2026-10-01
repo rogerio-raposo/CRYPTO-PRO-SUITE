@@ -5,21 +5,23 @@
 
 ## MGR-001 — Structural Position reference-universe ambiguity
 
-**Stage:** post-Materiality / Structural Position  
-**Problem:** Run A uses stratified sampling. Structural Position is explicitly relative to a Functional Reference Class. Calculating Position only against the 12 sampled assets could distort the reference set because 10 CA-PASS assets were excluded by deterministic sampling.
+**Status:** RESOLVED — 2026-10-01
 
-**Impact:** potentially material.
+**Decision:**
+Structural Position uses the full **CA-PASS Functional Reference Class within SMU-PCP01**, not the deterministic Run A sample and not a Materiality-PASS-only subset.
 
-**Temporary treatment:** do not assign Structural Position yet.
+**Rationale:**
+- sampling must not alter an economic relative-position construct;
+- Economic Capture must not determine who exists in the Position comparator landscape;
+- CA-IND/FAIL lack validated relation to FV-01;
+- external comparators outside the governed SMU cannot be introduced ad hoc.
 
-**Required resolution before Position:**
-- define whether Position is assessed against:
-  1. full CA-PASS functional class;
-  2. full SMU-discovered/admitted class;
-  3. an external functional market reference set;
-  4. another explicitly governed universe.
+**Implementation:**
+- `STRUCTURAL-POSITION-REFERENCE-RULE.md`
+- `REFERENCE-COMPARATOR-PROFILE-SCHEMA.md`
+- `POSITION-REFERENCE-CENSUS.md`
 
-**requires_method_change:** YES — clarification/operational rule required, no new construct required.
+**requires_method_change:** RESOLVED by operational clarification; no new construct introduced.
 
 ---
 
@@ -62,3 +64,21 @@
 - uncertainty is expressed through Confidence/Provisional status, not automatic promotion.
 
 **requires_method_change:** NO at this stage. Retain as a pilot diagnostic and test whether later empirical data requires tighter anchors.
+
+---
+
+## MGR-005 — Position is bounded by Supported Market Universe coverage
+
+**Stage:** Structural Position
+
+**Problem:** SMU-PCP01 currently begins from Binance-supported spot assets. A globally important FV-01 comparator outside the supported universe would not enter the PCP-01 Position Reference Universe.
+
+**Impact:** potentially material for claims of global leadership.
+
+**Treatment:**
+- Position is explicitly labeled as relative to the `PCP-01 PRU`;
+- no global-leadership claim is permitted;
+- no external comparator is added ad hoc after freeze;
+- later Data Feed/source expansion can test coverage sensitivity in a separate run.
+
+**requires_method_change:** NO for PCP-01. This is a coverage limitation and future sensitivity-test requirement.
