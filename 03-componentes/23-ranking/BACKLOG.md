@@ -57,3 +57,49 @@ Movimento de preço isolado e sinais de análise técnica não constituem, por s
 ### Regra de escopo
 
 Este item permanece **backlog**. Sua inclusão aqui não formaliza a implementação do Critical Event Watch nem do Interim Methodological Update na versão inicial da Suite.
+
+
+## BL-RANK-002 — Supported Market Universe e governança de fontes do Data Feed
+
+**Status:** Adiado para especificação conjunta com o Crypto Pro Data Feed  
+**Origem:** revisão da Etapa 39 — Eligibility Geral / universo operacional  
+**Escopo:** interface Ranking Institucional Simplificado ↔ Crypto Pro Data Feed
+
+### Decisão de arquitetura em nível de trabalho
+
+O Ranking Geral não deve pressupor a varredura exaustiva do universo global de criptoativos. A execução deverá partir de um **Supported Market Universe** construído a partir das fontes de mercado aprovadas e suportadas pelo Crypto Pro Data Feed na versão vigente.
+
+Esse universo representa **cobertura do produto**, não mérito do ativo nem definição permanente do universo econômico de criptoativos.
+
+### Requisito futuro do Data Feed
+
+A seleção das fontes deverá ser justificada por critérios objetivos compatíveis com uma oferta comercial da CRYPTO PRO SUITE, incluindo, no mínimo:
+- cobertura de ativos e mercados;
+- relevância e qualidade de mercado;
+- disponibilidade e granularidade dos dados requeridos pelos módulos;
+- estabilidade e limites das APIs;
+- confiabilidade operacional;
+- facilidade de canonicalização e identificação de ativos/mercados;
+- disponibilidade histórica;
+- custo;
+- continuidade da fonte;
+- termos de uso, direitos de uso comercial, armazenamento e eventual redistribuição dos dados.
+
+APIs gratuitas não devem ser presumidas como automaticamente aptas a uso ou redistribuição comercial.
+
+### Fronteira CEX e descoberta de ativos emergentes
+
+Grandes CEXs podem fornecer uma fronteira operacional eficiente e auditável para a versão inicial, mas não devem ser presumidas como universo econômico completo. Ativos novos ou de alto potencial podem surgir fora das grandes CEXs. A arquitetura deve permanecer extensível a outras fontes aprovadas, inclusive DEXs, venues institucionais ou outras infraestruturas de mercado, caso os requisitos metodológicos e comerciais o justifiquem.
+
+### Dependências futuras
+
+- formalizar o Supported Market Universe por versão;
+- definir Approved Market Sources e política de source governance;
+- definir política de canonical market/venue para o Asset PRO;
+- avaliar se Capacity/Absorption requer dados multi-venue;
+- definir Data Sufficiency Gate por módulo e por tipo de dado;
+- criar processo de Data Coverage Expansion Request quando um ativo relevante ficar fora da cobertura vigente.
+
+### Regra de escopo
+
+Este item registra uma dependência e uma direção arquitetural. Não fixa ainda Binance, Bybit, Bitget, MEXC, OKX ou qualquer outro conjunto de fontes como seleção definitiva para a versão comercial do Data Feed.
