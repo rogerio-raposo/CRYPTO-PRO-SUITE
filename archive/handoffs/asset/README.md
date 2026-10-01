@@ -9,15 +9,15 @@
 
 ## Checkpoint vigente
 
-**CP02 — 2026-10-01**
+**CP03 — 2026-10-01**
 
 Arquivo:
 
-`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-01_CP02.md`
+`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-01_CP03.md`
 
 Checkpoint anterior:
 
-`CP01`
+`CP02`
 
 Status:
 > vigente para continuidade operacional, sujeito ao Freshness Gate do template canônico.
@@ -61,4 +61,5 @@ em **Modo Continuidade**.
 ## Histórico
 
 - **CP01 — 2026-10-01:** primeira implementação do mecanismo de continuidade. Preservado para auditoria. Continha prompt interno, padrão posteriormente corrigido.
-- **CP02 — 2026-10-01:** checkpoint vigente. Adota integralmente o modelo **snapshot + pointer**, com prompt e procedimento centralizados exclusivamente neste README.
+- **CP02 — 2026-10-01:** primeira correção para centralizar prompt/procedimento no README; preservado para auditoria.
+- **CP03 — 2026-10-01:** checkpoint vigente. Aplica de forma estrita o modelo **snapshot + pointer**: o checkpoint contém somente a referência estável ao ponteiro operacional, sem prompt ou procedimento duplicado.
