@@ -1,11 +1,12 @@
 # PCP-01 — Candidate Discovery Register
 
-**Status:** template pré-registrado  
-**Execução:** vazia até conclusão do SMU-PCP01
+**Status:** DISCOVERY COMPLETE / CURRENT ADMISSION PENDING  
+**Discovery freeze:** 2026-10-01  
+**Flow Vector:** FV-01 — Institutional Tokenization & Onchain Capital Markets Infrastructure
 
-## Discovery ontology — FV-01
+## Discovery ontology
 
-| Código | Função |
+| Code | Function |
 |---|---|
 | ISS | Issuance / Asset Lifecycle |
 | SET | Settlement / Execution |
@@ -14,42 +15,54 @@
 | LIQ | Liquidity / Market Infrastructure |
 | CMP | Compliance / Identity / Access |
 
-## Registro mínimo por hipótese
+## Frozen discovery pool
 
-| Campo | Descrição |
-|---|---|
-| discovery_id | identificador |
-| canonical_asset_id | ativo |
-| function_tags | um ou mais códigos FV-01 |
-| hypothesis | relação econômica proposta |
-| discovery_source | fonte que gerou a hipótese |
-| admissible_support_ids | evidências Tier 1–3 para Current Admission |
-| active_at_uft | yes/no/indeterminate |
-| economically_testable | yes/no/indeterminate |
-| current_admission | CA-PASS / CA-FAIL / CA-IND |
-| rationale | justificativa curta |
-| reviewer | avaliador |
-| timestamp | momento da decisão |
+The following 26 symbols are the union of the two pre-registered discovery routes after intersection with the captured Binance SMU.
 
-## Regra de Current Admission
+| Provisional symbol | Discovery route | Current Admission | Canonicalization |
+|---|---|---|---|
+| ADA | DS-02 network | PENDING | PENDING |
+| ALGO | DS-01 protocol + network evidence route | PENDING | PENDING |
+| APT | DS-02 network | PENDING | PENDING |
+| ARB | DS-02 network | PENDING | PENDING |
+| ATOM | DS-02 network mapping hypothesis | PENDING | PENDING |
+| AVAX | DS-02 network | PENDING | PENDING |
+| BNB | DS-02 network | PENDING | PENDING |
+| GNO | DS-02 network | PENDING | PENDING |
+| HBAR | DS-02 network | PENDING | PENDING |
+| HYPE | DS-02 network | PENDING | PENDING |
+| ICP | DS-02 network | PENDING | PENDING |
+| INJ | DS-01 protocol | PENDING | PENDING |
+| LINK | DS-01 protocol | PENDING | PENDING |
+| ONDO | DS-01 protocol | PENDING | PENDING |
+| OP | DS-02 network | PENDING | PENDING |
+| OSMO | DS-02 network | PENDING | PENDING |
+| PLUME | DS-01 protocol + DS-02 network | PENDING | PENDING |
+| POL | DS-02 network | PENDING | PENDING |
+| QNT | DS-01 protocol | PENDING | PENDING |
+| RSR | DS-01 protocol | PENDING | PENDING |
+| SOL | DS-02 network | PENDING | PENDING |
+| SUI | DS-02 network | PENDING | PENDING |
+| SYRUP | DS-01 protocol | PENDING | PENDING |
+| TRX | DS-02 network | PENDING | PENDING |
+| XLM | DS-01 protocol + DS-02 network | PENDING | PENDING |
+| ZK | DS-02 network | PENDING | PENDING |
 
-`CA-PASS` exige uma relação atual e economicamente testável entre ativo e FV-01, sustentada por ao menos evidência admissível Tier 1–3.
+## Rules for the next stage
 
-Marketing, roadmap, ticker, categoria de agregador ou mera capacidade técnica não bastam.
+No candidate is `CA-PASS` yet.
 
-## Redução de pool
+For each candidate, the Current Admission review must:
+- resolve the economic/token identity from authoritative sources;
+- identify at least one active FV-01 function;
+- formulate an economically testable Asset–Vector hypothesis;
+- support the hypothesis with admissible Tier 1–3 evidence;
+- assign `CA-PASS`, `CA-FAIL`, or `CA-IND`.
 
-- admitted pool <= 12: incluir todos;
-- admitted pool > 12: stratified reproducible sampling.
+A discovery label or CoinGecko category is never sufficient for `CA-PASS`.
 
-Estrato primário:
-- Functional Reference Class.
+## Sampling
 
-Estrato secundário:
-- Supported Venue Breadth.
+Sampling is **not yet executed**. It occurs only after Current Admission.
 
-Seleção interna:
-- pseudo-random determinística;
-- seed: `PCP01-FV01`.
-
-Não utilizar retorno, fama, expectativa de qualidade ou posição desejada no Ranking.
+If the CA-PASS pool exceeds 12, the deterministic sampling rule must be frozen before selection is applied.
