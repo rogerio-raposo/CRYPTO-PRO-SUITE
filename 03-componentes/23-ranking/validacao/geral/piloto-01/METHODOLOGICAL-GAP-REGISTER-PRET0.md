@@ -148,24 +148,21 @@ Other material evidence was routed to the correct owner (notably ADA → future 
 ## MGR-008 — AUM / Franchise-Mediated Token Value Thesis Gap
 
 **Stage:** Relationship / Economic Capture / phenomenon alignment
-**Status:** OPEN — diagnostic hypothesis registered
+**Status:** RESOLVED — no methodology defect established for PCP-01
 
 **Trigger:** ONDO PRE-T0 Materiality FAIL versus Ondo's observable leadership and institutional scale in tokenized RWAs/Treasuries.
 
-**Problem:** the current Economic Capture construct privileges current explicit token-level transmission. It may under-represent cases where the project's institutional franchise, AUM scale/quality, distribution network and strategic control create market value through expected future monetization or governance option value before explicit token cash-flow rights exist.
+**Resolution:** platform/franchise scale, institutional AUM and market leadership strengthen Exposure and may inform Structural Position, but they do not themselves demonstrate token-level Economic Capture.
 
-**Verified context:** Ondo reported >USD 2.5bn TVL across tokenized products in January 2026, #1 positioning in tokenized Treasuries by TVL/holders/integrations, and subsequently >USD 1bn TVL in tokenized stocks with >70% reported market share. Institutional integrations include Franklin Templeton, Talos/Gate, Broadridge and institutional in-kind conversion infrastructure.
+Ondo Foundation currently identifies ONDO as a governance token. A June 2026 community fee-switch temperature check explicitly states that it is non-binding. A binding/executed fee switch was not verified at the PRE-T0 cut.
 
-**User-raised thesis to test, not adopted as fact:** ONDO's token value thesis may be linked to the volume and institutional quality of AUM/flows captured by the Ondo franchise, particularly U.S.-Treasury and broader RWA tokenization.
+Therefore the frozen ONDO result remains:
+- Exposure E4/C4;
+- Capture E1/C3;
+- Materiality CONFIRMED FAIL.
 
-**Distinction from MGR-006:**
-- MGR-006: prospective institutional validation before materialization (QNT pattern);
-- MGR-008: live institutional franchise/AUM with weakly explicit current token-level value transmission (ONDO pattern).
+Future fee-switch approval/activation would constitute new evidence and could trigger a later reassessment prospectively. It is not back-projected into PCP-01.
 
-**Risk:** a Ranking designed to identify assets positioned to capture the next institutional flow may become too restrictive if it equates economically relevant prospective capture only with already-realized mandatory token economics.
+**Implementation:** `ONDO-DIAGNOSTIC-RESOLUTION-PRET0.md`.
 
-**Anti-overfit treatment:** preserve ONDO `Exposure E4/C4`, `Capture E1/C3`, `Materiality CONFIRMED FAIL` in the frozen PRE-T0 result. No ONDO-specific promotion.
-
-**Required test:** design a symmetric diagnostic for franchise/AUM-mediated prospective token capture across the Run A assets before deciding whether Economic Capture anchors need refinement or whether the information belongs in another construct/qualifier.
-
-**requires_method_change:** UNDETERMINED. No methodology change authorized.
+**requires_method_change:** NO.
