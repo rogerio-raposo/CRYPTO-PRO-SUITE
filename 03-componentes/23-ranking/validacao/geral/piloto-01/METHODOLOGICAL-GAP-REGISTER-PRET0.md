@@ -1,0 +1,64 @@
+# PCP-01 — Methodological Gap Register — PRE-T0
+
+**Status:** OPEN  
+**As-of:** 2026-10-01
+
+## MGR-001 — Structural Position reference-universe ambiguity
+
+**Stage:** post-Materiality / Structural Position  
+**Problem:** Run A uses stratified sampling. Structural Position is explicitly relative to a Functional Reference Class. Calculating Position only against the 12 sampled assets could distort the reference set because 10 CA-PASS assets were excluded by deterministic sampling.
+
+**Impact:** potentially material.
+
+**Temporary treatment:** do not assign Structural Position yet.
+
+**Required resolution before Position:**
+- define whether Position is assessed against:
+  1. full CA-PASS functional class;
+  2. full SMU-discovered/admitted class;
+  3. an external functional market reference set;
+  4. another explicitly governed universe.
+
+**requires_method_change:** YES — clarification/operational rule required, no new construct required.
+
+---
+
+## MGR-002 — Independent inter-rater assessment not yet available
+
+**Stage:** Relationship reproducibility validation  
+**Problem:** Evaluator A assessment is complete, but no independent Evaluator B has yet assessed the same frozen evidence pack without seeing A's states.
+
+**Impact:** reproducibility metrics cannot yet be calculated.
+
+**Temporary treatment:** preserve Evaluator A as immutable first pass. Do not manufacture a second "independent" rating inside the same informed analytical pass.
+
+**requires_method_change:** NO. Requires a genuinely independent reviewer/session.
+
+---
+
+## MGR-003 — T0 not yet declared
+
+**Stage:** Evidence freeze / official Run A  
+**Problem:** the current Relationship pack precedes the official T0 because the Capacity capture pipeline has not completed the temporal dry-run/UFT process.
+
+**Impact:** current states are PRE-T0 baseline states, not final Run A states.
+
+**Temporary treatment:** freeze this baseline; at T0 run a Freshness/Event Gate and append only evidence with effective/published time <= T0. Preserve both baseline and final states.
+
+**requires_method_change:** NO. This is a sequencing/governance issue.
+
+---
+
+## MGR-004 — Gas-token materiality calibration
+
+**Stage:** Economic Capture  
+**Problem:** APT, ADA, SUI and PLUME expose a recurring methodological question: required gas establishes a causal pathway but does not itself prove economically material capture.
+
+**Impact:** material; can change Materiality PASS/FAIL.
+
+**Current treatment:** apply the existing E1→E2 boundary:
+- required gas only = insufficient for E2;
+- E2 needs evidence that vector-related activity has an economically relevant transmission through gas/security/storage/burn;
+- uncertainty is expressed through Confidence/Provisional status, not automatic promotion.
+
+**requires_method_change:** NO at this stage. Retain as a pilot diagnostic and test whether later empirical data requires tighter anchors.
