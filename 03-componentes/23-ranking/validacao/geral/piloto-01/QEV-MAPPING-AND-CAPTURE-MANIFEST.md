@@ -131,9 +131,12 @@ Therefore:
 
 ## Activation status
 
-`UFT`: NOT DECLARED  
-`Capture Start`: NOT DECLARED  
-`T0`: NOT DECLARED  
-Official capture activation: `active=false`
+`UFT`: `2026-10-02T23:22:34Z`  
+`Capture Start`: `2026-10-03T00:00:00Z`  
+`T0`: `2026-10-04T00:00:00Z`  
+`Horizon End`: `2027-01-02T00:00:00Z`  
+Official capture activation: `active=true`  
+Data Feed activation commit: `82dd32a341e60201bc1c8c03bf45ad846a56f6a0`  
+GitHub Actions run: `37077293144`
 
-The next transition requires the explicit human UFT gate after final readiness confirmation.
+The human UFT gate was explicitly authorized. Official capture is active on `experiment/pcp01-capacity`; technical validity remains pending until the 24-event capture and turnover-at-T0 process completes.
