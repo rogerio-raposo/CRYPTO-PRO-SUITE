@@ -1,6 +1,6 @@
 # PCP-01 — Capacity Operational Readiness — PRE-T0
 
-**Status:** READY FOR HUMAN UFT GATE  
+**Status:** HUMAN UFT GATE PASSED / OFFICIAL CAPTURE ACTIVE  
 **Date:** 2026-10-02  
 **Scope:** nine Relationship-surviving assets
 
@@ -104,28 +104,31 @@ Treatment:
 | Accessibility rubric frozen | PASS |
 | Absorption protocol frozen | PASS |
 | source-expansion rule frozen | PASS |
-| human UFT gate | PENDING |
+| human UFT gate | PASS |
 
 ## UFT / Capture Start / T0
 
-Still NOT DECLARED.
+Declared after explicit human authorization:
 
-No activation file has been switched to `active=true`.
+- `UFT = 2026-10-02T23:22:34Z`;
+- `Capture Start = 2026-10-03T00:00:00Z`;
+- `T0 = 2026-10-04T00:00:00Z`;
+- `Horizon End = 2027-01-02T00:00:00Z`.
 
-The next action is the human gate. If authorized:
-1. re-check Data Feed branch freshness and overlap;
-2. freeze the execution commit/ref;
-3. set `UFT`;
-4. set `Capture Start` to the next suitable full UTC hour with enough dispatch lead time;
-5. set `T0 = Capture Start + 24h`;
-6. set `H = T0 + 90d`;
-7. write the activation record on `experiment/pcp01-capacity`;
-8. manually dispatch the official controlled-capture workflow on that branch;
-9. monitor technical validity through T0.
+Execution code freeze:
+`468738b56a965c43169afa21bd31452bcc65e8a1`
 
-Until human authorization:
-- no official capture;
-- no PEC/PR calculation;
-- no Capacity E-state;
-- no Frictions assessment dependent on completed Capacity;
-- no Ranking Classes.
+Activation commit:
+`82dd32a341e60201bc1c8c03bf45ad846a56f6a0`
+
+Official GitHub Actions run:
+`37077293144`
+
+The workflow validation job completed successfully. The first controlled capture segment is active ahead of Capture Start.
+
+Technical validity remains `PENDING` until the 24-event capture and turnover-at-T0 process completes.
+
+Until T0 completion:
+- do not calculate final PEC/PR;
+- do not assign final Absorption or Capacity E-states;
+- do not calculate Ranking Classes.
