@@ -9,15 +9,15 @@
 
 ## Checkpoint vigente
 
-**CP13 — 2026-10-01**
+**CP14 — 2026-10-02**
 
 Arquivo:
 
-`archive/handoffs/ranking/CPS_Ranking_Institucional_Continuidade_Metodologica_2026-10-01_CP13.md`
+`archive/handoffs/ranking/CPS_Ranking_Institucional_Continuidade_Metodologica_2026-10-02_CP14.md`
 
 Checkpoint anterior:
 
-`CP12`
+`CP13`
 
 Status:
 > vigente para continuidade operacional, sujeito ao Freshness Gate do template canônico.
@@ -69,4 +69,4 @@ em **Modo Continuidade**.
 
 ## Histórico do novo padrão
 
-- **CP13 — 2026-10-01:** primeiro snapshot autônomo do Ranking e migração formal para o modelo snapshot + pointer.
+- **CP13 — 2026-10-01:** primeiro snapshot autônomo do Ranking e migração formal para o modelo snapshot + pointer.\n- **CP14 — 2026-10-02:** registra a correção de orquestração do dry-run temporal sem alteração metodológica; checkpoint vigente.
