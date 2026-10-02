@@ -1,50 +1,67 @@
 # PCP-01 — QEV Mapping and Capture Manifest
 
-**Status:** MAPPING FROZEN / QEV DECLARATION PENDING SECOND DRY-RUN CYCLE  
-**As-of:** 2026-10-01
+**Status:** QEV MAPPING FROZEN / QEVs DECLARED FOR PCP-01  
+**As-of:** 2026-10-02
 
 ## QEV — Qualified Execution Venue
 
 Qualification is performed by `Asset × Venue × Market × T0`, not merely by exchange.
 
+The declaration below is specific to PCP-01. It does not constitute permanent commercial approval of Binance as a Suite-wide source.
+
 ## Frozen Run A Capacity mapping
 
-| canonical_asset_id | venue | symbol | base | quote | market_type | quote_usd_equivalent | first dry-run | qev_status |
+| canonical_asset_id | venue | symbol | base | quote | market_type | quote_usd_equivalent | controlled dry-run | qev_status |
 |---|---|---|---|---|---|---|---|---|
-| CPS-PLUME | Binance | PLUMEUSDT | PLUME | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-OP | Binance | OPUSDT | OP | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-APT | Binance | APTUSDT | APT | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-SUI | Binance | SUIUSDT | SUI | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-LINK | Binance | LINKUSDT | LINK | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-RSR | Binance | RSRUSDT | RSR | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-INJ | Binance | INJUSDT | INJ | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-HYPE | Binance | HYPEUSDT | HYPE | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
-| CPS-SYRUP | Binance | SYRUPUSDT | SYRUP | USDT | spot | yes — USDT_PARITY_PROXY | PASS | UNDECLARED |
+| CPS-PLUME | Binance | PLUMEUSDT | PLUME | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-OP | Binance | OPUSDT | OP | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-APT | Binance | APTUSDT | APT | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-SUI | Binance | SUIUSDT | SUI | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-LINK | Binance | LINKUSDT | LINK | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-RSR | Binance | RSRUSDT | RSR | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-INJ | Binance | INJUSDT | INJ | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-HYPE | Binance | HYPEUSDT | HYPE | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
+| CPS-SYRUP | Binance | SYRUPUSDT | SYRUP | USDT | spot | yes — USDT_PARITY_PROXY | PASS | QUALIFIED / DECLARED |
 
-QEV status remains undeclared until the required two adjacent UTC-hour dry-run cycles pass.
+## Controlled two-cycle qualification basis
 
-## First operational dry-run cycle
+Data Feed workflow run:
+`37059995273`
 
-Workflow run: `36820324581`  
-UTC hour slot: `2026-10-01T05:00:00Z`  
-Technical result: **PASS — 9/9 markets**.
+Qualified cycles:
+- `gh-37059995273-A` — UTC hour slot `2026-10-02T20:00:00Z` — PASS 9/9;
+- `gh-37059995273-B` — UTC hour slot `2026-10-02T21:00:00Z` — PASS 9/9.
 
-The dry-run validates:
+Persisted Data Feed result:
+`two_cycle_status = PASS`
+
+The two hour slots are adjacent and the workflow verification step completed successfully.
+
+This satisfies the pre-registered technical dry-run prerequisite for QEV declaration.
+
+## What the dry-run validates
+
 - active market identity;
 - order-book acquisition;
 - best bid/ask and ordered levels;
 - seven-day turnover availability;
-- timestamps;
+- UTC timestamps;
 - provenance;
-- failure semantics.
+- failure semantics;
+- repeated technical collection across all nine mapped markets.
 
 It does not calculate PEC, PR or Capacity states.
 
-### Diagnostic depth observation
+## Diagnostic depth observation
 
-The first cycle showed that RSRUSDT had valid market data but only about USD 125.9k of visible bid notional in the standard 1000-level snapshot, below the ~USD 208.3k child order.
+RSRUSDT repeatedly returned valid market data but standard 1000-level visible bid notional below the approximately USD 208.3k child order.
 
-This is not a technical failure. Official capture will escalate depth to the deepest supported pilot REST snapshot before any economic conclusion.
+This is:
+- not a technical collection failure;
+- not an Absorption FAIL;
+- a trigger for the frozen depth-escalation rule during official capture.
+
+If deeper Binance coverage still cannot establish E2, the source-expansion rule applies before any negative Absorption conclusion.
 
 ## Capture Manifest — official run
 
@@ -70,39 +87,53 @@ Expected artifacts:
 - `capture-manifest.json`;
 - `turnover-7d-at-t0.json`.
 
+## Official capture orchestration
+
+The original recurring-cron design is not considered sufficiently reliable for the official 24-hour window after the scheduler behavior observed during the dry-run phase.
+
+A controlled official-capture implementation is prepared on the isolated Data Feed branch:
+
+`experiment/pcp01-capacity`
+
+Current implementation commit:
+
+`d439e1b29586cd08b560183654877bf16687337b`
+
+The controlled workflow:
+1. is manually dispatched after activation;
+2. executes events in bounded sequential segments;
+3. waits for frozen hourly targets inside each segment;
+4. rejects materially late intended slots instead of silently relabeling them;
+5. persists each completed segment;
+6. captures the exact seven-day turnover after T0.
+
+This is an operational correction only; no PCP-01 methodological threshold or gate is changed.
+
 ## Depth policy
 
 Standard snapshot request:
 `1000 levels`.
 
 If the RAS child order cannot be observed in either direction:
-1. retry same Binance market with target depth of 5000 levels where supported;
+1. retry the same Binance market with target depth of 5000 levels where supported;
 2. never interpolate missing depth;
 3. preserve whether depth escalation occurred;
 4. if the child order still cannot be filled, route to the Capacity source-expansion rule before any negative Absorption conclusion.
 
-## Synchronization
-
-For a future multi-venue extension:
-- target cross-venue alignment <= 60 seconds;
-- maximum consolidation tolerance = 180 seconds;
-- above 180 seconds, preserve venue-specific observations without treating them as simultaneous consolidated liquidity.
-
-Run A currently has one venue per mapped asset, so cross-venue aggregation is not active.
-
 ## Deposit / withdrawal state
 
-The public Binance market-data path used by the Data Feed does not provide the authenticated account/network deposit-withdrawal status required for a complete institutional-access conclusion.
+The public Binance market-data path does not establish a complete institutional execution/custody/transfer path.
 
 Therefore:
-- deposit/withdraw status is **not silently inferred** from market availability;
-- this field remains outside the Data Feed market-data qualification in the current step;
-- transferability/custody evidence is assessed separately under the Institutional Accessibility rubric.
+- deposit/withdraw status is not silently inferred from market availability;
+- QEV qualification is not equivalent to Institutional Accessibility PASS;
+- transferability/custody evidence remains separately assessed under the Institutional Accessibility rubric.
 
 ## Activation status
 
 `UFT`: NOT DECLARED  
 `Capture Start`: NOT DECLARED  
-`T0`: NOT DECLARED
+`T0`: NOT DECLARED  
+Official capture activation: `active=false`
 
-The official capture activation file exists in the Data Feed but remains `active=false` until two-cycle dry-run qualification and formal UFT declaration.
+The next transition requires the explicit human UFT gate after final readiness confirmation.
