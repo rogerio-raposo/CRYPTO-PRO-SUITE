@@ -20,7 +20,7 @@ Freeze all inputs required to determine whether the Asset PRO historical replay 
 
 ### Crypto Pro Data Feed
 - repository: `rogerio-raposo/crypto-pro-datafeed`
-- initial materialization baseline: `073fe17d969655c46780261663c6d86f6804216d`
+- initial materialization baseline: `e690c2cee254a053d309cde82b4cb784ace35503`
 - frozen commit: TBD at Experiment Freeze
 
 ## 3. Dataset References
