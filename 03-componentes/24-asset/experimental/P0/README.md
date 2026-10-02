@@ -19,6 +19,7 @@ P0 verifies that the historical validation environment is causal, deterministic,
 - `P0_FIXTURE_EXPECTATIONS.md`
 - `P0_DESIGN_FREEZE_RECORD.md`
 - `P0_IMPLEMENTATION_VALIDATION.md`
+- `P0_IMPLEMENTATION_REVIEW.md`
 - `P0_EXECUTION_FREEZE_CHECKLIST.md`
 - `P0_DECISION_RECORD.md`
 - `code/` — causal replay implementation and regression checks.
