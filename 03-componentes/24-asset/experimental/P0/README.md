@@ -24,7 +24,7 @@ P0 verifies that the historical validation environment is causal, deterministic,
 Initial materialization reference:
 
 - repository: `rogerio-raposo/crypto-pro-datafeed`
-- commit: `073fe17d969655c46780261663c6d86f6804216d`
+- commit: `e690c2cee254a053d309cde82b4cb784ace35503`
 - experimental package: `docs/experimental/asset-p0/`
 
 This is a materialization baseline, **not yet an Experiment Freeze**.
