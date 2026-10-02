@@ -1,6 +1,6 @@
 # PCP-01 — QPS Capability Matrix
 
-**Status:** revisão documental técnica concluída; dry-run operacional pendente  
+**Status:** Binance PILOT QUALIFIED para PCP-01; demais fontes tecnicamente elegíveis com dry-run pendente  
 **QPS:** Qualified Pilot Source  
 **As-of da revisão:** 2026-09-30  
 **Natureza:** artefato experimental; não normativo
@@ -27,7 +27,7 @@ Essa separação não constitui conclusão jurídica sobre permissões de uso. A
 
 | Fonte | Spot catalog / status | Order book | Timestamp | Volume/history | Pair metadata | Technical review | Operational dry-run | Pilot status | Commercial approval |
 |---|---|---|---|---|---|---|---|---|---|
-| Binance | SUPPORTED | SUPPORTED — 1000 níveis validados no probe | SUPPORTED | SUPPORTED | SUPPORTED | PASS | TECHNICAL PROBE PASS (1 run) | TECHNICALLY ELIGIBLE | DEFERRED |
+| Binance | SUPPORTED | SUPPORTED — 1000 níveis validados no probe | SUPPORTED | SUPPORTED | SUPPORTED | PASS | CONTROLLED TWO-CYCLE PASS | PILOT QUALIFIED | DEFERRED |
 | Bybit | SUPPORTED | SUPPORTED — até 1000 níveis spot | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
 | OKX | SUPPORTED | SUPPORTED — books até 400; books-full até 5000 | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
 | Bitget | SUPPORTED | SUPPORTED — até 1000 níveis | SUPPORTED | SUPPORTED | SUPPORTED | PASS | PENDING | TECHNICALLY ELIGIBLE | DEFERRED |
@@ -62,7 +62,7 @@ Registro operacional:
 - 7 dias de turnover obtidos;
 - artifact digest: `sha256:574ffb2f74b08ad824f55a1c51ce443f2e208db43c3d21a708588cb0ccf795c1`.
 
-Esse resultado valida o caminho técnico inicial, mas não substitui o dry-run temporal de dois ciclos horários exigido antes de UFT/T0.
+O dry-run temporal controlado posterior também foi concluído com sucesso no workflow run `37059995273`: ciclos `20:00 UTC` e `21:00 UTC`, ambos PASS 9/9, com `two_cycle_status = PASS`. Assim, Binance passa a `PILOT QUALIFIED` para o PCP-01. Isso não constitui aprovação comercial permanente.
 
 ### Bybit
 A API V5 documenta instrumentos spot, order book, klines/turnover e timestamps suficientes para adaptação experimental.
