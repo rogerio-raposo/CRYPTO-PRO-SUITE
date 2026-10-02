@@ -79,8 +79,8 @@ Python 3.12 runtime validation remains mandatory because it is the stable Data F
 
 ## 8. Code and Cross-Repository Freeze
 
-- [ ] producer code review complete.
-- [ ] replay code review complete.
+- [x] producer code review complete.
+- [x] replay code review complete.
 - [ ] final Data Feed implementation commit pinned.
 - [ ] final Suite implementation commit pinned.
 - [ ] final Code Version declared.
