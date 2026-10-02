@@ -9,15 +9,15 @@
 
 ## Checkpoint vigente
 
-**CP05 — 2026-10-02**
+**CP06 — 2026-10-02**
 
 Arquivo:
 
-`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-02_CP05.md`
+`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-02_CP06.md`
 
 Checkpoint anterior:
 
-`CP04`
+`CP05`
 
 Status:
 > vigente para continuidade operacional, sujeito ao Freshness Gate do template canônico.
@@ -64,4 +64,5 @@ em **Modo Continuidade**.
 - **CP02 — 2026-10-01:** primeira correção para centralizar prompt/procedimento no README; preservado para auditoria.
 - **CP03 — 2026-10-01:** refinamento do modelo snapshot + pointer; preservado para auditoria.
 - **CP04 — 2026-10-01:** consolidou a arquitetura conceitual até a Etapa 14 e registrou retomada na Etapa 15.
-- **CP05 — 2026-10-02:** checkpoint vigente. Consolida as Etapas 15–35, registra o fechamento conceitual do Asset PRO Core e a transição para implementação/validação, com retomada na Etapa 36 — especificação do P0.
+- **CP05 — 2026-10-02:** consolidou as Etapas 15–35 e registrou a transição do fechamento conceitual para desenho de validação.
+- **CP06 — 2026-10-02:** checkpoint vigente. Fecha as Etapas 36–38, consolida o desenho pré-implementação de P0/P1 e registra retomada na Etapa 39 — materialização do pacote P0.
