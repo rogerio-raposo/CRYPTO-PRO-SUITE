@@ -9,15 +9,15 @@
 
 ## Checkpoint vigente
 
-**CP04 — 2026-10-01**
+**CP05 — 2026-10-02**
 
 Arquivo:
 
-`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-01_CP04.md`
+`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-02_CP05.md`
 
 Checkpoint anterior:
 
-`CP03`
+`CP04`
 
 Status:
 > vigente para continuidade operacional, sujeito ao Freshness Gate do template canônico.
@@ -63,4 +63,5 @@ em **Modo Continuidade**.
 - **CP01 — 2026-10-01:** primeira implementação do mecanismo de continuidade. Preservado para auditoria. Continha prompt interno, padrão posteriormente corrigido.
 - **CP02 — 2026-10-01:** primeira correção para centralizar prompt/procedimento no README; preservado para auditoria.
 - **CP03 — 2026-10-01:** refinamento do modelo snapshot + pointer; preservado para auditoria.
-- **CP04 — 2026-10-01:** checkpoint vigente. Contém uma única referência estável ao ponteiro operacional, sem prompt ou procedimento duplicado.
+- **CP04 — 2026-10-01:** consolidou a arquitetura conceitual até a Etapa 14 e registrou retomada na Etapa 15.
+- **CP05 — 2026-10-02:** checkpoint vigente. Consolida as Etapas 15–35, registra o fechamento conceitual do Asset PRO Core e a transição para implementação/validação, com retomada na Etapa 36 — especificação do P0.
