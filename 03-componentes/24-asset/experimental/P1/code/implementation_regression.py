@@ -49,9 +49,11 @@ def synthetic_candles() -> list[dict]:
     candles = []
     for i, cents in enumerate(prices):
         close = cents / 100
-        open_ = close if i == 0 else prices[i - 1] / 100
-        high = max(open_, close) + 0.35
-        low = min(open_, close) - 0.35
+        # Synthetic bars are deliberately point-centered so local extrema are unique.
+        # This fixture tests detector semantics, not realistic intrabar paths.
+        open_ = close
+        high = close + 0.35
+        low = close - 0.35
         candles.append(
             {
                 "open_time_us": start + i * FOUR_HOURS_US,
