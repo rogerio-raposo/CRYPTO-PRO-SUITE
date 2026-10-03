@@ -15,21 +15,33 @@ jobs:
   regression:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+
     steps:
       - uses: actions/checkout@v4
         with:
           ref: experiment/asset-p1-d1
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - name: Run synthetic D1 regression
         working-directory: 03-componentes/24-asset/experimental/P1/code
         run: |
           set -o pipefail
           python implementation_regression.py | tee /tmp/asset-p1-regression.json
+
+      - name: Run Revision 03 causal validation
+        working-directory: 03-componentes/24-asset/experimental/P1/code
+        run: |
+          set -o pipefail
+          python causal_validation.py | tee /tmp/asset-p1-causal-validation.json
+
       - uses: actions/upload-artifact@v4
         with:
           name: asset-p1-implementation-regression
-          path: /tmp/asset-p1-regression.json
+          path: |
+            /tmp/asset-p1-regression.json
+            /tmp/asset-p1-causal-validation.json
           if-no-files-found: error
           retention-days: 30
