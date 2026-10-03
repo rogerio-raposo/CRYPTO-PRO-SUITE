@@ -194,6 +194,24 @@ def revision02_metrics_and_review(candles: list[dict]) -> dict:
     serialized=json.dumps(package,sort_keys=True,default=str)
     if any(pid in serialized for pid in raw_ids):
         raise AssertionError("Reviewer-facing package leaked raw Profile ID.")
+
+    prohibited_keys={"method","profile_id","volatility_ref","detector","estimator","window","multiplier","percentage"}
+    def collect_keys(value):
+        keys=set()
+        if isinstance(value,dict):
+            for key,item in value.items():
+                keys.add(str(key))
+                keys |= collect_keys(item)
+        elif isinstance(value,list):
+            for item in value:
+                keys |= collect_keys(item)
+        return keys
+    leaked_keys=sorted(prohibited_keys & collect_keys(package))
+    if leaked_keys:
+        raise AssertionError(
+            "Reviewer-facing package leaked method-identifying keys: "
+            + ",".join(leaked_keys)
+        )
     if len(mapping.get("alias_to_profile",{})) != len(runs):
         raise AssertionError("Human Review alias mapping is incomplete.")
 
