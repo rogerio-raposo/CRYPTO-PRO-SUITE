@@ -20,9 +20,9 @@
 - [x] Binance Spot planned as common pilot market.
 - [x] native timeframe planned as 1h.
 - [x] analytical timeframes planned as 4h / Daily.
-- [ ] source archive availability verified for all assets and all frozen segments.
+- [x] source archive availability verified for all assets and all frozen segments — 36/36 months each.
 - [x] canonical dataset-manifest/checksum plan materialized in Data Feed P1 package.
-- [ ] P1 Data Feed branch freshness/conflict check completed for Design Freeze.
+- [x] P1 Data Feed branch freshness/conflict check completed for Design Freeze — branch 0 behind main; no PCP-01 path modified by P1 work.
 
 ## Sampling
 
@@ -51,7 +51,7 @@
 - [x] trend-persistence grid drafted.
 - [x] arbitrary fixed stability thresholds reviewed and removed.
 - [x] DEV IQR plateau/reference-band methodology drafted.
-- [ ] DEV IQR plateau/reference-band methodology formally accepted for Design Freeze.
+- [x] DEV IQR plateau/reference-band methodology formally accepted for Design Freeze.
 
 ## Comparison and Review
 
@@ -64,7 +64,7 @@
 
 ## Design Freeze Record
 
-- [ ] all design documents reviewed for internal consistency.
+- [x] all design documents reviewed for internal consistency.
 - [ ] Design Freeze baseline commit pinned.
 - [ ] P1 Design Freeze Record created.
 
