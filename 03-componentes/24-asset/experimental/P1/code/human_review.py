@@ -256,7 +256,15 @@ def build_review_package(
             alias=aliases[pid]
             blinded_profiles[alias]={
                 "swings":[
-                    x for x in island.get("swings",[])
+                    {
+                        "kind":x["kind"],
+                        "extremum_index":x["extremum_index"],
+                        "extremum_open_us":x["extremum_open_us"],
+                        "price":x["price"],
+                        "confirmation_index":x["confirmation_index"],
+                        "confirmation_end_us":x["confirmation_end_us"],
+                    }
+                    for x in island.get("swings",[])
                     if int(x["confirmation_index"]) <= end
                     and int(x["extremum_index"]) >= start
                 ],
@@ -285,6 +293,7 @@ def build_review_package(
         "cases":exported,
         "response_vocabulary":["YES","NO","INDETERMINATE"],
     }
+    assert_reviewer_package_blinded(package)
     package["package_sha256"]=sha256_obj(package)
 
     mapping={
@@ -294,6 +303,24 @@ def build_review_package(
     }
     mapping["mapping_sha256"]=sha256_obj(mapping)
     return package,mapping
+
+
+
+def assert_reviewer_package_blinded(package: dict) -> None:
+    """Reject reviewer-facing payloads that leak method/profile identity."""
+    prohibited={"method","profile_id","volatility_ref","detector","estimator","window","multiplier","percentage"}
+
+    def walk(value,path="$"):
+        if isinstance(value,dict):
+            for key,item in value.items():
+                if str(key) in prohibited:
+                    raise ReviewError(f"Reviewer package leaks prohibited key {key!r} at {path}.")
+                walk(item,f"{path}.{key}")
+        elif isinstance(value,list):
+            for i,item in enumerate(value):
+                walk(item,f"{path}[{i}]")
+
+    walk(package)
 
 
 def completed_review_record(
