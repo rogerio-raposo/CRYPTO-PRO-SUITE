@@ -31,4 +31,6 @@ Holdout results may not be used for parameter retuning.
 - `P1_DECISION_RULES.md`
 - `P1_FREEZE_CHECKLIST.md`
 
-No P1 code or formal run is authorized until P1 Design Freeze.
+No P1 analytical code is implemented before Design Freeze.
+
+After Design Freeze, implementation proceeds toward a separate Execution Freeze. No formal P1 run is authorized before Execution Freeze.
