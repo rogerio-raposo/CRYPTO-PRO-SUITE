@@ -1,0 +1,35 @@
+name: Asset P1 frozen manifest hash
+
+on:
+  push:
+    branches:
+      - freeze/asset-p1-execution
+    paths:
+      - ".github/workflows/asset-p1-manifest-hash.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  hash:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout frozen manifest commit
+        uses: actions/checkout@v4
+        with:
+          ref: bb75048c8a1d28859247a420093f8131028c4639
+
+      - name: Compute exact manifest SHA-256
+        run: |
+          set -euo pipefail
+          FILE="03-componentes/24-asset/experimental/P1/P1_EXPERIMENT_MANIFEST.md"
+          SHA="$(sha256sum "$FILE" | awk '{print $1}')"
+          echo "P1_MANIFEST_SHA256=$SHA"
+          echo "$SHA" > /tmp/P1_MANIFEST_SHA256.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-frozen-manifest-sha256
+          path: /tmp/P1_MANIFEST_SHA256.txt
+          if-no-files-found: error
+          retention-days: 30
