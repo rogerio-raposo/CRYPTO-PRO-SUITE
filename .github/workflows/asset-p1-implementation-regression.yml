@@ -24,6 +24,7 @@ jobs:
       - name: Run synthetic D1 regression
         working-directory: 03-componentes/24-asset/experimental/P1/code
         run: |
+          set -o pipefail
           python implementation_regression.py | tee /tmp/asset-p1-regression.json
       - uses: actions/upload-artifact@v4
         with:
