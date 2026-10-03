@@ -81,11 +81,11 @@ Execution Freeze is intentionally separate and is not required to close the curr
 ## Producer / Data
 
 - [x] multi-asset P1 producer core implemented.
-- [ ] synchronized venue-gap/island policy implemented and validated.
-- [ ] source archives acquired and checksums verified.
-- [ ] per-asset/per-segment Dataset Manifests generated.
-- [ ] Data Versions pinned.
-- [x] Holdout analytical-access segregation core implemented; regression pending.
+- [x] synchronized venue-gap/island policy implemented and validated.
+- [x] source archives acquired and checksums verified.
+- [x] per-asset/per-segment Dataset Manifests generated — 24 cells.
+- [ ] Data Package Version declared and pinned.
+- [x] Holdout analytical-access segregation implemented and regression-tested.
 
 ## D1 Structural Engine
 
@@ -97,15 +97,17 @@ Execution Freeze is intentionally separate and is not required to close the curr
 - [x] Protected Swing implemented.
 - [x] P1 structural-event taxonomy implemented.
 - [x] matching engine implemented.
-- [ ] metrics/plateau/reference-band engine implemented against Revision 02.
-- [ ] Human Review deterministic sampling/export implemented against Revision 03.
+- [x] metrics/plateau/reference-band engine implemented and regression-tested against Revision 02.
+- [x] Human Review deterministic sampling/export implemented and regression-tested against Revision 03.
 
 ## Validation
 
-- [ ] causal replay regression passes.
-- [ ] deterministic repeated-run regression passes.
-- [ ] checkpoint/restart regression passes.
-- [ ] synthetic/reference tests pass.
+- [x] P1 implementation review recorded with no unresolved blocker.
+
+- [x] causal validation regression passes — prefix invariance, future-timestamp audit and Analysis-Island reset.
+- [x] deterministic repeated-run regression passes.
+- [x] reference checkpoint/restart regression passes.
+- [x] synthetic/reference tests pass, including metrics/plateau/Human Review.
 - [ ] Code Version assigned.
 - [ ] Suite implementation commit pinned.
 - [ ] Data Feed implementation commit pinned.
