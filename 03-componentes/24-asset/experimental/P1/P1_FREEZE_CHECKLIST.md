@@ -70,7 +70,7 @@
 
 Current Design Freeze state:
 
-> **COMPLETE — REVISION 01**
+> **COMPLETE — REVISION 02**
 
 ---
 
@@ -97,8 +97,8 @@ Execution Freeze is intentionally separate and is not required to close the curr
 - [x] Protected Swing implemented.
 - [x] P1 structural-event taxonomy implemented.
 - [x] matching engine implemented.
-- [ ] metrics engine implemented.
-- [ ] Human Review sampling export implemented.
+- [ ] metrics/plateau/reference-band engine implemented against Revision 02.
+- [ ] Human Review deterministic sampling/export implemented against Revision 02.
 
 ## Validation
 
