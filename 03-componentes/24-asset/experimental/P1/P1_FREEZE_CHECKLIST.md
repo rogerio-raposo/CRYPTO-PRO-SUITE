@@ -70,7 +70,7 @@
 
 Current Design Freeze state:
 
-> **COMPLETE — REVISION 02**
+> **COMPLETE — REVISION 03**
 
 ---
 
@@ -98,7 +98,7 @@ Execution Freeze is intentionally separate and is not required to close the curr
 - [x] P1 structural-event taxonomy implemented.
 - [x] matching engine implemented.
 - [ ] metrics/plateau/reference-band engine implemented against Revision 02.
-- [ ] Human Review deterministic sampling/export implemented against Revision 02.
+- [ ] Human Review deterministic sampling/export implemented against Revision 03.
 
 ## Validation
 
