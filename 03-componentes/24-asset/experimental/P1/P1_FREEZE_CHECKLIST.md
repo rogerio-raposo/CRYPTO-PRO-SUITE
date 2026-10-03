@@ -1,32 +1,35 @@
-# Asset PRO — P1 Design Freeze Checklist
+# Asset PRO — P1 Freeze Checklist
 
 **Status:** DRAFT / NON-NORMATIVE  
-**Experiment:** ASSET-P1-D1-001  
-**Design Freeze:** PENDING
+**Experiment:** ASSET-P1-D1-001
 
 ---
+
+# A. Design Freeze Checklist
 
 ## Dependency
 
 - [x] ASSET-P0-001 Decision Record = PASS.
 
-## Universe and Data
+## Universe and Data Design
 
 - [x] A1 BTCUSDT selected.
 - [x] A2 ETHUSDT selected.
 - [x] A3 SOLUSDT selected.
 - [x] A4 XRPUSDT selected.
+- [x] Binance Spot planned as common pilot market.
 - [x] native timeframe planned as 1h.
 - [x] analytical timeframes planned as 4h / Daily.
 - [ ] source archive availability verified for all assets and all frozen segments.
-- [x] canonical dataset manifests/checksum plan materialized in Data Feed P1 package.
-- [ ] P1 Data Feed implementation branch freshness/conflict check complete.
+- [x] canonical dataset-manifest/checksum plan materialized in Data Feed P1 package.
+- [ ] P1 Data Feed branch freshness/conflict check completed for Design Freeze.
 
 ## Sampling
 
 - [x] DEV segments defined.
 - [x] VAL segments defined.
 - [x] Structural Holdout segments defined.
+- [x] common-calendar rule defined.
 - [x] Holdout anti-retuning rule defined.
 
 ## Methods
@@ -36,7 +39,7 @@
 - [x] M3 operational specification drafted.
 - [x] primary Close-confirmation basis defined.
 - [x] M3 estimator screen defined.
-- [x] diagnostic intrabar subset isolated from final candidate eligibility.
+- [x] diagnostic intrabar subset isolated from final-candidate eligibility.
 
 ## Parameters and Structure
 
@@ -46,8 +49,9 @@
 - [x] equality-tolerance grid drafted.
 - [x] break-buffer grid drafted.
 - [x] trend-persistence grid drafted.
-- [x] arbitrary fixed candidate thresholds reviewed and removed; DEV IQR plateau/reference-band rule drafted.
-- [ ] DEV IQR plateau/reference-band rule formally frozen.
+- [x] arbitrary fixed stability thresholds reviewed and removed.
+- [x] DEV IQR plateau/reference-band methodology drafted.
+- [ ] DEV IQR plateau/reference-band methodology formally accepted for Design Freeze.
 
 ## Comparison and Review
 
@@ -58,18 +62,57 @@
 - [x] Human Review sampling protocol defined.
 - [x] final P1 decision states defined.
 
-## Implementation / Freeze
+## Design Freeze Record
 
-- [ ] D1 code architecture reviewed.
-- [ ] experiment Code Version assigned.
-- [ ] Data Version(s) assigned.
-- [ ] Suite commit pinned.
-- [ ] Data Feed commit pinned.
-- [ ] P1 Experiment Manifest hash generated.
+- [ ] all design documents reviewed for internal consistency.
+- [ ] Design Freeze baseline commit pinned.
 - [ ] P1 Design Freeze Record created.
 
-Current state:
+Current Design Freeze state:
 
-> **NOT READY FOR P1 DESIGN FREEZE**
+> **PENDING**
 
-No P1 execution is authorized.
+---
+
+# B. Execution Freeze Checklist
+
+Execution Freeze is intentionally separate and is not required to close the current design stage.
+
+## Producer / Data
+
+- [ ] multi-asset P1 producer code implemented.
+- [ ] source archives acquired and checksums verified.
+- [ ] per-asset/per-segment Dataset Manifests generated.
+- [ ] Data Versions pinned.
+- [ ] Holdout analytical-access segregation implemented.
+
+## D1 Structural Engine
+
+- [ ] M1 implemented.
+- [ ] M2 implemented.
+- [ ] M3 implemented.
+- [ ] structural sequence implemented.
+- [ ] regime classifier implemented.
+- [ ] Protected Swing implemented.
+- [ ] P1 structural-event taxonomy implemented.
+- [ ] matching engine implemented.
+- [ ] metrics engine implemented.
+- [ ] Human Review sampling export implemented.
+
+## Validation
+
+- [ ] causal replay regression passes.
+- [ ] deterministic repeated-run regression passes.
+- [ ] checkpoint/restart regression passes.
+- [ ] synthetic/reference tests pass.
+- [ ] Code Version assigned.
+- [ ] Suite implementation commit pinned.
+- [ ] Data Feed implementation commit pinned.
+- [ ] P1 frozen Manifest hash generated.
+- [ ] Execution Freeze Record created.
+
+Current Execution Freeze state:
+
+> **NOT STARTED**
+
+No P1 method execution is authorized.
