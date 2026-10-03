@@ -49,44 +49,44 @@
 
 - [x] local regression executed successfully on Python 3.13.5.
 - [x] source parses under Python 3.12 grammar.
-- [ ] runtime regression executed on Python 3.12.
+- [x] runtime regression executed on Python 3.12.
 
 Python 3.12 runtime validation remains mandatory because it is the stable Data Feed engineering baseline.
 
 ## 6. Real Golden Fixture
 
-- [ ] official daily archives acquired.
-- [ ] official archive checksums verified.
-- [ ] 72 expected native intervals validated.
-- [ ] millisecond → microsecond source transition verified.
-- [ ] normalized fixture generated.
-- [ ] 4h / 1d expected outputs generated.
-- [ ] fixture hashes frozen.
-- [ ] fixture committed/referenced.
+- [x] official daily archives acquired.
+- [x] official archive checksums verified.
+- [x] 72 expected native intervals validated.
+- [x] millisecond → microsecond source transition verified.
+- [x] normalized fixture generated.
+- [x] 4h / 1d expected outputs generated.
+- [x] fixture hashes frozen.
+- [x] fixture committed/referenced.
 
 ## 7. Main Validation Dataset
 
-- [ ] January 2025 monthly archive acquired/verified.
-- [ ] February 2025 monthly archive acquired/verified.
-- [ ] March 2025 monthly archive acquired/verified.
-- [ ] 2160 contiguous 1h intervals validated.
-- [ ] 540 complete 4h records validated.
-- [ ] 90 complete Daily records validated.
-- [ ] canonical normalized dataset generated.
-- [ ] Dataset Version finalized.
-- [ ] canonical Dataset Manifest generated.
-- [ ] final dataset SHA-256 frozen.
+- [x] January 2025 monthly archive acquired/verified.
+- [x] February 2025 monthly archive acquired/verified.
+- [x] March 2025 monthly archive acquired/verified.
+- [x] 2160 contiguous 1h intervals validated.
+- [x] 540 complete 4h records validated.
+- [x] 90 complete Daily records validated.
+- [x] canonical normalized dataset generated.
+- [x] Dataset Version finalized.
+- [x] canonical Dataset Manifest generated.
+- [x] final dataset SHA-256 frozen.
 
 ## 8. Code and Cross-Repository Freeze
 
 - [x] producer code review complete.
 - [x] replay code review complete.
-- [ ] final Data Feed implementation commit pinned.
-- [ ] final Suite implementation commit pinned.
-- [ ] final Code Version declared.
-- [ ] P0 Experiment Manifest updated with execution identities.
-- [ ] final Manifest hash computed.
-- [ ] final freshness/conflict check against Data Feed `main`.
+- [x] final Data Feed implementation commit pinned.
+- [x] final Suite implementation commit pinned.
+- [x] final Code Version declared.
+- [x] P0 Experiment Manifest updated with execution identities.
+- [x] final Manifest hash computed.
+- [x] final freshness/conflict check against Data Feed `main`.
 
 ## 9. Execution Freeze Decision
 
@@ -94,7 +94,7 @@ Execution Freeze may be declared only when every required item above is complete
 
 Current decision:
 
-> **NOT READY FOR EXECUTION FREEZE**
+> **EXECUTION FREEZE COMPLETE — FORMAL P0 EXECUTION NOT STARTED**
 
 Formal P0 execution remains prohibited.
 
