@@ -1,6 +1,6 @@
 # Asset PRO — P1 / D1 Structural Validation
 
-**Status:** DESIGN FROZEN — REVISION 02 / IMPLEMENTATION IN PROGRESS / NON-NORMATIVE  
+**Status:** DESIGN FROZEN — REVISION 03 / IMPLEMENTATION IN PROGRESS / NON-NORMATIVE  
 **Experiment:** ASSET-P1-D1-001  
 **P0 dependency:** SATISFIED — ASSET-P0-001 PASS  
 **Implementation status:** IN PROGRESS  
@@ -34,6 +34,7 @@ Holdout results may not be used for parameter retuning.
 - `P1_DESIGN_FREEZE_RECORD.md`
 - `P1_DESIGN_FREEZE_REVISION_01.md`
 - `P1_DESIGN_FREEZE_REVISION_02.md`
+- `P1_DESIGN_FREEZE_REVISION_03.md`
 
 Design Freeze is complete.
 
@@ -46,6 +47,6 @@ The original Design Freeze remains historical evidence.
 
 Active implementation baseline:
 
-> **Original Design Freeze + Revision 01 + Revision 02**
+> **Original Design Freeze + Revision 01 + Revision 02 + Revision 03**
 
-Revision 01 adds synchronized-venue-gap Analysis Islands. Revision 02 fixes comparator warm-up, statistical conventions, full-grid plateau/candidate-lock rules and deterministic Human Review sampling.
+Revision 01 adds synchronized-venue-gap Analysis Islands. Revision 02 fixes comparator warm-up, statistical conventions, plateau/candidate-lock and deterministic sampling. Revision 03 fixes formal DEV/VAL/HOLDOUT stop points, review-lock integrity and causal-validation preconditions.
