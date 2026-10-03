@@ -9,15 +9,15 @@
 
 ## Checkpoint vigente
 
-**CP07 — 2026-10-02**
+**CP08 — 2026-10-03**
 
 Arquivo:
 
-`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-02_CP07.md`
+`archive/handoffs/asset/CPS_Asset_PRO_Continuidade_Metodologica_2026-10-03_CP08.md`
 
 Checkpoint anterior:
 
-`CP06`
+`CP07`
 
 Status:
 > vigente para continuidade operacional, sujeito ao Freshness Gate do template canônico.
@@ -66,4 +66,5 @@ em **Modo Continuidade**.
 - **CP04 — 2026-10-01:** consolidou a arquitetura conceitual até a Etapa 14 e registrou retomada na Etapa 15.
 - **CP05 — 2026-10-02:** consolidou as Etapas 15–35 e registrou a transição do fechamento conceitual para desenho de validação.
 - **CP06 — 2026-10-02:** fechou as Etapas 36–38 e consolidou o desenho pré-implementação de P0/P1.
-- **CP07 — 2026-10-02:** checkpoint vigente. Consolida as Etapas 39–40, registra o Design Freeze de ASSET-P0-001, a segregação concorrencial do Data Feed e retomada na Etapa 41 — implementação rumo ao Execution Freeze.
+- **CP07 — 2026-10-02:** consolidou as Etapas 39–40, registrando o Design Freeze de ASSET-P0-001 e a segregação concorrencial do Data Feed.
+- **CP08 — 2026-10-03:** checkpoint vigente. Registra o Execution Freeze completo de ASSET-P0-001 e a retomada na Etapa 42 — execução formal do P0.
