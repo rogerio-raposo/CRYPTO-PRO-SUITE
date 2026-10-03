@@ -70,7 +70,7 @@
 
 Current Design Freeze state:
 
-> **COMPLETE**
+> **COMPLETE — REVISION 01**
 
 ---
 
@@ -80,22 +80,23 @@ Execution Freeze is intentionally separate and is not required to close the curr
 
 ## Producer / Data
 
-- [ ] multi-asset P1 producer code implemented.
+- [x] multi-asset P1 producer core implemented.
+- [ ] synchronized venue-gap/island policy implemented and validated.
 - [ ] source archives acquired and checksums verified.
 - [ ] per-asset/per-segment Dataset Manifests generated.
 - [ ] Data Versions pinned.
-- [ ] Holdout analytical-access segregation implemented.
+- [x] Holdout analytical-access segregation core implemented; regression pending.
 
 ## D1 Structural Engine
 
-- [ ] M1 implemented.
-- [ ] M2 implemented.
-- [ ] M3 implemented.
-- [ ] structural sequence implemented.
-- [ ] regime classifier implemented.
-- [ ] Protected Swing implemented.
-- [ ] P1 structural-event taxonomy implemented.
-- [ ] matching engine implemented.
+- [x] M1 implemented.
+- [x] M2 implemented.
+- [x] M3 implemented.
+- [x] structural sequence implemented.
+- [x] regime classifier implemented.
+- [x] Protected Swing implemented.
+- [x] P1 structural-event taxonomy implemented.
+- [x] matching engine implemented.
 - [ ] metrics engine implemented.
 - [ ] Human Review sampling export implemented.
 
