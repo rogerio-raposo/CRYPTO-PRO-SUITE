@@ -1,0 +1,33 @@
+name: Asset P1 implementation regression
+
+on:
+  push:
+    branches:
+      - experiment/asset-p1-d1
+    paths:
+      - ".github/workflows/asset-p1-implementation-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: experiment/asset-p1-d1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run synthetic D1 regression
+        working-directory: 03-componentes/24-asset/experimental/P1/code
+        run: |
+          python implementation_regression.py | tee /tmp/asset-p1-regression.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-implementation-regression
+          path: /tmp/asset-p1-regression.json
+          if-no-files-found: error
+          retention-days: 30
