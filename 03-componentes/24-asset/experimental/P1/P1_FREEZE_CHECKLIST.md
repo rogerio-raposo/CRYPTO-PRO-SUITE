@@ -19,7 +19,7 @@
 - [x] native timeframe planned as 1h.
 - [x] analytical timeframes planned as 4h / Daily.
 - [ ] source archive availability verified for all assets and all frozen segments.
-- [ ] canonical dataset manifests/checksum plan materialized in Data Feed P1 package.
+- [x] canonical dataset manifests/checksum plan materialized in Data Feed P1 package.
 - [ ] P1 Data Feed implementation branch freshness/conflict check complete.
 
 ## Sampling
@@ -46,7 +46,8 @@
 - [x] equality-tolerance grid drafted.
 - [x] break-buffer grid drafted.
 - [x] trend-persistence grid drafted.
-- [ ] candidate thresholds reviewed and frozen.
+- [x] arbitrary fixed candidate thresholds reviewed and removed; DEV IQR plateau/reference-band rule drafted.
+- [ ] DEV IQR plateau/reference-band rule formally frozen.
 
 ## Comparison and Review
 
