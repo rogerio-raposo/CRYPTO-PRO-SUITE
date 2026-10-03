@@ -1,6 +1,6 @@
 # Asset PRO — P0 Data & Causal Replay Integrity
 
-**Status:** DESIGN FROZEN / IMPLEMENTATION IN PROGRESS / NON-NORMATIVE  
+**Status:** EXECUTION FROZEN / NON-NORMATIVE  
 **Pilot:** P0  
 **Date:** 2026-10-02  
 **Execution status:** NOT STARTED
@@ -21,6 +21,7 @@ P0 verifies that the historical validation environment is causal, deterministic,
 - `P0_IMPLEMENTATION_VALIDATION.md`
 - `P0_IMPLEMENTATION_REVIEW.md`
 - `P0_EXECUTION_FREEZE_CHECKLIST.md`
+- `P0_EXECUTION_FREEZE_RECORD.md`
 - `P0_DECISION_RECORD.md`
 - `code/` — causal replay implementation and regression checks.
 
@@ -64,9 +65,9 @@ Still pending:
 
 ## Execution Freeze
 
-`PENDING`
+`COMPLETE`
 
-No formal P0 execution is authorized before Execution Freeze.
+The formal P0 execution is authorized but has **not started**.
 
 ## Gate
 
