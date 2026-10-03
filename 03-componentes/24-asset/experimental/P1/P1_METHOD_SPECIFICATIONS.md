@@ -388,3 +388,60 @@ While a directional Trend is active:
 - the opposite Trend cannot be established on the same cycle that caused the transition.
 
 This preserves the prohibition on direct Uptrend↔Downtrend flips.
+
+
+---
+
+# 13. Design Freeze Revision 02 — Detector Edge Cases
+
+Revision 02 closes the remaining detector ambiguities discovered by implementation regression.
+
+## 13.1 M1 Dual-Pivot Ambiguity
+
+If the same fixed-window center candle is simultaneously:
+
+- the unique maximum High; and
+- the unique minimum Low
+
+inside the same complete ((2w+1))-bar window, intrabar direction cannot be inferred.
+
+Result:
+
+- neither pivot is confirmed;
+- diagnostic `AMBIGUOUS_DUAL_PIVOT` is emitted;
+- no same-timestamp pair of opposite swings is created.
+
+## 13.2 M3 Intrabar Diagnostic Variant
+
+The diagnostic-only intrabar M3 subset remains excluded from final candidate eligibility.
+
+It uses the same causal volatility estimator and candidate-extremum state as primary M3, but the trigger is evaluated from the full closed candle range:
+
+During an UP leg:
+
+[
+Low_t \le H^* - kV^*
+]
+
+During a DOWN leg:
+
+[
+High_t \ge L^* + kV^*
+]
+
+Processing occurs only after the candle closes.
+
+If the same candle both:
+
+- establishes a strict new candidate extremum; and
+- satisfies the opposite intrabar reversal condition,
+
+the chronological intrabar order is unknowable.
+
+Result:
+
+- no swing confirmation;
+- diagnostic `AMBIGUOUS_INTRABAR_SEQUENCE`;
+- the updated candidate remains active.
+
+The diagnostic variant cannot be promoted to a final ASSET-P1-D1-001 candidate regardless of its observed behavior.
