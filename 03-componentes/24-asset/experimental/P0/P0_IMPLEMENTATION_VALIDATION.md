@@ -69,19 +69,13 @@ The stable Crypto Pro Data Feed engineering baseline uses Python 3.12.
 
 Therefore:
 
-> Python 3.12 regression remains a required precondition for Execution Freeze.
+> Python 3.12 regression was subsequently completed successfully through GitHub Actions run `37094587777`.
 
 ## 5. Pending Validation
 
 Still required before Execution Freeze:
 
-- Python 3.12 regression;
-- Real Golden Fixture acquisition/checksum/normalization;
-- main validation dataset acquisition/checksum/normalization;
-- fixture hashes from real source;
-- producer/replay code review;
-- final cross-repository commit pinning;
-- final Manifest hash.
+- all previously listed preconditions were subsequently completed and are recorded in `P0_EXECUTION_FREEZE_RECORD.md`.
 
 ---
 
