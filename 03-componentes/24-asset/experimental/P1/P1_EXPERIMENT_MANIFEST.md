@@ -1,10 +1,10 @@
 # Asset PRO — P1 Experiment Manifest
 
-**Status:** DESIGN FROZEN — REVISION 03 / NON-NORMATIVE  
+**Status:** EXECUTION FROZEN / NON-NORMATIVE  
 **Experiment ID:** ASSET-P1-D1-001  
 **Pilot:** P1 — D1 Structural Engine Validation  
 **P0 dependency:** ASSET-P0-001 = PASS  
-**Freeze status:** DESIGN FROZEN — REVISION 03 — IMPLEMENTATION IN PROGRESS
+**Freeze status:** EXECUTION FROZEN — FORMAL DEV NOT STARTED
 
 ---
 
@@ -304,11 +304,11 @@ P1 Design Freeze:
 
 P1 implementation:
 
-> **IN PROGRESS**
+> **VALIDATED**
 
 P1 Execution Freeze:
 
-> **PENDING**
+> **COMPLETE**
 
 P1 formal execution:
 
@@ -513,3 +513,146 @@ The active design baseline is:
 > **Original Design Freeze + Revision 01 + Revision 02 + Revision 03**
 
 No formal P1 phase execution has occurred.
+
+
+---
+
+## 19. Execution Freeze Identity
+
+The P1 Execution Freeze uses the active design baseline:
+
+> **Original Design Freeze + Revision 01 + Revision 02 + Revision 03**
+
+### 19.1 Specification Identity
+
+- Experiment ID: `ASSET-P1-D1-001`;
+- Specification identity: `ASSET-P1-D1-SPEC-REV03`;
+- parameter registry: frozen grids and rules defined by the active design baseline.
+
+### 19.2 Code Identity
+
+Code Version:
+
+`ASSET-P1-D1-CODE-0.1.0`
+
+Frozen Suite implementation:
+
+- repository: `rogerio-raposo/CRYPTO-PRO-SUITE`;
+- implementation branch: `experiment/asset-p1-d1`;
+- frozen code commit: `cbd80134aed0cf0f0796a9ecd870dc2201ef38c3`;
+- implementation review commit: `6077e60bade10d300ac788a614a089b999486abe`.
+
+Implementation regression:
+
+- workflow run: `37119958661`;
+- conclusion: `success`;
+- Python runtime: 3.12;
+- artifact ID: `11273086813`;
+- artifact digest: `sha256:f2d38ba0db16323750f5e64456ca3f18edfd57d8ce1c4d365c33a73c0abd8e73`;
+- deterministic implementation hash:
+  `6db044c41297d0e9af3c526195cc314c8883ff38244541491ae3eef8662ac63d`;
+- Revision 03 repeated-run causal hash:
+  `877c157331dd09501c93291c5e427bf8ce4f3798db55a340adcc2ea30d609f6b`.
+
+Validated causal controls:
+
+- Prefix Invariance: PASS;
+- Future-Timestamp Audit: PASS;
+- Repeated-Run Determinism: PASS;
+- Reference Checkpoint/Restart: PASS;
+- Analysis-Island Reset: PASS.
+
+### 19.3 Data Identity
+
+Data Package Version:
+
+`ASSET-P1-DATA-0.2.0`
+
+Frozen Data Feed identities:
+
+- repository: `rogerio-raposo/crypto-pro-datafeed`;
+- producer branch: `experiment/asset-p1`;
+- dataset-build code/run head: `f8d85435516d1eeb42085f7622296abfa4ea2ee2`;
+- generated-manifest commit: `64b6489eda3b6a4e706f46dd18ed5d65d8991810`;
+- package/documentation head: `cd461d999d56df6b441a3a571aa118a0b6d25d32`;
+- Dataset Index blob SHA: `e1cf500310af3dfe1d9e3fc113353fca400c7764`;
+- synchronized-gap registry blob SHA: `f8dc5c4244df931988487d24071253a1d3f51887`.
+
+Dataset package:
+
+- 24 asset×segment datasets;
+- all dataset cell versions: `v0.2.0`;
+- DEV, VAL and HOLDOUT packaged separately;
+- Holdout manifests preserve `analytical_access = LOCKED`.
+
+Dataset preparation workflow:
+
+- run: `37097201212`;
+- conclusion: `success`.
+
+Artifacts:
+
+- DEV ID `11263914965`, digest
+  `sha256:ba0a89be052d2e765d98f6941f5689f347fda144e31ddde37ae21890ce394b09`;
+- VAL ID `11264144472`, digest
+  `sha256:adfb3bd046d45e3ad450fb2dc00c7e7c578bb92ce231f21814ee025775cd6d71`;
+- HOLDOUT ID `11264369151`, digest
+  `sha256:fb12740f8c1b4485d34e8d5033fb489d5f88ca224ec7a0243b574d6064ebae05`.
+
+### 19.4 Gap / Analysis-Island Identity
+
+Continuity diagnostic:
+
+- run: `37096651289`;
+- artifact ID: `11264686520`;
+- digest:
+  `sha256:bc6d5305382340ff9cf7c8a93e967eaf8ef5eeae0481bd1264cfee90bf9bbd5c`.
+
+Only the synchronized venue gaps registered by Revision 01 are admissible.
+
+No interpolation is permitted.
+
+### 19.5 Human Review / Phase-Lock Identity
+
+The frozen implementation includes:
+
+- deterministic reviewer aliases;
+- hashed review packages and completed review records;
+- DEV Candidate Lock requiring Human Review SHA-256;
+- VAL Provisional Lock chained to the DEV lock;
+- HOLDOUT authorization only after valid DEV+VAL lock chain;
+- prohibition on candidate mutation between locks.
+
+Human Review tooling regression:
+
+- package SHA-256:
+  `760f41b4c221b48941bbeffaea8c589251cc8a9119625c245eece0555317c54e`;
+- alias mapping SHA-256:
+  `4b6d57592a46fa4b824232a3940bcabf1e854210543f8216062bc2a91d7f44b9`.
+
+### 19.6 Freeze Rule
+
+During formal P1 execution:
+
+- code identity cannot change;
+- Data Package identity cannot change;
+- design rules cannot change;
+- DEV reference-band rules cannot change;
+- Holdout cannot be opened before valid DEV+VAL locks;
+- a required retune produces `P1-REVISE`, not an in-place modification.
+
+A material change invalidates this Execution Freeze and requires an explicit new freeze identity or experiment revision.
+
+### 19.7 Manifest Integrity
+
+The SHA-256 of this exact Execution-Frozen Manifest is calculated after commit and recorded externally in:
+
+`P1_EXECUTION_FREEZE_RECORD.md`
+
+This avoids a self-referential hash.
+
+### 19.8 Formal Execution Status
+
+`NOT STARTED`
+
+The next authorized stage is formal DEV execution under the frozen phase sequence.
