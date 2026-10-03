@@ -183,3 +183,39 @@ With two or more reviewers, inter-rater agreement is reported as:
 - overall exact-response agreement proportion across all jointly reviewed question-items.
 
 No agreement score can override a hard quantitative blocker.
+
+
+---
+
+## 10. Design Freeze Revision 03 — Review Timing and Blinding
+
+### 10.1 DEV Review Population
+
+DEV Human Review is generated **after** the quantitative candidate proposal and uses only the proposed candidate set.
+
+It does not review the entire full-grid universe.
+
+### 10.2 VAL/Holdout Review Population
+
+- VAL: DEV-locked candidates only.
+- Holdout: VAL-locked candidates only.
+
+### 10.3 Blinded Aliases
+
+For each review package:
+
+1. compute SHA-256 of each canonical Profile ID;
+2. sort candidates by that hash;
+3. assign aliases `R01`, `R02`, ... in sorted order;
+4. expose only aliases in reviewer-facing artifacts;
+5. store the alias mapping separately and record its SHA-256.
+
+Reviewers are not shown the detector method/profile identity in the review package.
+
+### 10.4 Review Integrity Hash
+
+Every completed review record receives a canonical SHA-256.
+
+The applicable Human Review SHA-256 is recorded in the DEV or VAL lock.
+
+A lock without the required review hash is invalid.
