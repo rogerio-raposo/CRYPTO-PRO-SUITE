@@ -263,7 +263,8 @@ def command_grid(args) -> int:
     hard_blocked=set()
     run_hashes={pid:{} for pid in sorted(profile_map)}
 
-    for asset in ASSETS:
+    asset_scope=(args.asset,) if getattr(args,"asset",None) else ASSETS
+    for asset in asset_scope:
         for segment in DEV_SEGMENTS:
             cid=cell_id(asset,segment)
             records=load_cell(root,asset,segment,timeframe)
@@ -317,6 +318,7 @@ def command_grid(args) -> int:
         "method":method,
         "timeframe":timeframe,
         "estimator":estimator,
+        "asset_scope":list(asset_scope),
         "status":"PASS",
         "profiles":[p.profile_id for p in profiles],
         "single_metrics":single_metrics,
@@ -377,9 +379,21 @@ def _merge_method_grid(
     for g in selected:
         blocked.update(g.get("hard_blocked_profiles",[]))
         for pid,cells in g["single_metrics"].items():
-            single[pid]=cells
+            single.setdefault(pid,{})
+            overlap=set(single[pid]) & set(cells)
+            if overlap:
+                raise DevExecutionError(
+                    f"Duplicate grid cells for {method}/{timeframe}/{pid}: {sorted(overlap)}"
+                )
+            single[pid].update(cells)
         for key,cells in g["pair_metrics"].items():
-            pairs[key]=cells
+            pairs.setdefault(key,{})
+            overlap=set(pairs[key]) & set(cells)
+            if overlap:
+                raise DevExecutionError(
+                    f"Duplicate pair grid cells for {method}/{timeframe}/{key}: {sorted(overlap)}"
+                )
+            pairs[key].update(cells)
     return single,pairs,blocked
 
 
@@ -672,6 +686,7 @@ def main() -> int:
     p.add_argument("--method",choices=("M1","M2","M3"),required=True)
     p.add_argument("--timeframe",choices=TIMEFRAMES,required=True)
     p.add_argument("--estimator")
+    p.add_argument("--asset",choices=ASSETS)
     p.add_argument("--output",required=True)
 
     p=sub.add_parser("aggregate")
