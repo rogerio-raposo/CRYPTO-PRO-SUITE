@@ -84,7 +84,7 @@ Execution Freeze is intentionally separate and is not required to close the curr
 - [x] synchronized venue-gap/island policy implemented and validated.
 - [x] source archives acquired and checksums verified.
 - [x] per-asset/per-segment Dataset Manifests generated — 24 cells.
-- [ ] Data Package Version declared and pinned.
+- [x] Data Package Version declared and pinned — `ASSET-P1-DATA-0.2.0`.
 - [x] Holdout analytical-access segregation implemented and regression-tested.
 
 ## D1 Structural Engine
@@ -108,14 +108,14 @@ Execution Freeze is intentionally separate and is not required to close the curr
 - [x] deterministic repeated-run regression passes.
 - [x] reference checkpoint/restart regression passes.
 - [x] synthetic/reference tests pass, including metrics/plateau/Human Review.
-- [ ] Code Version assigned.
-- [ ] Suite implementation commit pinned.
-- [ ] Data Feed implementation commit pinned.
-- [ ] P1 frozen Manifest hash generated.
-- [ ] Execution Freeze Record created.
+- [x] Code Version assigned — `ASSET-P1-D1-CODE-0.1.0`.
+- [x] Suite implementation commit pinned — `cbd80134aed0cf0f0796a9ecd870dc2201ef38c3`.
+- [x] Data Feed implementation/package identities pinned — build `f8d85435516d1eeb42085f7622296abfa4ea2ee2`, manifests `64b6489eda3b6a4e706f46dd18ed5d65d8991810`, package head `cd461d999d56df6b441a3a571aa118a0b6d25d32`.
+- [x] P1 frozen Manifest hash generated — `967f3e59772fca9d45aefa7679c4ba4abd091b3ba06f627a7ae0e7b97713e1f1`.
+- [x] Execution Freeze Record created — commit `f81a34162521747eb471fad90aa590bbb29ad139`.
 
 Current Execution Freeze state:
 
-> **NOT STARTED**
+> **COMPLETE — FORMAL DEV AUTHORIZED, NOT STARTED**
 
 No P1 method execution is authorized.
