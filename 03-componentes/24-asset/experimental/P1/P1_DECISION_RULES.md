@@ -132,3 +132,69 @@ The lock records:
 A candidate cannot be added during VAL.
 
 The VAL provisional lock may only remove DEV candidates; it cannot alter parameters, relabel a profile into a new canonical identity, or introduce a profile not present in the DEV lock.
+
+
+---
+
+# 8. Design Freeze Revision 03 — Formal Phase Orchestration
+
+Formal P1 execution uses explicit stop points.
+
+## 8.1 DEV
+
+1. verify Execution Freeze identities;
+2. execute M3 estimator screen on DEV only;
+3. execute frozen full profile grids for eligible estimators/methods on DEV only;
+4. compute metrics, plateau graph and quantitative candidate proposal;
+5. compute/freeze proposed-candidate DEV reference bands;
+6. generate blinded DEV Human Review Set using only proposed candidates;
+7. complete Human Review;
+8. adjudicate reproducible rule-level defects under frozen rules;
+9. create final DEV Candidate Lock.
+
+Human Review may **remove** a proposed candidate when the frozen defect rule is satisfied.
+
+It may not:
+
+- change parameters;
+- replace a removed candidate with another profile in the same experiment;
+- create a new candidate;
+- relabel a profile into another canonical identity.
+
+If all candidates required for continuation are removed, result is `P1-REVISE`.
+
+## 8.2 VAL
+
+1. verify DEV Candidate Lock;
+2. execute only DEV-locked candidates on VAL;
+3. compare against frozen DEV reference bands;
+4. generate blinded VAL Human Review Set using only DEV-locked candidates;
+5. complete/adjudicate review;
+6. remove candidates only under frozen rules;
+7. create VAL Provisional Lock.
+
+No replacement or retuning is permitted.
+
+## 8.3 HOLDOUT
+
+1. verify chained DEV and VAL locks;
+2. execute only VAL-locked candidates;
+3. compare against frozen DEV reference bands;
+4. generate blinded Holdout Review Set;
+5. complete/adjudicate review;
+6. issue final P1 decision.
+
+Holdout cannot create or modify a candidate lock for retuning purposes.
+
+## 8.4 M3 Intrabar Diagnostic
+
+After the DEV estimator screen, the diagnostic intrabar subset is run on DEV only for surviving estimators:
+
+- n = 14;
+- k ∈ {1.5,2.0,3.0}.
+
+It is reported separately.
+
+It cannot alter candidate representative selection.
+
+If it exposes a material method-design issue, the allowed consequence is `P1-REVISE`, not silent promotion of an intrabar profile.
