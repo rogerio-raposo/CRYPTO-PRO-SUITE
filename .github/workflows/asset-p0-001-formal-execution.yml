@@ -1,0 +1,351 @@
+name: ASSET-P0-001 formal execution
+
+on:
+  push:
+    branches:
+      - execution/asset-p0-001
+    paths:
+      - ".github/workflows/asset-p0-001-formal-execution.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout frozen Suite manifest
+        uses: actions/checkout@v4
+        with:
+          ref: 1d8750b0279d70e7833af8324b036562390fb507
+          path: suite-manifest
+
+      - name: Checkout frozen Suite replay code
+        uses: actions/checkout@v4
+        with:
+          ref: 2bc3ac84397f678cdd9d202dbc8fd484928d8911
+          path: suite-code
+
+      - name: Checkout frozen Data Feed code
+        uses: actions/checkout@v4
+        with:
+          repository: rogerio-raposo/crypto-pro-datafeed
+          ref: d74bf09879b0d41d4129e3a3bd60c6c764e88ecf
+          path: datafeed-code
+
+      - name: Checkout frozen Data Feed artifacts
+        uses: actions/checkout@v4
+        with:
+          repository: rogerio-raposo/crypto-pro-datafeed
+          ref: fd6dda3f4b44b5e2109779dd5e8d95a021bead7e
+          path: datafeed-artifacts
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify frozen Experiment Manifest integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          MANIFEST="suite-manifest/03-componentes/24-asset/experimental/P0/P0_EXPERIMENT_MANIFEST.md"
+          ACTUAL="$(sha256sum "$MANIFEST" | awk '{print $1}')"
+          EXPECTED="5248eca0106f018d34919417f1f289239698900e92108eca6f43dd1745cb89eb"
+          echo "manifest_sha256=$ACTUAL"
+          test "$ACTUAL" = "$EXPECTED"
+
+      - name: Rebuild and verify Synthetic Golden Fixture
+        shell: bash
+        working-directory: datafeed-code/src/experimental/asset_p0
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/p0-synthetic
+          python build_artifacts.py synthetic --output /tmp/p0-synthetic
+          ROOT="$GITHUB_WORKSPACE/datafeed-artifacts/data/experimental/asset-p0/fixtures/synthetic"
+          cmp /tmp/p0-synthetic/native.jsonl "$ROOT/native.jsonl"
+          cmp /tmp/p0-synthetic/derived_4h.jsonl "$ROOT/derived_4h.jsonl"
+          cmp /tmp/p0-synthetic/derived_1d.jsonl "$ROOT/derived_1d.jsonl"
+          cmp /tmp/p0-synthetic/expected.json "$ROOT/expected.json"
+
+      - name: Reacquire and verify Real Golden Fixture
+        shell: bash
+        working-directory: datafeed-code/src/experimental/asset_p0
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/p0-real /tmp/p0-cache-real
+          python build_artifacts.py real-fixture             --output /tmp/p0-real             --cache /tmp/p0-cache-real
+          ROOT="$GITHUB_WORKSPACE/datafeed-artifacts/data/experimental/asset-p0/fixtures/real"
+          cmp /tmp/p0-real/native.jsonl "$ROOT/native.jsonl"
+          cmp /tmp/p0-real/derived_4h.jsonl "$ROOT/derived_4h.jsonl"
+          cmp /tmp/p0-real/derived_1d.jsonl "$ROOT/derived_1d.jsonl"
+          cmp /tmp/p0-real/manifest.json "$ROOT/manifest.json"
+
+      - name: Reacquire and verify main Q1 2025 dataset
+        shell: bash
+        working-directory: datafeed-code/src/experimental/asset_p0
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/p0-main /tmp/p0-cache-main
+          python build_artifacts.py main-dataset             --output /tmp/p0-main             --cache /tmp/p0-cache-main
+
+          test "$(sha256sum /tmp/p0-main/native.jsonl | awk '{print $1}')" =             "a3032c26b6c6cb87327a0148369e6977cb3c8fc57a55779117d5c7b7e6053d24"
+          test "$(sha256sum /tmp/p0-main/derived_4h.jsonl | awk '{print $1}')" =             "f9e943ea5c04c48341355f3878e8c90e1c51d4c75c996890213b3526d922a3b5"
+          test "$(sha256sum /tmp/p0-main/derived_1d.jsonl | awk '{print $1}')" =             "693c263ef8cfb9c8c670377bdb1091c19bdc066f69b4c16a090189b21af68155"
+
+      - name: Audit dataset schema, provenance, counts and frozen manifest semantics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          frozen = json.loads(Path(
+              "datafeed-artifacts/data/experimental/asset-p0/manifests/"
+              "ASSET-P0-001-BTCUSDT-SPOT-1H-2025Q1.json"
+          ).read_text())
+          rebuilt = json.loads(Path("/tmp/p0-main/dataset_manifest.json").read_text())
+
+          assert frozen["dataset_id"] == "ASSET-P0-001-BTCUSDT-SPOT-1H-2025Q1"
+          assert frozen["dataset_version"] == "ASSET-P0-001-BTCUSDT-SPOT-1H-2025Q1-v0.1.0"
+          assert frozen["raw_record_count"] == 2160
+          assert frozen["validated_record_count"] == 2160
+          assert frozen["derived_4h_records"] == 540
+          assert frozen["derived_1d_records"] == 90
+          assert frozen["checksum"] == "a3032c26b6c6cb87327a0148369e6977cb3c8fc57a55779117d5c7b7e6053d24"
+
+          for key in frozen:
+              if key == "ingestion_timestamp":
+                  continue
+              assert rebuilt[key] == frozen[key], (key, rebuilt[key], frozen[key])
+
+          required = {
+              "asset","close","data_origin","data_quality_flags","dataset_version",
+              "high","instrument","interval_end_us","low","market_type","open",
+              "open_time_us","quote_asset","timeframe","venue","volume"
+          }
+          lines = Path("/tmp/p0-main/native.jsonl").read_text().splitlines()
+          assert len(lines) == 2160
+          prev_open = None
+          for i, line in enumerate(lines):
+              r = json.loads(line)
+              assert required <= set(r)
+              assert not r["data_quality_flags"], (i, r["data_quality_flags"])
+              assert r["interval_end_us"] > r["open_time_us"]
+              if prev_open is not None:
+                  assert r["open_time_us"] - prev_open == 3_600_000_000
+              prev_open = r["open_time_us"]
+          print("dataset_audit=PASS")
+          PY
+
+      - name: Run frozen Synthetic Replay regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          python suite-code/03-componentes/24-asset/experimental/P0/code/regression.py             --fixture-root datafeed-artifacts/data/experimental/asset-p0/fixtures/synthetic             | tee /tmp/p0-synthetic-replay.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path("/tmp/p0-synthetic-replay.json").read_text())
+          expected="0a4d6e1a401081f94b0f8397142a6395103c1863a5fd438125cf180c551b6dc3"
+          assert r["status"]=="PASS"
+          assert r["continuous_hash_a"]==expected
+          assert r["continuous_hash_b"]==expected
+          assert r["restart_hash_c"]==expected
+          PY
+
+      - name: Run formal causal and determinism controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' | tee /tmp/p0-formal-result.json
+          import copy
+          import hashlib
+          import importlib.util
+          import json
+          import sys
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          replay_path = Path(
+              "suite-code/03-componentes/24-asset/experimental/P0/code/replay.py"
+          )
+          spec = importlib.util.spec_from_file_location("p0_replay", replay_path)
+          mod = importlib.util.module_from_spec(spec)
+          sys.modules["p0_replay"] = mod
+          spec.loader.exec_module(mod)
+
+          CausalReplay = mod.CausalReplay
+          ReplayError = mod.ReplayError
+          read_jsonl = mod.read_jsonl
+          combine_streams = mod.combine_streams
+          canonical_json_bytes = mod.canonical_json_bytes
+          sha256_bytes = mod.sha256_bytes
+
+          def apply_batch(state, batch):
+              state = copy.deepcopy(state)
+              state.setdefault("counts", {})
+              state.setdefault("last_close", {})
+              for record in batch.records:
+                  assert int(record["interval_end_us"]) <= batch.replay_timestamp_us
+                  tf = record["timeframe"]
+                  state["counts"][tf] = state["counts"].get(tf, 0) + 1
+                  state["last_close"][tf] = record["close"]
+              return state
+
+          def run_continuous(records):
+              replay = CausalReplay(records)
+              state={}
+              trace=[]
+              while True:
+                  batch=replay.next_batch()
+                  if batch is None:
+                      break
+                  state=apply_batch(state,batch)
+                  trace.append({
+                      "records":list(batch.records),
+                      "replay_timestamp_us":batch.replay_timestamp_us,
+                      "state":copy.deepcopy(state),
+                  })
+              return sha256_bytes(b"".join(canonical_json_bytes(x) for x in trace)), state, trace
+
+          def run_restart_midpoint(records, reference_trace):
+              checkpoint_ts = reference_trace[len(reference_trace)//2]["replay_timestamp_us"]
+              replay=CausalReplay(records)
+              state={}
+              trace=[]
+              checkpoint=None
+              while True:
+                  batch=replay.next_batch()
+                  if batch is None:
+                      break
+                  state=apply_batch(state,batch)
+                  trace.append({
+                      "records":list(batch.records),
+                      "replay_timestamp_us":batch.replay_timestamp_us,
+                      "state":copy.deepcopy(state),
+                  })
+                  if batch.replay_timestamp_us == checkpoint_ts:
+                      checkpoint=replay.checkpoint(state)
+                      break
+              assert checkpoint is not None
+
+              restarted=CausalReplay(records)
+              state=restarted.restore(checkpoint)
+              while True:
+                  batch=restarted.next_batch()
+                  if batch is None:
+                      break
+                  state=apply_batch(state,batch)
+                  trace.append({
+                      "records":list(batch.records),
+                      "replay_timestamp_us":batch.replay_timestamp_us,
+                      "state":copy.deepcopy(state),
+                  })
+              return sha256_bytes(b"".join(canonical_json_bytes(x) for x in trace)), state, checkpoint_ts
+
+          main_root=Path("/tmp/p0-main")
+          native=read_jsonl(main_root/"native.jsonl")
+          d4=read_jsonl(main_root/"derived_4h.jsonl")
+          d1=read_jsonl(main_root/"derived_1d.jsonl")
+          records=combine_streams(native,d4,d1)
+
+          hash_a,state_a,trace_a=run_continuous(records)
+          hash_b,state_b,_=run_continuous(records)
+          hash_c,state_c,checkpoint_ts=run_restart_midpoint(records,trace_a)
+          assert hash_a == hash_b == hash_c
+          assert state_a == state_b == state_c
+          assert state_a["counts"] == {"1h":2160,"4h":540,"1d":90}
+
+          # Future Candle Access + Derived Calculation Visibility.
+          seen=set()
+          for item in trace_a:
+              ts=item["replay_timestamp_us"]
+              for record in item["records"]:
+                  assert int(record["interval_end_us"]) == ts
+                  key=(record["timeframe"],int(record["open_time_us"]))
+                  assert key not in seen
+                  seen.add(key)
+
+          # Incomplete Higher-TF leakage: deliberately incomplete synthetic derived
+          # candles must never become replay-eligible.
+          synth_root=Path(
+              "datafeed-artifacts/data/experimental/asset-p0/fixtures/synthetic"
+          )
+          sn=read_jsonl(synth_root/"native.jsonl")
+          s4=read_jsonl(synth_root/"derived_4h.jsonl")
+          s1=read_jsonl(synth_root/"derived_1d.jsonl")
+          incomplete={
+              (r["timeframe"],int(r["open_time_us"]))
+              for r in (s4+s1)
+              if r.get("complete") is not True
+          }
+          sr=CausalReplay(combine_streams(sn,s4,s1))
+          leaked=[]
+          while True:
+              batch=sr.next_batch()
+              if batch is None: break
+              for record in batch.records:
+                  if (record["timeframe"],int(record["open_time_us"])) in incomplete:
+                      leaked.append(record)
+          assert not leaked
+
+          # Restart State Isolation: incompatible/tampered dataset identity must fail.
+          isolation=CausalReplay(records)
+          first=isolation.next_batch()
+          assert first is not None
+          cp=isolation.checkpoint({"sentinel":"frozen"})
+          bad=copy.deepcopy(cp)
+          bad["dataset_digest"]="0"*64
+          target=CausalReplay(records)
+          try:
+              target.restore(bad)
+          except ReplayError:
+              isolation_pass=True
+          else:
+              isolation_pass=False
+          assert isolation_pass
+
+          result={
+              "experiment_id":"ASSET-P0-001",
+              "execution_timestamp":datetime.now(timezone.utc).isoformat(),
+              "python_runtime":sys.version.split()[0],
+              "dataset_counts":state_a["counts"],
+              "main_replay_hash_a":hash_a,
+              "main_replay_hash_b":hash_b,
+              "main_replay_hash_c":hash_c,
+              "main_checkpoint_timestamp_us":checkpoint_ts,
+              "controls":{
+                  "dataset_schema":"PASS",
+                  "ohlc_and_timestamp_integrity":"PASS",
+                  "duplicates_and_gaps":"PASS",
+                  "dataset_checksum_and_provenance":"PASS",
+                  "deterministic_resampling":"PASS",
+                  "future_candle_access":"PASS",
+                  "incomplete_higher_tf_leakage":"PASS",
+                  "derived_calculation_visibility":"PASS",
+                  "independent_repeated_run":"PASS",
+                  "checkpoint_restart_equivalence":"PASS",
+                  "restart_state_isolation":"PASS",
+              },
+              "critical_failures":[],
+              "warnings":[],
+              "formal_result":"PASS",
+          }
+          print(json.dumps(result,indent=2,sort_keys=True))
+          PY
+
+      - name: Upload formal execution evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p0-001-formal-execution
+          path: |
+            /tmp/p0-formal-result.json
+            /tmp/p0-synthetic-replay.json
+            /tmp/p0-main/dataset_manifest.json
+            /tmp/p0-real/manifest.json
+          if-no-files-found: error
+          retention-days: 90
