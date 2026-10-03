@@ -18,6 +18,7 @@ from d1_runner import (
 
 
 FOUR_HOURS_US = 14_400_000_000
+CAUSAL_VALIDATION_VERSION = "ASSET-P1-CAUSAL-VALIDATION-0.1.0"
 
 
 class CausalValidationError(RuntimeError):
@@ -349,6 +350,7 @@ def main() -> int:
 
     result={
         "experiment_id":"ASSET-P1-D1-001",
+        "causal_validation_version":CAUSAL_VALIDATION_VERSION,
         "status":"PASS",
         "repeated_run":{
             "status":"PASS",
