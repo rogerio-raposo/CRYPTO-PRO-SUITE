@@ -1,228 +1,170 @@
 # Asset PRO — P0 Experiment Manifest
 
-**Status:** DESIGN FROZEN / NON-NORMATIVE  
+**Status:** EXECUTION FROZEN / NON-NORMATIVE  
 **Pilot:** P0 — Data & Causal Replay Integrity  
-**Date:** 2026-10-02  
+**Date:** 2026-10-03  
 **Experiment ID:** ASSET-P0-001  
-**Freeze status:** DESIGN FROZEN — EXECUTION FREEZE PENDING
+**Freeze status:** EXECUTION FROZEN — FORMAL EXECUTION NOT STARTED
 
 ---
 
 ## 1. Purpose
 
-Freeze the design inputs required to determine whether the Asset PRO historical replay environment is suitable for downstream D1 validation.
+Freeze all inputs, implementations, datasets and identities required for the formal execution of ASSET-P0-001.
 
 P0 validates infrastructure and data/replay integrity. It does not validate D1, select swing parameters, or evaluate predictive outcomes.
 
-## 2. Cross-Repository Design Baseline
+## 2. Cross-Repository Execution Baseline
 
 ### CRYPTO-PRO-SUITE
-- repository: `rogerio-raposo/CRYPTO-PRO-SUITE`
-- Design Freeze manifest commit: recorded in `P0_DESIGN_FREEZE_RECORD.md`
-- Execution Freeze commit: TBD
+- repository: `rogerio-raposo/CRYPTO-PRO-SUITE`;
+- frozen implementation commit used by Python 3.12 regression: `2bc3ac84397f678cdd9d202dbc8fd484928d8911`;
+- replay implementation path: `03-componentes/24-asset/experimental/P0/code/`.
 
 ### Crypto Pro Data Feed
-- repository: `rogerio-raposo/crypto-pro-datafeed`
-- isolated branch: `experiment/asset-p0`
-- Design Freeze producer-side commit: `35e8c1120c6d13acb16617507d770aa2b0ea0b7e`
-- Execution Freeze commit: TBD
+- repository: `rogerio-raposo/crypto-pro-datafeed`;
+- isolated branch: `experiment/asset-p0`;
+- source-validation workflow/code commit: `d74bf09879b0d41d4129e3a3bd60c6c764e88ecf`;
+- frozen artifact commit: `fd6dda3f4b44b5e2109779dd5e8d95a021bead7e`;
+- main branch observed during final conflict check: `8e77307af7e37d472875c4a6435778036e540dfc`;
+- branch status at freeze: 16 commits ahead / 0 behind;
+- divergent paths: Asset P0 only; no PCP-01 overlap.
 
-The Data Feed design commit is immutable evidence for the frozen producer-side specifications. Future branch movement does not alter this reference.
+## 3. Dataset Identity
 
-## 3. Frozen Dataset Design
-
-Canonical Dataset Manifest is owned by the Data Feed and SHALL be referenced rather than duplicated here.
-
-ASSET-P0-001 main validation dataset:
-
-- planned Dataset ID: `ASSET-P0-001-BTCUSDT-SPOT-1H-2025Q1`
-- Data Version: TBD after acquisition/normalization
-- Dataset Manifest path/reference: TBD after generation
-- final normalized checksum: TBD
-- source provider: Binance Public Data
-- venue: Binance Spot
-- market type: Spot
-- instrument: BTCUSDT
-- data type: klines
-- native timeframe: 1h
-- start: 2025-01-01 00:00 UTC inclusive
-- end: 2025-04-01 00:00 UTC exclusive
-- expected native records: 2160
-- required derived timeframes: 4h and 1d
-- expected 4h records: 540
-- expected 1d records: 90
-- canonical timestamp unit: Unix epoch microseconds
-- timezone/boundaries: UTC
-- interval semantics: half-open `[start,end)`
-- serialization policy: `asset-p0-canonical-json-v0.1.0`
+- Dataset ID: `ASSET-P0-001-BTCUSDT-SPOT-1H-2025Q1`;
+- Data Version: `ASSET-P0-001-BTCUSDT-SPOT-1H-2025Q1-v0.1.0`;
+- canonical Dataset Manifest: `data/experimental/asset-p0/manifests/ASSET-P0-001-BTCUSDT-SPOT-1H-2025Q1.json`;
+- manifest blob SHA: `55c42a448e08ec8a9d4b6ffa3045aaadbc2c04e4`;
+- normalized native dataset SHA-256: `a3032c26b6c6cb87327a0148369e6977cb3c8fc57a55779117d5c7b7e6053d24`;
+- derived 4h SHA-256: `f9e943ea5c04c48341355f3878e8c90e1c51d4c75c996890213b3526d922a3b5`;
+- derived 1d SHA-256: `693c263ef8cfb9c8c670377bdb1091c19bdc066f69b4c16a090189b21af68155`;
+- records: 2160 native / 540 4h / 90 1d;
+- source provider: Binance Public Data;
+- venue: Binance Spot;
+- instrument: BTCUSDT;
+- native timeframe: 1h;
+- period: 2025-01-01 00:00 UTC inclusive through 2025-04-01 00:00 UTC exclusive;
+- canonical timestamp unit: Unix epoch microseconds;
+- timezone/boundaries: UTC;
+- serialization policy: `asset-p0-canonical-json-v0.1.0`;
 - checksum algorithm: SHA-256.
 
-Any missing native 1h interval inside the formal main dataset is a blocking integrity failure for ASSET-P0-001.
+## 4. Official Source Archives
 
-## 4. Frozen Source Acquisition Design
+Monthly source archives and verified official SHA-256 values:
 
-Main validation dataset:
+- January 2025: `e7f2aaa5396a8062a57ab29ce9fab2d76b2c84ec58815d4ab7b3fe16f78c7118`;
+- February 2025: `7420f55c93f61d7e734fc9d2507c7f2fcb5eaf48112277cecd241d4e1dbf3bd5`;
+- March 2025: `b5ae8bb57e5e526c2050c9f8229b723871a5af47d80c53453abf61847a5f3aa6`.
 
-- official Binance Public Data monthly Spot kline archives;
-- BTCUSDT 1h;
-- January 2025;
-- February 2025;
-- March 2025.
+Every archive was verified against its official `.CHECKSUM` before extraction.
 
-Each archive must be verified against its associated official `.CHECKSUM` before extraction.
-
-## 5. Frozen Fixture Design
+## 5. Golden Fixtures
 
 ### Synthetic Golden Fixture
-Design:
-
-- 48 expected hourly slots spanning two complete UTC days;
-- one deliberately missing native interval;
-- one deliberately extreme but OHLC-valid observation;
-- multiple 4h boundaries;
-- one Daily boundary transition;
-- checkpoint/restart point before the second UTC day;
-- frozen expected validation flags, resampling states and canonical hashes before Execution Freeze.
-
-The fixture intentionally tests gap behavior and is not required to be a complete market series.
+- version: `ASSET-P0-SYNTHETIC-v0.1.0`;
+- native SHA-256: `09ca24c7bc6c7c08ec678b10e5c93817ba64d5cd3aef08e6fc122b6c9a838575`;
+- 4h SHA-256: `53c2e1a6166464df63ead361042399edf6bfbac956bf2b5a8cef4d4fd2370b7c`;
+- 1d SHA-256: `0bbb526838b76d1ab58ee17286d2067030861c3c9ff223dee6ce8570ecb54f18`.
 
 ### Real Golden Fixture
-Source:
+- Dataset ID: `ASSET-P0-REAL-GOLDEN-BTCUSDT-1H-2024-12-31_2025-01-02`;
+- version: `ASSET-P0-REAL-FIXTURE-v0.1.0`;
+- records: 72 native / 18 4h / 3 1d;
+- native SHA-256: `3516bfbc38463d65e06cb9c83d4f05b906c01ab628dfaf5a9b767a54ee4e3a39`;
+- 4h SHA-256: `8966ee447596fc654eb38e68b146d20034fb36deaba610f9e26e593e53848452`;
+- 1d SHA-256: `dce12a94a6944227dcd058b92196e649350d46e4e7442b747986f569d0d9c2ab`;
+- 2024-12-31 source archive unit: milliseconds;
+- 2025-01-01 and 2025-01-02 source archive unit: microseconds;
+- canonical normalized unit: microseconds.
 
-- Binance Public Data;
-- Binance Spot;
-- BTCUSDT;
-- 1h daily kline archives.
+Verified daily archive SHA-256 values:
 
-Period:
+- 2024-12-31: `4a6836ceae18ee150f54de0d8d33d60864b0f4c18457e025d56711e61dfdd343`;
+- 2025-01-01: `8077644eb5088200969b135d7046ba777281be303fa32aceff28fe3baeaa5873`;
+- 2025-01-02: `7615431267eec61ab67add2206f2efdfd53c38cb0db21322aec013c12203a084`.
 
-- 2024-12-31 00:00 UTC inclusive;
-- 2025-01-03 00:00 UTC exclusive.
+## 6. Code Version
 
-Planned source objects:
+- Code Version: `ASSET-P0-CODE-0.1.0`;
+- Data Feed code/workflow commit: `d74bf09879b0d41d4129e3a3bd60c6c764e88ecf`;
+- Suite replay commit: `2bc3ac84397f678cdd9d202dbc8fd484928d8911`;
+- Method/Specification Version: `ASSET-P0-SPEC-0.1.0`;
+- Parameter Profile: `P0-NONE`.
 
-- 2024-12-31;
-- 2025-01-01;
-- 2025-01-02;
+## 7. Python 3.12 Regression
 
-with official checksum verification.
+GitHub Actions workflow:
 
-Purpose:
+- run ID: `37094587777`;
+- conclusion: `success`;
+- Python runtime: 3.12;
+- regression artifact path: `data/experimental/asset-p0/manifests/PYTHON312_REPLAY_REGRESSION.json`;
+- regression blob SHA: `e8669252562042ab135600553fd824a7a8ff2151`.
 
-- real archive parsing;
-- provenance;
-- UTC 4h/Daily boundaries;
-- normalization across the Binance Spot public-data source timestamp-unit transition at 2025-01-01.
+Replay trace hashes:
 
-Expected complete native slots: 72, subject to acquisition validation.
+- Run A continuous: `0a4d6e1a401081f94b0f8397142a6395103c1863a5fd438125cf180c551b6dc3`;
+- Run B independent continuous: `0a4d6e1a401081f94b0f8397142a6395103c1863a5fd438125cf180c551b6dc3`;
+- Run C checkpoint/restart: `0a4d6e1a401081f94b0f8397142a6395103c1863a5fd438125cf180c551b6dc3`.
 
-## 6. Frozen Replay Semantics
+Result:
 
-The P0 replay design SHALL preserve:
+> implementation-level deterministic replay PASS on Python 3.12.
 
-- one logical `replay_timestamp`;
-- closed-candle visibility only;
+## 8. Large Dataset Artifact
+
+GitHub Actions artifact:
+
+- artifact ID: `11263860573`;
+- name: `asset-p0-main-dataset`;
+- artifact digest: `sha256:91d076d55c872021092ba993312cb55ea8b29479b8dcd9038ba33f3dcdff7277`;
+- workflow run: `37094587777`;
+- retention at creation: 30 days.
+
+The artifact is a convenience copy only. Reproducibility is governed by source archive checksums, frozen code, dataset version and canonical normalized hashes.
+
+## 9. Frozen Replay and Validation Semantics
+
+The formal execution SHALL use the already-frozen rules for:
+
+- closed-candle causal visibility;
+- canonical `interval_end_us`;
 - no future-row access;
 - no incomplete higher-timeframe leakage;
-- canonical availability at `interval_end_us`;
-- append-only event log;
-- deterministic snapshot envelope;
+- append-only events;
+- deterministic snapshots;
 - checkpoint/restart equivalence;
-- canonical serialization prior to deterministic hash comparison.
-
-## 7. Frozen Validation Semantics
-
-P0 decision remains binary:
-
-- `PASS`;
-- `FAIL`.
-
-Critical controls include:
-
-- dataset/schema integrity;
-- timestamp integrity;
-- official archive checksum verification;
-- no unresolved duplicates/missing intervals in the main dataset;
 - deterministic resampling;
-- causal visibility;
-- repeated-run determinism;
-- checkpoint/restart equivalence.
+- archive checksum verification;
+- no missing/duplicate native interval in the main dataset;
+- binary P0 decision: PASS or FAIL.
 
-Warnings do not create a third formal decision state.
+## 10. Execution Freeze
 
-## 8. Specification References
+### Design Freeze
+`COMPLETE`
 
-Suite:
+### Execution Freeze
+`COMPLETE`
 
-- `P0_REPLAY_SPECIFICATION.md`
-- `P0_VALIDATION_CONTROLS.md`
-- `P0_FIXTURE_EXPECTATIONS.md`
-- `P0_DESIGN_FREEZE_RECORD.md`
+No inputs, code identities, data identities, fixture identities, validation controls or replay semantics may change during formal ASSET-P0-001 execution.
 
-Data Feed at commit `35e8c1120c6d13acb16617507d770aa2b0ea0b7e`:
+Any material change requires a new formal experiment identity or explicit freeze revision before execution.
 
-- `docs/experimental/asset-p0/DATASET_CONTRACT.md`
-- `docs/experimental/asset-p0/HISTORICAL_SOURCE_SPEC.md`
-- `docs/experimental/asset-p0/DATA_VALIDATION_SPEC.md`
-- `docs/experimental/asset-p0/RESAMPLING_SPEC.md`
-- `docs/experimental/asset-p0/PROVENANCE_SPEC.md`
-- `docs/experimental/asset-p0/CANDLE_BOUNDARY_POLICY.md`
-- `docs/experimental/asset-p0/CANONICAL_SERIALIZATION_SPEC.md`
-- `docs/experimental/asset-p0/P0_DATASET_PLAN.md`
+## 11. Manifest Integrity
 
-## 9. Version Identity
+The SHA-256 of this exact frozen manifest file is calculated after commit and recorded in:
 
-Frozen design identity:
+`P0_EXECUTION_FREEZE_RECORD.md`.
 
-- Experiment ID: `ASSET-P0-001`
-- Method/Specification Version: `ASSET-P0-SPEC-0.1.0`
-- Parameter Profile: `P0-NONE`
+The hash is intentionally external to avoid a self-referential manifest hash.
 
-Pending for Execution Freeze:
-
-- Data Version;
-- canonical Dataset Manifest;
-- dataset checksum;
-- Suite execution commit;
-- Data Feed execution commit;
-- Code Version;
-- fixture hashes;
-- Manifest hash.
-
-## 10. Freeze Model
-
-### Design Freeze — COMPLETE
-Locks:
-
-- experiment purpose;
-- source selection;
-- instrument;
-- period;
-- native/derived timeframes;
-- timestamp and boundary semantics;
-- canonical serialization;
-- fixture purposes/design;
-- validation controls;
-- replay semantics.
-
-Changing any of those items requires an explicit Design Unfreeze/Revision Record before implementation continues under ASSET-P0-001.
-
-### Execution Freeze — PENDING
-Requires:
-
-- producer code implemented and reviewed;
-- replay harness implemented and reviewed;
-- fixtures produced and reviewed;
-- main dataset produced and validated;
-- Data Version/checksum generated;
-- Suite and Data Feed execution SHAs pinned;
-- Code Version pinned;
-- Manifest hash generated.
-
-No formal P0 execution may occur before Execution Freeze.
-
-## 11. Execution Status
+## 12. Execution Status
 
 `NOT STARTED`
 
-P1 remains blocked until P0 records `PASS`.
+Execution Freeze authorizes the next phase but does not itself execute P0.
+
+P1 remains blocked until the P0 Decision Record records `PASS`.
