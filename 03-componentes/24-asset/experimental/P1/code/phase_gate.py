@@ -57,6 +57,7 @@ class PhaseLock:
     pair_reference_bands: dict
     prior_lock_sha256: str | None
     metrics_reference_sha256: str
+    human_review_sha256: str
     created_from_phase: str
     payload_sha256: str
 
@@ -66,6 +67,7 @@ def build_lock(
     lock_type: str,
     candidate_records: Sequence[dict],
     metrics_reference_sha256: str,
+    human_review_sha256: str,
     pair_reference_bands: dict | None=None,
     prior_lock_sha256: str | None=None,
 ) -> dict:
@@ -85,6 +87,9 @@ def build_lock(
     metrics_sha=str(metrics_reference_sha256)
     if len(metrics_sha)!=64:
         raise PhaseAccessError("Invalid metrics reference hash.")
+    review_sha=str(human_review_sha256)
+    if len(review_sha)!=64:
+        raise PhaseAccessError("Invalid Human Review hash.")
 
     created_from="DEV" if lock_type=="DEV_CANDIDATE_LOCK" else "VAL"
     body={
@@ -95,6 +100,7 @@ def build_lock(
         "pair_reference_bands":{} if pair_reference_bands is None else pair_reference_bands,
         "prior_lock_sha256":prior_lock_sha256,
         "metrics_reference_sha256":metrics_sha,
+        "human_review_sha256":review_sha,
         "created_from_phase":created_from,
     }
     body["payload_sha256"]=payload_sha256(body)
@@ -131,6 +137,9 @@ def validate_lock(lock: dict,expected_type: str) -> PhaseLock:
     pair_bands=lock.get("pair_reference_bands")
     if not isinstance(pair_bands,dict):
         raise PhaseAccessError("pair_reference_bands must be an object.")
+    review_sha=str(lock.get("human_review_sha256") or "")
+    if len(review_sha)!=64:
+        raise PhaseAccessError("Invalid Human Review hash.")
 
     if expected_type=="VAL_PROVISIONAL_LOCK":
         prior=lock.get("prior_lock_sha256")
@@ -145,6 +154,7 @@ def validate_lock(lock: dict,expected_type: str) -> PhaseLock:
         pair_reference_bands=pair_bands,
         prior_lock_sha256=lock.get("prior_lock_sha256"),
         metrics_reference_sha256=metrics_sha,
+        human_review_sha256=review_sha,
         created_from_phase=str(lock.get("created_from_phase")),
         payload_sha256=str(supplied),
     )
