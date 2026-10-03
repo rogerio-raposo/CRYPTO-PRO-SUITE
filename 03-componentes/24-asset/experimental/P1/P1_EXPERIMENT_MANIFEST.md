@@ -1,10 +1,10 @@
 # Asset PRO — P1 Experiment Manifest
 
-**Status:** DESIGN FROZEN — REVISION 02 / NON-NORMATIVE  
+**Status:** DESIGN FROZEN — REVISION 03 / NON-NORMATIVE  
 **Experiment ID:** ASSET-P1-D1-001  
 **Pilot:** P1 — D1 Structural Engine Validation  
 **P0 dependency:** ASSET-P0-001 = PASS  
-**Freeze status:** DESIGN FROZEN — REVISION 02 — IMPLEMENTATION IN PROGRESS
+**Freeze status:** DESIGN FROZEN — REVISION 03 — IMPLEMENTATION IN PROGRESS
 
 ---
 
@@ -300,7 +300,7 @@ Execution Freeze requires:
 
 P1 Design Freeze:
 
-> **COMPLETE — REVISION 02**
+> **COMPLETE — REVISION 03**
 
 P1 implementation:
 
@@ -456,5 +456,60 @@ Revision 02 supersedes only clauses explicitly revised by Revision 01/02.
 The active implementation baseline is:
 
 > **Original Design Freeze + Revision 01 + Revision 02**
+
+No formal P1 phase execution has occurred.
+
+
+---
+
+## 18. Design Freeze Revision 03
+
+Revision 03 freezes formal phase orchestration and causal-validation preconditions.
+
+### 18.1 Formal Phase Stop Points
+
+DEV, VAL and HOLDOUT follow the explicit compute → review → lock/decision sequence defined in `P1_DECISION_RULES.md`.
+
+Human Review may remove a candidate under frozen defect rules but may never trigger in-place parameter substitution.
+
+### 18.2 Review Population
+
+- DEV review: quantitative proposed candidates only;
+- VAL review: DEV-locked candidates only;
+- Holdout review: VAL-locked candidates only.
+
+### 18.3 Review Integrity
+
+Reviewer-facing profile identities are blinded by deterministic aliases.
+
+Completed review records are hashed and their SHA-256 is required by the applicable lock.
+
+### 18.4 Causal Validation Before Execution Freeze
+
+The D1 implementation must pass:
+
+- prefix-invariance regression;
+- no future-timestamp output audit;
+- repeated-run determinism;
+- reference checkpoint/restart equivalence;
+- Analysis-Island reset regression.
+
+Prefix invariance means every previously confirmed swing, structural relation, regime-change event, Protected Swing lifecycle record and structural event remains byte-equivalent when additional future candles are revealed.
+
+The reference checkpoint harness may persist the already-revealed candle prefix plus frozen profile configuration and recompute state after restore. It must never persist or access future candles.
+
+After these regressions pass, formal P1 phase execution may use the deterministic batch engine because P0 has already validated the underlying causal replay environment.
+
+### 18.5 M3 Intrabar Diagnostic
+
+The frozen diagnostic-only M3 intrabar subset is executed in DEV after estimator screening and reported separately.
+
+It cannot become a candidate in ASSET-P1-D1-001.
+
+### 18.6 Active Baseline
+
+The active design baseline is:
+
+> **Original Design Freeze + Revision 01 + Revision 02 + Revision 03**
 
 No formal P1 phase execution has occurred.
