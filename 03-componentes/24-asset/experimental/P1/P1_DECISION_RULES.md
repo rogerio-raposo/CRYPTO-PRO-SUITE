@@ -26,28 +26,38 @@ Hard blockers cannot be compensated by soft metrics.
 A profile may continue from DEV only if:
 
 - all hard blockers pass;
-- it belongs to, or is necessary to characterize, a defensible local parameter plateau;
-- cross-asset behavior is not pathologically unstable;
-- confirmation delay is not disqualifying or is explicitly adjudicated;
+- it belongs to a connected local plateau under the frozen componentwise IQR rule;
+- cross-asset behavior shows no recurrent structural-invariant defect;
+- its latency/churn/Indeterminate behavior is documented;
 - structural outputs are interpretable enough to proceed.
 
-At most one Responsive, one Balanced and one Conservative profile per method/timeframe continue when available.
+DEV freezes:
+
+- selected candidate identities;
+- DEV reference bands for stability, delay, churn and Indeterminate behavior;
+- at most one Responsive, one Balanced and one Conservative candidate per method/timeframe when defensible.
+
+These behavioral labels do not imply ranking.
 
 ---
 
 # 3. VAL Gate
 
-VAL uses only DEV-locked candidates.
+VAL uses only DEV-locked candidates and the DEV-frozen reference bands.
 
 A candidate may proceed to Holdout when:
 
 - all hard blockers remain passed;
 - parameter/profile identity is unchanged;
-- stability does not materially collapse outside DEV;
-- no asset×timeframe cell shows recurrent structural inconsistency;
-- human review does not reveal a rule-level defect.
+- no recurrent material stability degradation appears across multiple assets or both timeframes;
+- no rule-level defect is identified;
+- human review does not reveal a reproducible structural inconsistency.
 
-VAL cannot retune parameters. A required retune causes P1-REVISE.
+A VAL result that requires parameter change causes:
+
+> `P1-REVISE`
+
+rather than in-place retuning.
 
 ---
 
@@ -55,28 +65,44 @@ VAL cannot retune parameters. A required retune causes P1-REVISE.
 
 Holdout uses only VAL-locked provisional candidates.
 
-Possible outcomes:
+Possible candidate outcomes:
 
 ### Survives
-Behavior remains within pre-registered stability/latency/structural guardrails.
+No hard blocker and no material pattern of out-of-band structural degradation requiring rule change.
 
 ### Rejected
-Material failure appears without requiring ambiguity about implementation.
+A reproducible structural failure appears under the frozen rules.
 
 ### Revision Required
-Failure reveals a methodological issue that cannot be fixed without changing frozen rules.
+Observed failure exposes a methodological issue that cannot be resolved without changing frozen rules or parameters.
 
-No Holdout-driven parameter optimization is allowed.
+Holdout never changes DEV reference bands and never tunes parameters.
 
 ---
 
-# 5. Final P1 Decisions
+# 5. Adjudicating Material Degradation
+
+A single out-of-band diagnostic does not automatically reject a candidate.
+
+Material degradation is established when at least one of the following occurs:
+
+- a hard blocker;
+- the same structural metric degrades beyond its frozen DEV fence in at least two assets within the same timeframe;
+- the same structural metric degrades beyond its frozen DEV fence in both timeframes for the same asset;
+- multiple independent structural layers degrade concurrently in the same asset×timeframe cell;
+- blinded human review identifies a reproducible rule-level defect consistent with quantitative diagnostics.
+
+The adjudication must name the affected metric(s), cells and evidence. No aggregate score is used.
+
+---
+
+# 6. Final P1 Decisions
 
 ### P1-PASS — Single Candidate
 Exactly one architecture/profile remains defensible after Holdout.
 
 ### P1-PASS — Multiple Candidates
-More than one candidate remains defensible and the evidence does not justify collapsing them into one.
+More than one candidate remains defensible and evidence does not justify collapsing them into one.
 
 ### P1-REVISE
 No candidate can be accepted without a methodological or parameter-design revision.
