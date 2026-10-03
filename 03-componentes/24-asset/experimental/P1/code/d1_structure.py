@@ -233,6 +233,24 @@ def build_structure(
         return None if atr is None else b * atr
 
     def activate_swing_reference(swing: Swing) -> None:
+        # Revision 01: only the latest unbroken generic reference of each type
+        # remains active. Broken references stay in history for a possible Reclaim.
+        for prior in references:
+            if (
+                prior.reference_class == "SWING"
+                and prior.kind == swing.kind
+                and prior.active
+                and prior.broken_index is None
+            ):
+                prior.active = False
+                anomalies.append(
+                    {
+                        "type": "GENERIC_REFERENCE_RETIRED",
+                        "reference_id": prior.reference_id,
+                        "retired_at_confirmation_index": swing.confirmation_index,
+                    }
+                )
+
         buffer = make_buffer(swing.confirmation_index)
         if buffer is None:
             anomalies.append(
