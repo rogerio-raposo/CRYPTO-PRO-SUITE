@@ -73,3 +73,39 @@ For every comparison:
 - normalized price displacement;
 - fragmentation indicators;
 - omission indicators.
+
+
+---
+
+## 7. Design Freeze Revision 02 — Comparator Warm-Up
+
+ATR14 is required for normalized matching.
+
+A swing is **comparison-eligible** only when ATR14 is valid at that swing's own confirmation timestamp.
+
+Swings confirmed before comparator initialization are:
+
+- retained in the method's structural output;
+- labeled `PRE_COMPARATOR_WARMUP` for comparison purposes;
+- excluded from both matching and the Swing Stability denominator.
+
+The same principle applies to structural events:
+
+- an event is comparison-eligible only when ATR14 is valid at its own event timestamp;
+- pre-comparator events are excluded from Event Stability/Event Delay/Event Order comparison universes.
+
+Protected Swing matching inherits the comparison eligibility of its underlying swing.
+
+This rule prevents unavailable comparator volatility from being misclassified as disagreement.
+
+## 8. Cell Aggregation Across Analysis Islands
+
+Matching never crosses an Analysis Island.
+
+For one asset×segment×timeframe cell:
+
+- matching is performed separately inside each corresponding island;
+- matched counts and eligible-object counts are summed across islands;
+- cell-level Dice stability is then computed from the summed counts.
+
+No island is given an arbitrary weight independent of its eligible object counts.
