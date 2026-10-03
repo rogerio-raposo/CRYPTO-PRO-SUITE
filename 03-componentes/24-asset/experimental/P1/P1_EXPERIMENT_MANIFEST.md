@@ -1,10 +1,10 @@
 # Asset PRO — P1 Experiment Manifest
 
-**Status:** DESIGN FROZEN / NON-NORMATIVE  
+**Status:** DESIGN FROZEN — REVISION 01 / NON-NORMATIVE  
 **Experiment ID:** ASSET-P1-D1-001  
 **Pilot:** P1 — D1 Structural Engine Validation  
 **P0 dependency:** ASSET-P0-001 = PASS  
-**Freeze status:** DESIGN FROZEN — IMPLEMENTATION NOT STARTED
+**Freeze status:** DESIGN FROZEN — REVISION 01 — IMPLEMENTATION IN PROGRESS
 
 ---
 
@@ -300,11 +300,11 @@ Execution Freeze requires:
 
 P1 Design Freeze:
 
-> **COMPLETE**
+> **COMPLETE — REVISION 01**
 
 P1 implementation:
 
-> **NOT STARTED**
+> **IN PROGRESS**
 
 P1 Execution Freeze:
 
@@ -313,3 +313,76 @@ P1 Execution Freeze:
 P1 formal execution:
 
 > **NOT STARTED**
+
+
+---
+
+## 16. Design Freeze Revision 01
+
+Revision 01 preserves the original universe, market, phase calendar, methods and parameter grids, but closes implementation-readiness gaps discovered after the original Design Freeze.
+
+### 16.1 Synchronized Venue Gap Registry
+
+The following native 1h intervals are missing identically in BTCUSDT, ETHUSDT, SOLUSDT and XRPUSDT Binance Spot archives:
+
+#### DEV-01
+- 2021-02-11 04:00 UTC
+- 2021-03-06 02:00 UTC
+- 2021-04-20 02:00 UTC
+- 2021-04-20 03:00 UTC
+- 2021-04-25 05:00 UTC
+- 2021-04-25 06:00 UTC
+- 2021-04-25 07:00 UTC
+
+#### VAL-01
+- 2023-03-24 13:00 UTC
+
+No duplicates were detected in the 24 frozen asset×segment source cells.
+
+These timestamps are classified as `SYNCHRONIZED_VENUE_GAP` because:
+
+- the missing timestamps are identical across all four pilot instruments;
+- official archive checksums remain valid;
+- Binance published maintenance/interruption notices covering the corresponding periods.
+
+### 16.2 Gap Handling
+
+Frozen segment dates do not change.
+
+P1 does not interpolate missing candles.
+
+For 4h and Daily:
+
+- any derived candle containing a registered gap is incomplete and excluded from analytical input;
+- the analytical stream is split into contiguous Analysis Islands;
+- D1 state resets at every island boundary;
+- metrics do not span an island boundary.
+
+An unregistered or non-synchronized gap remains a blocker.
+
+### 16.3 Operational Clarifications
+
+Revision 01 additionally freezes:
+
+- M1 same-type confirmed-pivot handling;
+- M2/M3 bootstrap and ambiguity rules;
+- M3 start only after volatility initialization;
+- same-bar processing order;
+- latest-only generic swing-reference lifecycle;
+- range outer-boundary construction;
+- opposing-cycle Transition logic;
+- exact metric formulas;
+- event/protected-swing matching;
+- deterministic causal Human Review windows.
+
+Canonical details are contained in:
+
+- `P1_METHOD_SPECIFICATIONS.md`;
+- `P1_METRICS_SPECIFICATION.md`;
+- `P1_HUMAN_REVIEW_PROTOCOL.md`.
+
+### 16.4 Change-Control Consequence
+
+The original Design Freeze Record remains historical evidence.
+
+Revision 01 supersedes only the affected design clauses and must be the design baseline used for implementation and Execution Freeze.
