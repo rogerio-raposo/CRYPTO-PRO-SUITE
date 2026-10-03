@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - experiment/asset-p1-d1
+      - experiment/asset-p1-d1-blinding-fix
     paths:
       - ".github/workflows/asset-p1-implementation-regression.yml"
       - "03-componentes/24-asset/experimental/P1/code/**"
