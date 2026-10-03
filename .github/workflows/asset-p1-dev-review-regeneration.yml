@@ -1,0 +1,140 @@
+name: ASSET-P1 DEV blinded review regeneration
+
+on:
+  push:
+    branches:
+      - execution/asset-p1-dev-reviewfix
+    paths:
+      - ".github/workflows/asset-p1-dev-review-regeneration.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/asset-p1-dev-reviewfix
+
+      - uses: actions/checkout@v4
+        with:
+          ref: 920db7af28d2ec1d1d5791829a7980079525a221
+          path: suite-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-formal-dev-data
+          path: /tmp/p1-dev-data/dev
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-m3-screen
+          path: /tmp/m3-screen
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: asset-p1-dev-grid-*
+          path: /tmp/grid-results
+          merge-multiple: true
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: asset-p1-dev-recovery-*
+          path: /tmp/grid-results
+          merge-multiple: true
+          run-id: 37131101083
+          github-token: ${{ github.token }}
+
+      - name: Regenerate aggregate with Code Version 0.1.1 blinding fix
+        env:
+          PYTHONPATH: ${{ github.workspace }}/suite-code/03-componentes/24-asset/experimental/P1/code
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/dev-output
+          mkdir -p /tmp/dev-output
+          python 03-componentes/24-asset/experimental/P1/execution/dev_orchestrator.py             aggregate             --data-root /tmp/p1-dev-data             --m3-screen /tmp/m3-screen/M3_SCREEN.json             --grid-root /tmp/grid-results             --output-root /tmp/dev-output
+
+      - name: Verify quantitative identities unchanged
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          proposal=json.loads(Path("/tmp/dev-output/DEV_QUANTITATIVE_PROPOSAL.json").read_text())
+          reference=json.loads(Path("/tmp/dev-output/DEV_REFERENCE_BANDS.json").read_text())
+          summary=json.loads(Path("/tmp/dev-output/DEV_QUANTITATIVE_SUMMARY.json").read_text())
+
+          assert proposal["proposal_sha256"] == "cec4979663e9c1030a17472805894602f18dfd99a7a4248837032bd25cfd7195"
+          assert reference["metrics_reference_sha256"] == "280dd3554cf567c14dc305c4d6b37be63af4489f168b3763693d2cc3b97cd494"
+          assert summary["candidate_count"] == 18
+          print("quantitative_identity=PASS")
+          print("new_review_manifest_sha256="+summary["review_manifest_sha256"])
+          PY
+
+      - name: Verify reviewer packages contain no identity-leaking keys
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          prohibited={"method","profile_id","volatility_ref","detector","estimator","window","multiplier","percentage"}
+
+          def walk(value,path="$"):
+              if isinstance(value,dict):
+                  for k,v in value.items():
+                      assert str(k) not in prohibited, f"prohibited key {k} at {path}"
+                      walk(v,f"{path}.{k}")
+              elif isinstance(value,list):
+                  for i,v in enumerate(value):
+                      walk(v,f"{path}[{i}]")
+
+          files=sorted(Path("/tmp/dev-output/human_review/packages").glob("*.json"))
+          assert len(files)==8
+          for p in files:
+              walk(json.loads(p.read_text()))
+          print("review_blinding=PASS")
+          PY
+
+      - name: Upload quantitative identity evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-quantitative-proposal-reviewfix
+          path: |
+            /tmp/dev-output/DEV_QUANTITATIVE_PROPOSAL.json
+            /tmp/dev-output/DEV_REFERENCE_BANDS.json
+            /tmp/dev-output/DEV_QUANTITATIVE_SUMMARY.json
+            /tmp/dev-output/DEV_HUMAN_REVIEW_MANIFEST.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload corrected blinded review packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-packages-reviewfix
+          path: /tmp/dev-output/human_review/packages
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload corrected alias mappings separately
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-mappings-reviewfix
+          path: /tmp/dev-output/human_review/mappings
+          if-no-files-found: error
+          retention-days: 90
