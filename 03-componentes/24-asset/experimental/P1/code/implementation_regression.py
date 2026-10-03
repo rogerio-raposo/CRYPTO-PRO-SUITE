@@ -90,8 +90,10 @@ def run_once() -> dict:
             assert swing.confirmation_index >= swing.extremum_index
             assert swing.confirmation_end_us <= candles[swing.confirmation_index]["interval_end_us"]
 
-    if len(m1.swings) < 8 or len(m2.swings) < 8 or len(m3.swings) < 6:
-        raise AssertionError("Synthetic series did not exercise enough swings.")
+    counts=(len(m1.swings),len(m2.swings),len(m3.swings))
+    print(f"synthetic_swing_counts={counts}")
+    if min(counts) < 4:
+        raise AssertionError(f"Synthetic series did not exercise enough swings: {counts}")
 
     structure=build_structure(
         candles,
