@@ -16,6 +16,8 @@ Metrics are stratified by:
 - timeframe;
 - phase/segment.
 
+DEV is allowed to define empirical stability bands. VAL and Holdout may test those frozen bands but may not redefine them.
+
 ## 2. Swing Metrics
 
 - Swing Count;
@@ -72,27 +74,99 @@ Hard binary checks:
 
 Any failure of a hard binary check is a blocker.
 
-## 8. Candidate Plateau Diagnostics
+## 8. DEV Plateau Detection
 
-A detector/structural region is a candidate plateau when:
+P1 deliberately avoids universal preselected stability thresholds such as 0.70 or 0.60.
 
-- at least three adjacent parameter profiles survive hard blockers;
-- median adjacent-profile swing stability across asset×timeframe cells is at least 0.70;
-- median Protected Swing stability is at least 0.60;
-- median structural-event stability is at least 0.60;
-- no asset×timeframe cell has swing stability below 0.50.
+For each method/timeframe, adjacent parameter profiles are compared component-by-component.
 
-These are pre-freeze candidate thresholds and must be reviewed before Design Freeze. They are not outcome-optimized.
+Primary plateau components:
 
-## 9. Responsiveness Guardrail
+- swing disagreement = `1 - Swing Stability`;
+- Protected Swing disagreement = `1 - Protected Swing Stability`;
+- structural-event disagreement = `1 - Event Stability`;
+- absolute change in Regime Churn;
+- absolute change in normalized Confirmation Delay.
 
-A candidate is flagged as pathologically delayed when confirmation-delay p90 exceeds:
+For each component, DEV computes the distribution of adjacent-profile discontinuities.
 
-- 20 bars on 4h; or
-- 12 bars on Daily.
+A neighbor relation is considered **locally stable** when every applicable component is at or below its DEV robust upper fence:
 
-A flagged candidate may proceed only through an explicit pre-Holdout adjudication explaining why its structural stability justifies the latency.
+[
+Q3 + 1.5 \times IQR
+]
 
-## 10. Indeterminate Guardrail
+computed within the same method/timeframe comparison family.
 
-If a candidate spends more than 60% of evaluable bars in Indeterminate state on the median asset×timeframe cell, it is flagged for P1-REVISE unless the behavior is shown to arise from intentional data sufficiency restrictions rather than structural incapacity.
+A candidate plateau requires:
+
+- at least three connected profiles/cells;
+- no hard blocker inside the candidate region;
+- local-stability relations connecting the region;
+- no single asset×timeframe cell with a structural invariant failure.
+
+For one-dimensional grids (M1/M2), connectivity is adjacency in parameter order.
+
+For M3, connectivity uses horizontal/vertical neighbors in the ((n,k)) grid for the same estimator.
+
+No composite distance is calculated.
+
+## 9. DEV Reference Bands
+
+When a candidate is locked after DEV, the experiment freezes DEV reference bands for key metrics.
+
+For metrics where **higher is more stable** (for example Swing Stability or Event Stability), the reference lower fence is:
+
+[
+Q1 - 1.5 \times IQR
+]
+
+For metrics where **lower is preferable as a diagnostic burden** (for example Regime Churn or Confirmation Delay), the reference upper fence is:
+
+[
+Q3 + 1.5 \times IQR
+]
+
+These fences are not claims of universal market truth. They are experiment-specific robustness expectations derived without using VAL or Holdout.
+
+## 10. VAL / Holdout Stability Test
+
+VAL and Holdout compare each frozen candidate against its DEV reference bands.
+
+A metric outside a DEV reference fence is flagged as **material stability degradation**.
+
+A single flagged metric is not automatically a rejection unless it represents a hard structural defect.
+
+Repeated degradation across:
+
+- multiple assets;
+- both timeframes;
+- or multiple structural layers
+
+requires explicit adjudication and may lead to P1-REVISE or rejection.
+
+No VAL/Holdout result may modify the DEV reference bands inside ASSET-P1-D1-001.
+
+## 11. Responsiveness
+
+Confirmation Delay is reported by median, IQR and p90.
+
+No universal bar-count cutoff is imposed before DEV.
+
+A candidate with delay above its DEV upper reference fence in VAL/Holdout is flagged for material responsiveness degradation.
+
+This prevents choosing an arbitrary global latency threshold while still requiring out-of-sample stability.
+
+## 12. Indeterminate State
+
+Indeterminate Rate is treated as an epistemic diagnostic, not something to minimize mechanically.
+
+Its DEV distribution is frozen per candidate.
+
+Material VAL/Holdout expansion beyond the DEV upper reference fence is flagged and must be interpreted together with:
+
+- data sufficiency;
+- Transition behavior;
+- structural ambiguity.
+
+Missing data is never coded as neutral or negative evidence.
