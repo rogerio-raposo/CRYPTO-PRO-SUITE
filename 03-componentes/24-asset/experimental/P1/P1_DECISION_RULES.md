@@ -111,3 +111,24 @@ No candidate can be accepted without a methodological or parameter-design revisi
 The current D1 swing/structural architecture is not adequate for continuation.
 
 P1 never reports an overall score or a “best return” winner.
+
+
+---
+
+# 7. Design Freeze Revision 02 — Candidate-Lock Determinism
+
+The DEV candidate lock must contain only representatives selected by the frozen plateau graph and behavioral-representative rules in `P1_METRICS_SPECIFICATION.md`.
+
+The lock records:
+
+- canonical Profile IDs;
+- behavioral labels;
+- qualifying plateau membership;
+- pooled DEV Swing Density;
+- all frozen single-profile reference bands;
+- all applicable candidate-pair reference bands;
+- metrics-reference document SHA-256.
+
+A candidate cannot be added during VAL.
+
+The VAL provisional lock may only remove DEV candidates; it cannot alter parameters, relabel a profile into a new canonical identity, or introduce a profile not present in the DEV lock.
