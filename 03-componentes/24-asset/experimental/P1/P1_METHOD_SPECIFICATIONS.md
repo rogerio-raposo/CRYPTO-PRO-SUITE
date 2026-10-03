@@ -280,3 +280,111 @@ P1 includes:
 Range boundary PCSB moves the regime to Transition.
 
 D3 Acceptance/Re-Acceptance and final Failed Break classification are excluded from P1.
+
+
+---
+
+# 12. Design Freeze Revision 01 — Operational Clarifications
+
+These rules are part of the frozen P1 design and remove implementation ambiguity.
+
+## 12.1 Analysis Islands and Data Gaps
+
+P1 does not interpolate missing market candles.
+
+A frozen phase segment may contain a documented `SYNCHRONIZED_VENUE_GAP` only when:
+
+- the missing native timestamps are identical across all four pilot instruments;
+- official source archives/checksums are valid;
+- external venue evidence supports a common trading interruption;
+- the gap is registered before Execution Freeze.
+
+For each analytical timeframe:
+
+- any derived candle containing a registered native gap is `INCOMPLETE`;
+- incomplete derived candles are excluded from D1 analytical input;
+- the analytical stream is split into contiguous **Analysis Islands**;
+- all swing, volatility, regime, Protected Swing and structural-event state resets at the first candle of every new Analysis Island;
+- no structural object may span an island boundary.
+
+An unregistered or non-synchronized gap is an Execution-Freeze blocker.
+
+## 12.2 M1 Same-Type Pivot Handling
+
+M1 preserves the first causally confirmed pivot.
+
+If another same-type fixed-window pivot confirms before an opposite structural swing confirms:
+
+- the later pivot is not allowed to mutate the already confirmed swing;
+- it is ignored for the confirmed-swing sequence;
+- the occurrence is logged as a diagnostic anomaly.
+
+This rule enforces both swing immutability and High/Low alternation.
+
+## 12.3 M2 Bootstrap
+
+M2 begins with simultaneous causal High and Low candidates from the first evaluable candle.
+
+If the same closed candle satisfies both initial reversal directions:
+
+- no swing is confirmed;
+- state remains `UNINITIALIZED`;
+- an `AMBIGUOUS_BOOTSTRAP` diagnostic is emitted.
+
+Candidate extrema update only on a **strict** new High or Low; equal extrema preserve the earlier timestamp.
+
+## 12.4 M3 Bootstrap
+
+M3 begins only at the first candle where the selected volatility estimator is valid.
+
+The first valid-volatility candle initializes simultaneous High and Low candidates and their corresponding volatility references.
+
+The same ambiguous-bootstrap and strict-extremum-update rules used by M2 apply.
+
+No pre-initialization extremum may later receive a volatility value retroactively.
+
+## 12.5 Same-Bar Processing Order
+
+For every closed candle:
+
+1. evaluate already active structural references and Protected Swing conditions;
+2. emit any resulting structural events/regime consequences;
+3. process swing confirmations that occur at this candle close;
+4. classify new structural relations/cycles;
+5. activate new references.
+
+A newly activated reference is first break-eligible on a **later** closed candle.
+
+## 12.6 Generic Structural Reference Lifecycle
+
+At most one generic active Swing reference per type is maintained:
+
+- latest confirmed structural High;
+- latest confirmed structural Low.
+
+When a new same-type confirmed swing activates:
+
+- the previous unbroken generic same-type reference is `RETIRED`;
+- a previously broken reference may remain only for its pending Reclaim lifecycle;
+- a Primary Protected Swing is managed separately and is not retired by this rule.
+
+This prevents one candle from generating duplicate PCSB/Continuation events through stacked obsolete swing references.
+
+## 12.7 Range Boundary Construction
+
+When Range is established from the latest two equal Highs and latest two equal Lows:
+
+- Range High = maximum price of those two Highs;
+- Range Low = minimum price of those two Lows.
+
+The range-boundary ATR/buffer is frozen at Range activation.
+
+## 12.8 Opposing Cycle Resolution
+
+While a directional Trend is active:
+
+- one opposing completed directional cycle sets integrity to `WEAKENING`;
+- if opposing completed cycles reach the active `m` requirement before a Protected Swing break has already transitioned the regime, the current Trend moves to `TRANSITION / BROKEN`;
+- the opposite Trend cannot be established on the same cycle that caused the transition.
+
+This preserves the prohibition on direct Uptrend↔Downtrend flips.
