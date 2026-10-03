@@ -13,7 +13,16 @@ from decimal import Decimal
 from pathlib import Path
 
 from d1_matching import match_swings
-from d1_metrics import type7_quantile
+from d1_metrics import (
+    build_plateau_graph,
+    freeze_pair_reference_bands,
+    freeze_single_reference_bands,
+    pairwise_cell_metrics,
+    select_behavioral_representatives,
+    single_profile_cell_metrics,
+    type7_quantile,
+)
+from d1_runner import run_profile
 from d1_structure import build_structure
 from d1_swings import (
     assert_swing_invariants,
@@ -22,6 +31,7 @@ from d1_swings import (
     volatility_normalized_reversal,
     volatility_normalized_reversal_intrabar,
 )
+from human_review import build_review_package
 from p1_profiles import are_adjacent, build_profiles
 from phase_gate import PhaseAccessError, authorize_phase, build_lock
 
@@ -95,6 +105,106 @@ def dummy_candidate(profile_id: str,label: str,density: str) -> dict:
         "single_reference_bands":{
             "SwingDensity":{"status":"VALID","lower":"1","upper":"100"}
         },
+    }
+
+
+
+def revision02_metrics_and_review(candles: list[dict]) -> dict:
+    analytical=[dict(x,analysis_island_id="REGRESSION-ISLAND") for x in candles]
+    profiles=build_profiles("M1","4h")
+    selected=[
+        next(p for p in profiles if p.profile_id==pid)
+        for pid in (
+            "M1-TF4H-w2-q0.50-b0.25-m2",
+            "M1-TF4H-w3-q0.50-b0.25-m2",
+            "M1-TF4H-w4-q0.50-b0.25-m2",
+        )
+    ]
+
+    runs={}
+    singles={}
+    for p in selected:
+        d=p.detector_dict()
+        s=p.structural_dict()
+        run=run_profile(
+            analytical,
+            profile_id=p.profile_id,
+            detector={"method":"M1","window":d["window"]},
+            structural=s,
+        )
+        runs[p.profile_id]=run
+        metric=single_profile_cell_metrics(run)
+        # Eight deterministic DEV-like cells exercise Type-7/reference-band logic.
+        singles[p.profile_id]={f"CELL-{i:02d}":metric for i in range(8)}
+
+    pairs={}
+    for a,b in zip(selected,selected[1:]):
+        edge=(a.profile_id,b.profile_id)
+        metric=pairwise_cell_metrics(
+            runs[a.profile_id],
+            runs[b.profile_id],
+            analytical,
+            timeframe="4h",
+        )
+        pairs[edge]={f"CELL-{i:02d}":metric for i in range(8)}
+
+    plateau=build_plateau_graph(
+        selected,
+        single_metrics=singles,
+        pair_metrics=pairs,
+    )
+    if not plateau.plateaus:
+        raise AssertionError("Synthetic plateau graph produced no qualifying plateau.")
+
+    representatives=select_behavioral_representatives(
+        plateau,
+        single_metrics=singles,
+    )
+    if not representatives:
+        raise AssertionError("Behavioral representative selection returned empty.")
+
+    for label,record in representatives.items():
+        bands=freeze_single_reference_bands(singles[record["profile_id"]])
+        if not bands or any(
+            v.get("status") not in {"VALID","INSUFFICIENT_REFERENCE"}
+            for k,v in bands.items() if k!="EventDensity"
+        ):
+            raise AssertionError("Single-profile DEV reference bands invalid.")
+
+    first_edge=next(iter(pairs))
+    pair_bands=freeze_pair_reference_bands(pairs[first_edge])
+    if not pair_bands:
+        raise AssertionError("Pair reference bands were not generated.")
+
+    package,mapping=build_review_package(
+        review_set_id="SYNTHETIC-DEV-REVIEW",
+        profile_runs=runs,
+        analytical_records=analytical,
+        timeframe="4h",
+        cell_identity={
+            "asset":"SYNTH",
+            "segment":"DEV-SYNTH",
+            "phase":"DEV",
+        },
+    )
+    aliases=package.get("profile_aliases",[])
+    if not aliases or any(not str(x).startswith("R") for x in aliases):
+        raise AssertionError("Human Review aliases were not blinded.")
+    raw_ids=set(runs)
+    serialized=json.dumps(package,sort_keys=True,default=str)
+    if any(pid in serialized for pid in raw_ids):
+        raise AssertionError("Reviewer-facing package leaked raw Profile ID.")
+    if len(mapping.get("alias_to_profile",{})) != len(runs):
+        raise AssertionError("Human Review alias mapping is incomplete.")
+
+    return {
+        "plateau_count":len(plateau.plateaus),
+        "stable_edge_count":len(plateau.stable_edges),
+        "representative_labels":sorted(representatives),
+        "review_case_count":len(package.get("cases",[])),
+        "review_package_sha256":package["package_sha256"],
+        "review_mapping_sha256":mapping["mapping_sha256"],
+        "status":"PASS",
     }
 
 
@@ -237,6 +347,8 @@ def run_once() -> dict:
         else:
             raise AssertionError("VAL mutation of DEV candidate was not blocked.")
 
+    metrics_review=revision02_metrics_and_review(candles)
+
     return {
         "candles":len(candles),
         "m1_swings":len(m1.swings),
@@ -253,6 +365,7 @@ def run_once() -> dict:
         "profile_count_m1_4h":len(profiles),
         "phase_gate":"PASS",
         "revision02_primitives":"PASS",
+        "metrics_and_human_review":metrics_review,
     }
 
 
