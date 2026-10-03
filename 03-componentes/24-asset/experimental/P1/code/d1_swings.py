@@ -116,6 +116,7 @@ def fixed_window_pivots(candles: Sequence[dict], window: int) -> DetectionResult
     if window < 1:
         raise D1Error("M1 window must be positive.")
     candidates: list[Swing] = []
+    anomalies: list[dict] = []
     for i in range(window, len(candles) - window):
         bars = candles[i - window : i + window + 1]
         highs = [_d(x["high"]) for x in bars]
@@ -123,7 +124,19 @@ def fixed_window_pivots(candles: Sequence[dict], window: int) -> DetectionResult
         high = _d(candles[i]["high"])
         low = _d(candles[i]["low"])
         confirmation = i + window
-        if high == max(highs) and highs.count(high) == 1:
+        is_high = high == max(highs) and highs.count(high) == 1
+        is_low = low == min(lows) and lows.count(low) == 1
+        if is_high and is_low:
+            anomalies.append(
+                {
+                    "type": "AMBIGUOUS_DUAL_PIVOT",
+                    "extremum_index": i,
+                    "confirmation_index": confirmation,
+                    "action": "NO_CONFIRMATION",
+                }
+            )
+            continue
+        if is_high:
             candidates.append(
                 _swing(
                     "HIGH",
@@ -135,7 +148,7 @@ def fixed_window_pivots(candles: Sequence[dict], window: int) -> DetectionResult
                     f"M1-w{window}",
                 )
             )
-        if low == min(lows) and lows.count(low) == 1:
+        if is_low:
             candidates.append(
                 _swing(
                     "LOW",
@@ -156,7 +169,6 @@ def fixed_window_pivots(candles: Sequence[dict], window: int) -> DetectionResult
         )
     )
     confirmed: list[Swing] = []
-    anomalies: list[dict] = []
     for candidate in candidates:
         if not confirmed or candidate.kind != confirmed[-1].kind:
             confirmed.append(candidate)
@@ -343,3 +355,120 @@ def assert_swing_invariants(swings: Sequence[Swing]) -> None:
             raise D1Error("Confirmed swings do not alternate.")
         previous_confirmation = swing.confirmation_index
         previous_kind = swing.kind
+
+
+def volatility_normalized_reversal_intrabar(
+    candles: Sequence[dict],
+    *,
+    estimator: str,
+    window: int,
+    multiplier: str | Decimal,
+) -> DetectionResult:
+    """M3 diagnostic-only closed-candle intrabar-range variant.
+
+    This variant cannot become a final ASSET-P1-D1-001 candidate.
+    """
+    if not candles:
+        return DetectionResult((), ())
+    k=_d(multiplier)
+    if k <= 0:
+        raise D1Error("M3 intrabar multiplier must be positive.")
+    if estimator == "WILDER_ATR":
+        volatility=wilder_atr(candles,window)
+    elif estimator == "MEDIAN_TR":
+        volatility=median_true_range(candles,window)
+    else:
+        raise D1Error(f"Unknown M3 estimator: {estimator}")
+
+    start_index=next((i for i,v in enumerate(volatility) if v is not None),-1)
+    if start_index < 0:
+        return DetectionResult((), ())
+
+    profile_id=f"M3-INTRABAR-{estimator}-n{window}-k{k}"
+    anomalies=[{"type":"VOLATILITY_INITIALIZED","bar_index":start_index}]
+    confirmed: list[Swing]=[]
+    state="UNINITIALIZED"
+
+    high=_d(candles[start_index]["high"])
+    high_i=start_index
+    high_v=volatility[start_index]
+    low=_d(candles[start_index]["low"])
+    low_i=start_index
+    low_v=volatility[start_index]
+
+    for i in range(start_index,len(candles)):
+        candle=candles[i]
+        candle_high=_d(candle["high"])
+        candle_low=_d(candle["low"])
+        current_v=volatility[i]
+
+        if state=="UNINITIALIZED":
+            if candle_high > high:
+                high,high_i,high_v=candle_high,i,current_v
+            if candle_low < low:
+                low,low_i,low_v=candle_low,i,current_v
+            high_hit=high_v is not None and candle_low <= high-k*high_v
+            low_hit=low_v is not None and candle_high >= low+k*low_v
+            if high_hit and low_hit:
+                anomalies.append({
+                    "type":"AMBIGUOUS_BOOTSTRAP",
+                    "bar_index":i,
+                    "action":"NO_CONFIRMATION",
+                })
+                continue
+            if high_hit:
+                confirmed.append(_swing(
+                    "HIGH",high_i,i,high,candles,"M3_INTRABAR",profile_id,high_v
+                ))
+                state="DOWN_LEG"
+                low,low_i,low_v=candle_low,i,current_v
+            elif low_hit:
+                confirmed.append(_swing(
+                    "LOW",low_i,i,low,candles,"M3_INTRABAR",profile_id,low_v
+                ))
+                state="UP_LEG"
+                high,high_i,high_v=candle_high,i,current_v
+            continue
+
+        if state=="UP_LEG":
+            updated=candle_high > high
+            if updated:
+                high,high_i,high_v=candle_high,i,current_v
+            hit=high_v is not None and candle_low <= high-k*high_v
+            if updated and hit:
+                anomalies.append({
+                    "type":"AMBIGUOUS_INTRABAR_SEQUENCE",
+                    "bar_index":i,
+                    "leg":"UP_LEG",
+                    "action":"NO_CONFIRMATION",
+                })
+                continue
+            if hit:
+                confirmed.append(_swing(
+                    "HIGH",high_i,i,high,candles,"M3_INTRABAR",profile_id,high_v
+                ))
+                state="DOWN_LEG"
+                low,low_i,low_v=candle_low,i,current_v
+        elif state=="DOWN_LEG":
+            updated=candle_low < low
+            if updated:
+                low,low_i,low_v=candle_low,i,current_v
+            hit=low_v is not None and candle_high >= low+k*low_v
+            if updated and hit:
+                anomalies.append({
+                    "type":"AMBIGUOUS_INTRABAR_SEQUENCE",
+                    "bar_index":i,
+                    "leg":"DOWN_LEG",
+                    "action":"NO_CONFIRMATION",
+                })
+                continue
+            if hit:
+                confirmed.append(_swing(
+                    "LOW",low_i,i,low,candles,"M3_INTRABAR",profile_id,low_v
+                ))
+                state="UP_LEG"
+                high,high_i,high_v=candle_high,i,current_v
+        else:
+            raise D1Error(f"Unexpected intrabar detector state: {state}")
+
+    return DetectionResult(tuple(confirmed),tuple(anomalies))
