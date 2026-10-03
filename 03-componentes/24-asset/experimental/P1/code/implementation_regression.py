@@ -180,6 +180,7 @@ def run_once() -> dict:
             lock_type="DEV_CANDIDATE_LOCK",
             candidate_records=records,
             metrics_reference_sha256="1"*64,
+            human_review_sha256="3"*64,
             pair_reference_bands={
                 "CANDIDATE-A|CANDIDATE-B":{
                     "SwingStability_BASE":{"status":"VALID","lower":"0.5","upper":None}
@@ -204,6 +205,7 @@ def run_once() -> dict:
             lock_type="VAL_PROVISIONAL_LOCK",
             candidate_records=[records[0]],
             metrics_reference_sha256="2"*64,
+            human_review_sha256="4"*64,
             pair_reference_bands={},
             prior_lock_sha256=dev_doc["payload_sha256"],
         )
@@ -221,6 +223,7 @@ def run_once() -> dict:
             lock_type="VAL_PROVISIONAL_LOCK",
             candidate_records=[mutated],
             metrics_reference_sha256="2"*64,
+            human_review_sha256="4"*64,
             prior_lock_sha256=dev_doc["payload_sha256"],
         )
         bad_path=root/"bad-val.json"
