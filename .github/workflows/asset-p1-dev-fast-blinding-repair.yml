@@ -1,0 +1,118 @@
+name: ASSET-P1 DEV fast blinding repair
+
+on:
+  push:
+    branches:
+      - execution/asset-p1-dev-reviewfix
+    paths:
+      - ".github/workflows/asset-p1-dev-fast-blinding-repair.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 920db7af28d2ec1d1d5791829a7980079525a221
+          path: suite-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-packages-recovered
+          path: /tmp/original-packages
+          run-id: 37131101083
+          github-token: ${{ github.token }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-mappings-recovered
+          path: /tmp/mappings
+          run-id: 37131101083
+          github-token: ${{ github.token }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-quantitative-proposal-recovered
+          path: /tmp/quant
+          run-id: 37131101083
+          github-token: ${{ github.token }}
+
+      - name: Repair reviewer-facing serialization
+        env:
+          PYTHONPATH: ${{ github.workspace }}/suite-code/03-componentes/24-asset/experimental/P1/code
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from human_review import canonical_bytes, sha256_obj, assert_reviewer_package_blinded
+
+          src=Path("/tmp/original-packages")
+          out=Path("/tmp/repaired-packages")
+          out.mkdir(parents=True,exist_ok=True)
+
+          new_hashes={}
+          for path in sorted(src.glob("*.json")):
+              package=json.loads(path.read_text(encoding="utf-8"))
+              for case in package.get("cases",[]):
+                  for profile in case.get("profiles",{}).values():
+                      clean=[]
+                      for swing in profile.get("swings",[]):
+                          clean.append({
+                              k:swing[k]
+                              for k in (
+                                  "kind","extremum_index","extremum_open_us",
+                                  "price","confirmation_index","confirmation_end_us"
+                              )
+                              if k in swing
+                          })
+                      profile["swings"]=clean
+              package.pop("package_sha256",None)
+              assert_reviewer_package_blinded(package)
+              package["package_sha256"]=sha256_obj(package)
+              assert_reviewer_package_blinded(package)
+              (out/path.name).write_bytes(canonical_bytes(package))
+              new_hashes[package["review_set_id"]]=package["package_sha256"]
+
+          manifest_path=Path("/tmp/quant/DEV_HUMAN_REVIEW_MANIFEST.json")
+          manifest=json.loads(manifest_path.read_text(encoding="utf-8"))
+          for item in manifest["review_sets"]:
+              item["package_sha256"]=new_hashes[item["review_set_id"]]
+          manifest.pop("review_manifest_sha256",None)
+          manifest["review_manifest_sha256"]=sha256_obj(manifest)
+          Path("/tmp/DEV_HUMAN_REVIEW_MANIFEST_REPAIRED.json").write_bytes(canonical_bytes(manifest))
+
+          assert len(new_hashes)==8
+          print("repaired_review_manifest_sha256="+manifest["review_manifest_sha256"])
+          for key in sorted(new_hashes):
+              print(key+"="+new_hashes[key])
+          PY
+
+      - name: Verify mappings remain unchanged
+        run: |
+          set -euo pipefail
+          test "$(find /tmp/mappings -name '*.json' | wc -l)" -eq 8
+          echo "mapping_set=UNCHANGED"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-packages-blinded-v011
+          path: /tmp/repaired-packages
+          if-no-files-found: error
+          retention-days: 90
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-manifest-blinded-v011
+          path: /tmp/DEV_HUMAN_REVIEW_MANIFEST_REPAIRED.json
+          if-no-files-found: error
+          retention-days: 90
