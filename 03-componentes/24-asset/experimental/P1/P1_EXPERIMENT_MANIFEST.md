@@ -1,10 +1,10 @@
 # Asset PRO — P1 Experiment Manifest
 
-**Status:** DESIGN FROZEN — REVISION 01 / NON-NORMATIVE  
+**Status:** DESIGN FROZEN — REVISION 02 / NON-NORMATIVE  
 **Experiment ID:** ASSET-P1-D1-001  
 **Pilot:** P1 — D1 Structural Engine Validation  
 **P0 dependency:** ASSET-P0-001 = PASS  
-**Freeze status:** DESIGN FROZEN — REVISION 01 — IMPLEMENTATION IN PROGRESS
+**Freeze status:** DESIGN FROZEN — REVISION 02 — IMPLEMENTATION IN PROGRESS
 
 ---
 
@@ -300,7 +300,7 @@ Execution Freeze requires:
 
 P1 Design Freeze:
 
-> **COMPLETE — REVISION 01**
+> **COMPLETE — REVISION 02**
 
 P1 implementation:
 
@@ -386,3 +386,75 @@ Canonical details are contained in:
 The original Design Freeze Record remains historical evidence.
 
 Revision 01 supersedes only the affected design clauses and must be the design baseline used for implementation and Execution Freeze.
+
+
+---
+
+## 17. Design Freeze Revision 02
+
+Revision 02 preserves:
+
+- the complete Revision 01 synchronized-venue-gap policy;
+- the original universe and phase calendar;
+- M1/M2/M3 primary method semantics;
+- detector and structural parameter grids.
+
+Revision 02 closes the remaining implementation ambiguities affecting matching, statistical fences, candidate selection and review sampling.
+
+### 17.1 Comparator Warm-Up
+
+ATR14-normalized matching excludes objects whose own causal timestamp precedes ATR14 initialization.
+
+Such objects remain valid structural outputs but are marked comparison-ineligible and are excluded from matching denominators.
+
+### 17.2 Statistical Convention
+
+All quantiles use deterministic Type-7 linear interpolation.
+
+DEV fences require at least four valid observations after NA exclusion.
+
+### 17.3 Full-Profile Plateau Graph
+
+Plateau adjacency uses complete detector+structural profile coordinates and exactly one one-step coordinate change.
+
+M3 adjacency never crosses estimator identity.
+
+### 17.4 Deterministic Candidate Representatives
+
+Responsive, Balanced and Conservative representatives are selected only from qualifying plateau profiles using pooled DEV Swing Density and deterministic tie-breaking.
+
+The labels describe output density, not quality.
+
+### 17.5 Frozen DEV Reference Bands
+
+Single-profile and candidate-pair reference-band metrics, directionality and NA requirements are frozen in `P1_METRICS_SPECIFICATION.md`.
+
+VAL/Holdout may test but never redefine those bands.
+
+### 17.6 Human Review Determinism
+
+Revision 02 freezes:
+
+- exact disagreement/churn/event-delay window magnitudes;
+- fixed case-selection order;
+- unique-window rule;
+- response vocabulary;
+- exact-response inter-rater agreement.
+
+### 17.7 Detector Edge Cases
+
+Revision 02 freezes:
+
+- M1 simultaneous unique High+Low pivot as `AMBIGUOUS_DUAL_PIVOT` with no confirmation;
+- M3 diagnostic intrabar trigger semantics;
+- `AMBIGUOUS_INTRABAR_SEQUENCE` handling.
+
+### 17.8 Active Design Baseline
+
+Revision 02 supersedes only clauses explicitly revised by Revision 01/02.
+
+The active implementation baseline is:
+
+> **Original Design Freeze + Revision 01 + Revision 02**
+
+No formal P1 phase execution has occurred.
