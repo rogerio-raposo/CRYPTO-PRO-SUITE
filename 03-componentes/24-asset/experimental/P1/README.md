@@ -1,8 +1,9 @@
 # Asset PRO — P1 / D1 Structural Validation
 
-**Status:** DRAFT / NON-NORMATIVE  
+**Status:** DESIGN FROZEN / NON-NORMATIVE  
 **Experiment:** ASSET-P1-D1-001  
 **P0 dependency:** SATISFIED — ASSET-P0-001 PASS  
+**Implementation status:** NOT STARTED  
 **Execution status:** NOT STARTED
 
 ---
@@ -30,7 +31,8 @@ Holdout results may not be used for parameter retuning.
 - `P1_HUMAN_REVIEW_PROTOCOL.md`
 - `P1_DECISION_RULES.md`
 - `P1_FREEZE_CHECKLIST.md`
+- `P1_DESIGN_FREEZE_RECORD.md`
 
-No P1 analytical code is implemented before Design Freeze.
+Design Freeze is complete.
 
-After Design Freeze, implementation proceeds toward a separate Execution Freeze. No formal P1 run is authorized before Execution Freeze.
+The next phase is implementation toward a separate Execution Freeze. No formal P1 run is authorized before Execution Freeze.
