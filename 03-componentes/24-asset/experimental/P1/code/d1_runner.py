@@ -20,6 +20,7 @@ from d1_swings import (
     fixed_percentage_reversal,
     fixed_window_pivots,
     volatility_normalized_reversal,
+    volatility_normalized_reversal_intrabar,
 )
 
 
@@ -83,6 +84,13 @@ def _detect(candles: Sequence[dict], detector: dict):
             window=int(detector["window"]),
             multiplier=Decimal(str(detector["multiplier"])),
         )
+    if method == "M3_INTRABAR":
+        return volatility_normalized_reversal_intrabar(
+            candles,
+            estimator=str(detector["estimator"]),
+            window=int(detector["window"]),
+            multiplier=Decimal(str(detector["multiplier"])),
+        )
     raise RunnerError(f"Unsupported detector method: {method}")
 
 
@@ -103,9 +111,9 @@ def run_profile(
         structure=build_structure(
             candles,
             detection.swings,
-            equality_q=Decimal(str(structural["equality_q"])),
-            break_b=Decimal(str(structural["break_b"])),
-            trend_m=int(structural["trend_m"]),
+            equality_q=Decimal(str(structural["q"])),
+            break_b=Decimal(str(structural["b"])),
+            trend_m=int(structural["m"]),
         )
         result={
             "analysis_island_id":island_id,
