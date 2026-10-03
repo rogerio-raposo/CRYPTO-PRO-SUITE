@@ -101,8 +101,42 @@ At the end of VAL:
 - `P1-REVISE`;
 - `P1-FAIL`.
 
-## 10. Current Status
+## 10. Freeze Model
+
+### Design Freeze
+Locks:
+
+- universe;
+- source/market contract;
+- calendar segments and phase assignment;
+- Holdout anti-retuning rules;
+- M1/M2/M3 semantics;
+- parameter grids;
+- structural-profile grid;
+- matching specification;
+- metrics and DEV reference-band methodology;
+- Human Review protocol;
+- blockers and decision states.
+
+Design Freeze occurs **before D1 implementation**.
+
+### Execution Freeze
+Occurs only after:
+
+- producer-side P1 dataset code is implemented and reviewed;
+- D1 Structural Engine is implemented and reviewed;
+- source datasets/manifests/checksums are generated;
+- DEV/VAL/Holdout access controls are implemented;
+- Code Version and Data Version identities are pinned;
+- deterministic regression tests pass;
+- Suite/Data Feed commits and Manifest hash are pinned.
+
+No formal P1 run occurs before Execution Freeze.
+
+## 11. Current Status
 
 Dataset source validation: PENDING.  
 P1 Design Freeze: PENDING.  
+P1 implementation: NOT STARTED.  
+P1 Execution Freeze: PENDING.  
 P1 execution: NOT STARTED.
