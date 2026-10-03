@@ -1,10 +1,10 @@
 # Asset PRO — P1 Experiment Manifest
 
-**Status:** DRAFT / NON-NORMATIVE  
+**Status:** DESIGN FROZEN / NON-NORMATIVE  
 **Experiment ID:** ASSET-P1-D1-001  
 **Pilot:** P1 — D1 Structural Engine Validation  
 **P0 dependency:** ASSET-P0-001 = PASS  
-**Freeze status:** NOT FROZEN
+**Freeze status:** DESIGN FROZEN — IMPLEMENTATION NOT STARTED
 
 ---
 
@@ -12,7 +12,9 @@
 
 Which candidate swing-detection architecture(s) provide a causal, deterministic, stable, interpretable and sufficiently responsive basis for D1 structural sequence, regime, Protected Swing and structural-event classification?
 
-## 2. Universe
+P1 does not evaluate trading returns or predictive profitability.
+
+## 2. Frozen Universe
 
 | Role | Instrument | Function |
 |---|---|---|
@@ -21,44 +23,106 @@ Which candidate swing-detection architecture(s) provide a causal, deterministic,
 | A3 | SOLUSDT | liquid high-beta large-cap |
 | A4 | XRPUSDT | liquid large-cap alt with distinct episodic structure |
 
-Canonical planned market for the pilot: Binance Spot.
+Frozen pilot market:
 
-Historical-source eligibility for every frozen segment must be verified before P1 Design Freeze.
+`Binance Spot`
 
-## 3. Data Contract
+## 3. Frozen Data Design
 
-- producer repository: `rogerio-raposo/crypto-pro-datafeed`;
-- isolated development branch: `experiment/asset-p1`;
-- source: Binance Public Data Spot klines;
-- native timeframe: 1h;
-- analytical timeframes: 4h and 1d;
-- boundaries: UTC;
-- derived candles must use the deterministic P0-approved resampling semantics;
-- large datasets remain outside Git; manifests/checksums remain auditable.
+Producer repository:
 
-P1 producer code must be new P1 code. Frozen P0 code is not mutated.
+`rogerio-raposo/crypto-pro-datafeed`
 
-## 4. Phase Split
+P1 producer branch:
 
-- DEV: `DEV-01`, `DEV-02`;
-- VAL: `VAL-01`, `VAL-02`;
-- Structural Holdout: `HOLD-01`, `HOLD-02`.
+`experiment/asset-p1`
 
-The same calendar segments are used for all four assets and both analytical timeframes where source eligibility is confirmed.
+Frozen producer-side design/evidence commit:
 
-## 5. Methods
+`199c301b5ee14a1b322b86d4b992d4de9d2157cf`
+
+Source:
+
+`Binance Public Data monthly Spot kline archives`
+
+Native timeframe:
+
+`1h`
+
+Analytical timeframes:
+
+- 4h;
+- 1d.
+
+Canonical temporal contract:
+
+- UTC boundaries;
+- canonical epoch microseconds after normalization;
+- deterministic resampling semantics inherited from the P0-approved contract.
+
+Large historical datasets remain outside Git. Dataset manifests, checksums and audit metadata remain versioned.
+
+## 4. Source Eligibility Evidence
+
+Eligibility workflow:
+
+- run ID: `37095698535`;
+- conclusion: `success`.
+
+Evidence:
+
+`data/experimental/asset-p1/SOURCE_ELIGIBILITY.md`
+
+Result:
+
+- BTCUSDT: 36/36 months eligible;
+- ETHUSDT: 36/36 months eligible;
+- SOLUSDT: 36/36 months eligible;
+- XRPUSDT: 36/36 months eligible.
+
+Overall:
+
+> **PASS**
+
+Source existence verification does not replace archive checksum, record-continuity or dataset validation required before Execution Freeze.
+
+## 5. Frozen Phase Split
+
+### DEV
+- `DEV-01`: 2021-01-01 through 2021-07-01 UTC exclusive.
+- `DEV-02`: 2022-06-01 through 2022-12-01 UTC exclusive.
+
+### VAL
+- `VAL-01`: 2023-01-01 through 2023-07-01 UTC exclusive.
+- `VAL-02`: 2023-07-01 through 2024-01-01 UTC exclusive.
+
+### Structural Holdout
+- `HOLD-01`: 2024-01-01 through 2024-07-01 UTC exclusive.
+- `HOLD-02`: 2024-07-01 through 2025-01-01 UTC exclusive.
+
+The same calendar segments apply to all assets.
+
+Holdout analytical outputs may not be used for parameter tuning.
+
+## 6. Frozen Methods
 
 - M1 — Fixed-Window Pivot;
 - M2 — Fixed-Percentage Reversal;
 - M3 — Volatility-Normalized Reversal.
 
-No hybrid M4 is permitted in ASSET-P1-D1-001 unless a formal design revision is approved before VAL.
+No hybrid M4 is permitted in ASSET-P1-D1-001.
 
-## 6. Structural Pipeline
+Primary reversal confirmation basis:
+
+> Close-confirmed reversal against a High/Low candidate extremum.
+
+Intrabar variants remain DEV diagnostic-only and are not eligible for final candidate selection.
+
+## 7. Frozen Structural Pipeline
 
 `Swing Detector → Confirmed Structural Swings → HH/EH/LH/HL/EL/LL → Regime → Protected Swing → Structural Events`
 
-P1 structural events include:
+P1 structural events:
 
 - Breach;
 - PCSB;
@@ -66,77 +130,186 @@ P1 structural events include:
 - Counter-Structural Break;
 - price-based Reclaim.
 
-Final D3-dependent Failed Break classification is excluded from P1.
+D3 Acceptance/Re-Acceptance and final Failed Break classification are excluded.
 
-## 7. Anti-Leakage Rules
+## 8. Frozen Parameter Design
+
+### M1
+4h:
+
+`w ∈ {2,3,4,6,8,12}`
+
+Daily:
+
+`w ∈ {2,3,4,5,7,10}`
+
+### M2
+4h:
+
+`p ∈ {1.0%,1.5%,2.5%,4.0%,6.0%,9.0%}`
+
+Daily:
+
+`p ∈ {2.0%,3.0%,5.0%,8.0%,12.0%,18.0%}`
+
+### M3 estimator screen
+- Wilder ATR;
+- rolling Median True Range;
+- screening profile (n=14, k=2.0).
+
+Full grid for surviving estimators:
+
+[
+n \in \{10,14,21,34\}
+]
+
+[
+k \in \{1.0,1.5,2.0,2.5,3.0,4.0\}
+]
+
+### Structural grid
+Equality:
+
+[
+q \in \{0.25,0.50,0.75\}
+]
+
+Break/reclaim buffer:
+
+[
+b \in \{0,0.25,0.50\}
+]
+
+Trend persistence:
+
+[
+m \in \{2,3\}
+]
+
+Temporal ATR-reference semantics are frozen in `P1_METHOD_SPECIFICATIONS.md` and `P1_PARAMETER_PROFILE_REGISTRY.md`.
+
+## 9. Frozen Plateau / Reference-Band Methodology
+
+P1 does not use arbitrary universal stability thresholds.
+
+DEV identifies local parameter plateaus using componentwise adjacent-profile discontinuities and robust fences:
+
+[
+Q3 + 1.5 \times IQR
+]
+
+A candidate plateau requires at least three connected profiles/cells and no hard blocker.
+
+DEV also freezes candidate-specific reference bands.
+
+VAL and Holdout test those frozen bands and cannot redefine them.
+
+No weighted composite score is used.
+
+## 10. Frozen Matching Design
+
+Matching is:
+
+- same swing type only;
+- one-to-one;
+- chronological/monotonic;
+- lexicographic, not weighted.
+
+Primary window:
+
+- 4h: 3 bars and 1.0 ATR14;
+- Daily: 2 bars and 1.0 ATR14.
+
+Strict and wide diagnostics are frozen in `P1_MATCHING_SPECIFICATION.md`.
+
+## 11. Frozen Anti-Leakage Rules
 
 P1 shall not use:
 
 - P&L;
 - future return;
 - trade outcome;
-- post-event price success;
-- Holdout metrics for parameter tuning;
-- composite weighted score.
+- post-event success;
+- Holdout results for tuning;
+- visual preference as sole selection basis;
+- composite weighted scores.
 
-## 8. Candidate-Lock Rule
+At DEV end, candidates are locked before VAL.
 
-At the end of DEV:
+At VAL end, provisional candidates are locked before Holdout.
 
-- only profiles satisfying all hard blockers may continue;
-- profiles should belong to a documented local parameter plateau;
-- at most one Responsive, one Balanced and one Conservative profile per method/timeframe continue when enough eligible profiles exist;
-- the categories describe behavior, not quality.
+Any required retuning after VAL/Holdout results in `P1-REVISE`, not in-place parameter modification.
 
-At the end of VAL:
+## 12. Frozen Human Review Design
 
-- provisional candidates are frozen;
-- no parameter change is permitted before Holdout;
-- Holdout results may confirm, reject or expose limitations, but may not retune the same experiment.
+Human review is diagnostic.
 
-## 9. P1 Final Decision States
+DEV/VAL target set:
+
+> 64 cases.
+
+Holdout target set:
+
+> 16 cases.
+
+Method/profile identifiers are masked where operationally possible.
+
+If only one reviewer is available, subjective findings cannot be the sole acceptance/rejection basis.
+
+## 13. Frozen Decision States
 
 - `P1-PASS — Single Candidate`;
 - `P1-PASS — Multiple Candidates`;
 - `P1-REVISE`;
 - `P1-FAIL`.
 
-## 10. Freeze Model
+## 14. Freeze Model
 
-### Design Freeze
-Locks:
+### Design Freeze — COMPLETE
+
+This Design Freeze locks:
 
 - universe;
 - source/market contract;
-- calendar segments and phase assignment;
-- Holdout anti-retuning rules;
+- phase/segment design;
+- Holdout discipline;
 - M1/M2/M3 semantics;
 - parameter grids;
-- structural-profile grid;
-- matching specification;
-- metrics and DEV reference-band methodology;
-- Human Review protocol;
-- blockers and decision states.
+- structural semantics;
+- matching;
+- metrics/plateau methodology;
+- Human Review;
+- blockers/decision states.
 
-Design Freeze occurs **before D1 implementation**.
+Any material change requires an explicit Design Freeze revision before implementation continues.
 
-### Execution Freeze
-Occurs only after:
+### Execution Freeze — PENDING
 
-- producer-side P1 dataset code is implemented and reviewed;
-- D1 Structural Engine is implemented and reviewed;
-- source datasets/manifests/checksums are generated;
-- DEV/VAL/Holdout access controls are implemented;
-- Code Version and Data Version identities are pinned;
-- deterministic regression tests pass;
-- Suite/Data Feed commits and Manifest hash are pinned.
+Execution Freeze requires:
 
-No formal P1 run occurs before Execution Freeze.
+- multi-asset producer implementation and review;
+- generated datasets/manifests/checksums;
+- D1 Structural Engine implementation and review;
+- deterministic regression tests;
+- Holdout access segregation;
+- Code/Data Versions;
+- pinned implementation commits;
+- frozen Manifest hash.
 
-## 11. Current Status
+## 15. Current Status
 
-Dataset source validation: PENDING.  
-P1 Design Freeze: PENDING.  
-P1 implementation: NOT STARTED.  
-P1 Execution Freeze: PENDING.  
-P1 execution: NOT STARTED.
+P1 Design Freeze:
+
+> **COMPLETE**
+
+P1 implementation:
+
+> **NOT STARTED**
+
+P1 Execution Freeze:
+
+> **PENDING**
+
+P1 formal execution:
+
+> **NOT STARTED**
