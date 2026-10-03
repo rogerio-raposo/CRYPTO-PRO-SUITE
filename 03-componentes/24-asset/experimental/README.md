@@ -2,7 +2,7 @@
 
 **Status:** WORKING / NON-NORMATIVE  
 **Scope:** Asset PRO experimental validation artifacts  
-**Date:** 2026-10-02  
+**Date:** 2026-10-03  
 **Purpose:** isolate experiment specifications, manifests, validation harness artifacts and decision records from the working methodology.
 
 ---
@@ -19,8 +19,8 @@ Rejected experiments remain traceable.
 
 ## 2. Current Pilots
 
-- `P0/` — Data & Causal Replay Integrity.
-- `P1/` — D1 Structural Engine validation; not materialized/executable until P0 authorizes it.
+- `P0/` — Data & Causal Replay Integrity. **Completed with PASS.**
+- `P1/` — D1 Structural Engine validation. **Preparation/materialization in progress; execution not started.**
 
 ## 3. Repository Boundary
 
