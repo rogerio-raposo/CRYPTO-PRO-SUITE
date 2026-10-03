@@ -65,12 +65,12 @@
 ## Design Freeze Record
 
 - [x] all design documents reviewed for internal consistency.
-- [ ] Design Freeze baseline commit pinned.
-- [ ] P1 Design Freeze Record created.
+- [x] Design Freeze baseline commit pinned — manifest commit `9e234e1d5d5975ffc111309a7eafaf345e670cc7`.
+- [x] P1 Design Freeze Record created.
 
 Current Design Freeze state:
 
-> **PENDING**
+> **COMPLETE**
 
 ---
 
