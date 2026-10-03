@@ -1,0 +1,297 @@
+name: ASSET-P1-D1-001 formal DEV quantitative
+
+on:
+  push:
+    branches:
+      - execution/asset-p1-dev
+    paths:
+      - ".github/workflows/asset-p1-formal-dev.yml"
+      - "03-componentes/24-asset/experimental/P1/execution/**"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout frozen Execution Manifest
+        uses: actions/checkout@v4
+        with:
+          ref: bb75048c8a1d28859247a420093f8131028c4639
+
+      - name: Verify frozen Manifest identity
+        run: |
+          set -euo pipefail
+          FILE="03-componentes/24-asset/experimental/P1/P1_EXPERIMENT_MANIFEST.md"
+          ACTUAL="$(sha256sum "$FILE" | awk '{print $1}')"
+          EXPECTED="967f3e59772fca9d45aefa7679c4ba4abd091b3ba06f627a7ae0e7b97713e1f1"
+          echo "manifest_sha256=$ACTUAL"
+          test "$ACTUAL" = "$EXPECTED"
+
+  prepare-dev:
+    needs: verify-freeze
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout frozen Data Feed build code
+        uses: actions/checkout@v4
+        with:
+          repository: rogerio-raposo/crypto-pro-datafeed
+          ref: f8d85435516d1eeb42085f7622296abfa4ea2ee2
+          path: datafeed-code
+
+      - name: Checkout frozen Data Feed manifests
+        uses: actions/checkout@v4
+        with:
+          repository: rogerio-raposo/crypto-pro-datafeed
+          ref: 64b6489eda3b6a4e706f46dd18ed5d65d8991810
+          path: datafeed-manifests
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild frozen DEV datasets only
+        working-directory: datafeed-code/src/experimental/asset_p1
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/p1-dev-data /tmp/p1-dev-cache
+          for segment in DEV-01 DEV-02; do
+            for asset in BTCUSDT ETHUSDT SOLUSDT XRPUSDT; do
+              python build_datasets.py                 --output /tmp/p1-dev-data                 --cache /tmp/p1-dev-cache                 --asset "$asset"                 --segment "$segment"
+            done
+          done
+
+      - name: Verify rebuilt DEV data against frozen manifests
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          generated=Path("/tmp/p1-dev-data/dev")
+          frozen=Path("datafeed-manifests/data/experimental/asset-p1/manifests/dev")
+          assets=("BTCUSDT","ETHUSDT","SOLUSDT","XRPUSDT")
+          segments=("DEV-01","DEV-02")
+          checked=0
+          for segment in segments:
+              for asset in assets:
+                  g=json.loads((generated/segment/asset/"dataset_manifest.json").read_text())
+                  f=json.loads((frozen/segment/f"{asset}.json").read_text())
+                  for key in (
+                      "dataset_id","dataset_version","phase","segment_id","instrument",
+                      "registered_gap_open_times_us","gap_policy_id",
+                      "analytical_records","incomplete_derived_records",
+                      "analysis_islands","hashes","validated_record_count",
+                  ):
+                      assert g[key] == f[key], (segment,asset,key,g[key],f[key])
+                  assert f["analytical_access"] == "PRE_EXECUTION_ONLY"
+                  checked += 1
+          assert checked == 8
+          print("formal_dev_dataset_verification=PASS")
+          PY
+
+      - name: Upload reconstructed DEV data
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-formal-dev-data
+          path: /tmp/p1-dev-data/dev
+          if-no-files-found: error
+          retention-days: 30
+
+  screen-m3:
+    needs: prepare-dev
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout execution orchestration
+        uses: actions/checkout@v4
+        with:
+          ref: execution/asset-p1-dev
+
+      - name: Checkout frozen D1 code
+        uses: actions/checkout@v4
+        with:
+          ref: cbd80134aed0cf0f0796a9ecd870dc2201ef38c3
+          path: suite-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-formal-dev-data
+          path: /tmp/p1-dev-data/dev
+
+      - name: Formal M3 estimator screen
+        env:
+          PYTHONPATH: ${{ github.workspace }}/suite-code/03-componentes/24-asset/experimental/P1/code
+        run: |
+          set -euo pipefail
+          python 03-componentes/24-asset/experimental/P1/execution/dev_orchestrator.py             screen-m3             --data-root /tmp/p1-dev-data             --output /tmp/M3_SCREEN.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-m3-screen
+          path: /tmp/M3_SCREEN.json
+          if-no-files-found: error
+          retention-days: 30
+
+  grid:
+    needs: [prepare-dev, screen-m3]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: m1-4h
+            method: M1
+            timeframe: 4h
+            estimator: ""
+          - id: m1-1d
+            method: M1
+            timeframe: 1d
+            estimator: ""
+          - id: m2-4h
+            method: M2
+            timeframe: 4h
+            estimator: ""
+          - id: m2-1d
+            method: M2
+            timeframe: 1d
+            estimator: ""
+          - id: m3-wilder-4h
+            method: M3
+            timeframe: 4h
+            estimator: WILDER_ATR
+          - id: m3-wilder-1d
+            method: M3
+            timeframe: 1d
+            estimator: WILDER_ATR
+          - id: m3-median-4h
+            method: M3
+            timeframe: 4h
+            estimator: MEDIAN_TR
+          - id: m3-median-1d
+            method: M3
+            timeframe: 1d
+            estimator: MEDIAN_TR
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/asset-p1-dev
+
+      - uses: actions/checkout@v4
+        with:
+          ref: cbd80134aed0cf0f0796a9ecd870dc2201ef38c3
+          path: suite-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-formal-dev-data
+          path: /tmp/p1-dev-data/dev
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-m3-screen
+          path: /tmp/m3-screen
+
+      - name: Execute frozen grid
+        env:
+          PYTHONPATH: ${{ github.workspace }}/suite-code/03-componentes/24-asset/experimental/P1/code
+          METHOD: ${{ matrix.method }}
+          TIMEFRAME: ${{ matrix.timeframe }}
+          ESTIMATOR: ${{ matrix.estimator }}
+        run: |
+          set -euo pipefail
+          EXTRA=()
+          if [ -n "$ESTIMATOR" ]; then
+            EXTRA=(--estimator "$ESTIMATOR")
+          fi
+          python 03-componentes/24-asset/experimental/P1/execution/dev_orchestrator.py             grid             --data-root /tmp/p1-dev-data             --m3-screen /tmp/m3-screen/M3_SCREEN.json             --method "$METHOD"             --timeframe "$TIMEFRAME"             "${EXTRA[@]}"             --output "/tmp/grid-${{ matrix.id }}.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-grid-${{ matrix.id }}
+          path: /tmp/grid-${{ matrix.id }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: [prepare-dev, screen-m3, grid]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/asset-p1-dev
+
+      - uses: actions/checkout@v4
+        with:
+          ref: cbd80134aed0cf0f0796a9ecd870dc2201ef38c3
+          path: suite-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-formal-dev-data
+          path: /tmp/p1-dev-data/dev
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-m3-screen
+          path: /tmp/m3-screen
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: asset-p1-dev-grid-*
+          path: /tmp/grid-results
+          merge-multiple: true
+
+      - name: Aggregate DEV quantitative results
+        env:
+          PYTHONPATH: ${{ github.workspace }}/suite-code/03-componentes/24-asset/experimental/P1/code
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/dev-output
+          mkdir -p /tmp/dev-output
+          python 03-componentes/24-asset/experimental/P1/execution/dev_orchestrator.py             aggregate             --data-root /tmp/p1-dev-data             --m3-screen /tmp/m3-screen/M3_SCREEN.json             --grid-root /tmp/grid-results             --output-root /tmp/dev-output
+
+      - name: Upload quantitative proposal
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-quantitative-proposal
+          path: |
+            /tmp/dev-output/DEV_QUANTITATIVE_PROPOSAL.json
+            /tmp/dev-output/DEV_REFERENCE_BANDS.json
+            /tmp/dev-output/DEV_QUANTITATIVE_SUMMARY.json
+            /tmp/dev-output/DEV_HUMAN_REVIEW_MANIFEST.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload blinded review packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-packages
+          path: /tmp/dev-output/human_review/packages
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload separate alias mappings
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-mappings
+          path: /tmp/dev-output/human_review/mappings
+          if-no-files-found: error
+          retention-days: 90
