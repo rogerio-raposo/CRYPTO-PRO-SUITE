@@ -6,6 +6,7 @@ on:
       - experiment/asset-p1-d1
     paths:
       - ".github/workflows/asset-p1-implementation-regression.yml"
+      - "03-componentes/24-asset/experimental/P1/code/**"
 
 permissions:
   contents: read
