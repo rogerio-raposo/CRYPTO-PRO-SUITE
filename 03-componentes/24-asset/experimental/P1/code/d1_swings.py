@@ -193,12 +193,27 @@ def _threshold_detector(
     anomalies: list[dict] = []
     state = "UNINITIALIZED"
 
-    high = _d(candles[0]["high"])
-    high_i = 0
-    high_v = None if volatility is None else volatility[0]
-    low = _d(candles[0]["low"])
-    low_i = 0
-    low_v = None if volatility is None else volatility[0]
+    start_index = 0
+    if method == "M3":
+        start_index = next(
+            (i for i, value in enumerate(volatility or ()) if value is not None),
+            -1,
+        )
+        if start_index < 0:
+            return DetectionResult((), ())
+        anomalies.append(
+            {
+                "type": "VOLATILITY_INITIALIZED",
+                "bar_index": start_index,
+            }
+        )
+
+    high = _d(candles[start_index]["high"])
+    high_i = start_index
+    high_v = None if volatility is None else volatility[start_index]
+    low = _d(candles[start_index]["low"])
+    low_i = start_index
+    low_v = None if volatility is None else volatility[start_index]
 
     def high_trigger(close: Decimal) -> bool:
         if method == "M2":
@@ -210,7 +225,8 @@ def _threshold_detector(
             return (close - low) / low >= threshold
         return low_v is not None and close - low >= threshold * low_v
 
-    for i, candle in enumerate(candles):
+    for i in range(start_index, len(candles)):
+        candle = candles[i]
         candle_high = _d(candle["high"])
         candle_low = _d(candle["low"])
         close = _d(candle["close"])
