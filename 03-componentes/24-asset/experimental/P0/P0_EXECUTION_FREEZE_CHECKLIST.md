@@ -94,7 +94,7 @@ Execution Freeze may be declared only when every required item above is complete
 
 Current decision:
 
-> **EXECUTION FREEZE COMPLETE — FORMAL P0 EXECUTION NOT STARTED**
+> **EXECUTION FREEZE COMPLETE — FORMAL P0 EXECUTION SUBSEQUENTLY COMPLETED WITH PASS; see `P0_DECISION_RECORD.md`.**
 
 Formal P0 execution remains prohibited.
 
