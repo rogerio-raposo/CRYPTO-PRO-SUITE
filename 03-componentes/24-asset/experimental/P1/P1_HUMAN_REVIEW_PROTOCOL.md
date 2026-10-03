@@ -67,3 +67,48 @@ If only one reviewer is available:
 - subjective review cannot be used as a sole blocker or sole acceptance basis.
 
 Inter-rater agreement is reported when two or more reviewers evaluate the same cases.
+
+
+---
+
+## 7. Design Freeze Revision 01 — Deterministic Review Windows
+
+Human-review windows are presentation/sampling controls, not trading horizons.
+
+### 7.1 Causal Review Context
+
+Every review chart ends at the focal diagnostic timestamp. No future bars are displayed.
+
+Trailing context:
+
+- 4h: 120 evaluable bars;
+- Daily: 90 evaluable bars.
+
+A review window never crosses an Analysis-Island boundary.
+
+If fewer bars exist in the current island, all available preceding bars are shown and the case is flagged `TRUNCATED_CONTEXT`.
+
+### 7.2 Diagnostic Rolling Windows
+
+The same trailing lengths are used when locating:
+
+- highest method/profile disagreement;
+- highest Regime Churn;
+- highest structural-event delay.
+
+Windows are evaluated only on complete analytical bars inside one Analysis Island.
+
+### 7.3 Median Diagnostic Case
+
+After excluding the three selected extreme cases in a DEV/VAL cell:
+
+- rank remaining eligible windows by the primary diagnostic magnitude;
+- choose the chronological earliest window at the median rank.
+
+Ties at any selection stage are resolved by earliest focal timestamp.
+
+### 7.4 Holdout Review
+
+The Holdout review uses the same causal window lengths and tie rules.
+
+No chart may expose bars after the focal timestamp.
