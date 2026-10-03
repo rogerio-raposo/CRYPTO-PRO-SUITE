@@ -1,0 +1,187 @@
+name: ASSET-P1-D1-001 DEV recovery
+
+on:
+  push:
+    branches:
+      - execution/asset-p1-dev-recovery
+    paths:
+      - ".github/workflows/asset-p1-dev-recovery.yml"
+      - "03-componentes/24-asset/experimental/P1/execution/**"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  recover:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: m2-4h-BTCUSDT
+            method: M2
+            estimator: ""
+            asset: BTCUSDT
+          - id: m2-4h-ETHUSDT
+            method: M2
+            estimator: ""
+            asset: ETHUSDT
+          - id: m2-4h-SOLUSDT
+            method: M2
+            estimator: ""
+            asset: SOLUSDT
+          - id: m2-4h-XRPUSDT
+            method: M2
+            estimator: ""
+            asset: XRPUSDT
+          - id: m3-median-4h-BTCUSDT
+            method: M3
+            estimator: MEDIAN_TR
+            asset: BTCUSDT
+          - id: m3-median-4h-ETHUSDT
+            method: M3
+            estimator: MEDIAN_TR
+            asset: ETHUSDT
+          - id: m3-median-4h-SOLUSDT
+            method: M3
+            estimator: MEDIAN_TR
+            asset: SOLUSDT
+          - id: m3-median-4h-XRPUSDT
+            method: M3
+            estimator: MEDIAN_TR
+            asset: XRPUSDT
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/asset-p1-dev-recovery
+
+      - uses: actions/checkout@v4
+        with:
+          ref: cbd80134aed0cf0f0796a9ecd870dc2201ef38c3
+          path: suite-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-formal-dev-data
+          path: /tmp/p1-dev-data/dev
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-m3-screen
+          path: /tmp/m3-screen
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - name: Execute recovered 4h grid partition
+        env:
+          PYTHONPATH: ${{ github.workspace }}/suite-code/03-componentes/24-asset/experimental/P1/code
+          METHOD: ${{ matrix.method }}
+          ESTIMATOR: ${{ matrix.estimator }}
+          ASSET: ${{ matrix.asset }}
+        run: |
+          set -euo pipefail
+          EXTRA=()
+          if [ -n "$ESTIMATOR" ]; then
+            EXTRA=(--estimator "$ESTIMATOR")
+          fi
+          python 03-componentes/24-asset/experimental/P1/execution/dev_orchestrator.py             grid             --data-root /tmp/p1-dev-data             --m3-screen /tmp/m3-screen/M3_SCREEN.json             --method "$METHOD"             --timeframe 4h             --asset "$ASSET"             "${EXTRA[@]}"             --output "/tmp/grid-${{ matrix.id }}.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-recovery-${{ matrix.id }}
+          path: /tmp/grid-${{ matrix.id }}.json
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: recover
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: execution/asset-p1-dev-recovery
+
+      - uses: actions/checkout@v4
+        with:
+          ref: cbd80134aed0cf0f0796a9ecd870dc2201ef38c3
+          path: suite-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-formal-dev-data
+          path: /tmp/p1-dev-data/dev
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: asset-p1-dev-m3-screen
+          path: /tmp/m3-screen
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - name: Download successful original grid artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: asset-p1-dev-grid-*
+          path: /tmp/grid-results
+          merge-multiple: true
+          run-id: 37120970557
+          github-token: ${{ github.token }}
+
+      - name: Download recovered grid partitions
+        uses: actions/download-artifact@v4
+        with:
+          pattern: asset-p1-dev-recovery-*
+          path: /tmp/grid-results
+          merge-multiple: true
+
+      - name: Aggregate recovered DEV quantitative results
+        env:
+          PYTHONPATH: ${{ github.workspace }}/suite-code/03-componentes/24-asset/experimental/P1/code
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/dev-output
+          mkdir -p /tmp/dev-output
+          python 03-componentes/24-asset/experimental/P1/execution/dev_orchestrator.py             aggregate             --data-root /tmp/p1-dev-data             --m3-screen /tmp/m3-screen/M3_SCREEN.json             --grid-root /tmp/grid-results             --output-root /tmp/dev-output
+
+      - name: Upload quantitative proposal
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-quantitative-proposal-recovered
+          path: |
+            /tmp/dev-output/DEV_QUANTITATIVE_PROPOSAL.json
+            /tmp/dev-output/DEV_REFERENCE_BANDS.json
+            /tmp/dev-output/DEV_QUANTITATIVE_SUMMARY.json
+            /tmp/dev-output/DEV_HUMAN_REVIEW_MANIFEST.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload blinded review packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-packages-recovered
+          path: /tmp/dev-output/human_review/packages
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload separate alias mappings
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-p1-dev-human-review-mappings-recovered
+          path: /tmp/dev-output/human_review/mappings
+          if-no-files-found: error
+          retention-days: 90
