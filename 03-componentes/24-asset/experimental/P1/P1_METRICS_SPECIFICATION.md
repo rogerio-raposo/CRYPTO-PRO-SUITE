@@ -170,3 +170,193 @@ Material VAL/Holdout expansion beyond the DEV upper reference fence is flagged a
 - structural ambiguity.
 
 Missing data is never coded as neutral or negative evidence.
+
+
+---
+
+## 13. Design Freeze Revision 01 — Operational Metric Definitions
+
+The following definitions are frozen for deterministic implementation.
+
+### 13.1 Swing Density
+
+[
+SwingDensity = 1000 \times N_{swings}/N_{evaluable\ bars}
+]
+
+Reported together with raw Swing Count.
+
+### 13.2 Swing Stability
+
+For one-to-one matched swing sets A and B:
+
+[
+SwingStability = \frac{2M}{N_A+N_B}
+]
+
+where `M` is the number of matched pairs under the frozen matching specification.
+
+If both sets are empty, stability is defined as 1.0.
+
+### 13.3 Fragmentation and Omission Diagnostics
+
+For a pairwise adjacent-profile comparison:
+
+- the profile with higher Swing Density is the **higher-density** profile;
+- `FragmentationIndicator = unmatched_high_density / N_high_density`;
+- `OmissionIndicator = unmatched_low_density / N_low_density`.
+
+If densities are equal, both unmatched rates are reported without assigning fragmentation/omission labels.
+
+These are diagnostics, not ground-truth error rates.
+
+### 13.4 Confirmation Delay
+
+Per swing:
+
+[
+DelayBars = confirmation\_index - extremum\_index
+]
+
+Report median, IQR and p90.
+
+### 13.5 Regime Churn
+
+[
+RegimeChurn = 1000 \times N_{regime\ changes}/N_{evaluable\ bars}
+]
+
+Analysis-island resets are not counted as regime changes.
+
+### 13.6 Regime Duration
+
+Duration is measured in evaluable bars within an Analysis Island.
+
+No duration may span an island boundary.
+
+### 13.7 Short-Lived Regime Rate
+
+A regime episode is **short-lived** when it terminates before one additional completed structural cycle occurs after the cycle/event that established that regime.
+
+[
+ShortLivedRate = N_{short-lived\ episodes}/N_{completed\ regime\ episodes}
+]
+
+This is structural rather than based on an arbitrary fixed bar threshold.
+
+### 13.8 Transition Utilization and Indeterminate Rate
+
+[
+TransitionUtilization = Bars_{Transition}/Bars_{evaluable}
+]
+
+[
+IndeterminateRate = Bars_{Indeterminate}/Bars_{evaluable}
+]
+
+### 13.9 Direct Trend Flip Rate
+
+Count any `TREND_UP → TREND_DOWN` or `TREND_DOWN → TREND_UP` change without an intervening Transition.
+
+This is a hard invariant; the acceptable count is zero.
+
+### 13.10 Protected Swing Turnover
+
+[
+ProtectedTurnover = 1000 \times N_{promotions}/Bars_{Trend}
+]
+
+### 13.11 Protected Swing Stability
+
+Protected promotions are pair-matched only when:
+
+- their underlying swings are matched by the BASE swing matcher;
+- promotion timestamps are within the BASE timeframe bar-distance window.
+
+Matching is one-to-one and monotonic.
+
+[
+ProtectedSwingStability = \frac{2M}{N_A+N_B}
+]
+
+If both promotion sets are empty, the value is reported as `NA`, not 1.0.
+
+### 13.12 Time Without Valid Protected Swing
+
+For each Trend episode, measurement begins only after the first valid Protected Swing promotion in that episode.
+
+[
+MissingProtectedRate =
+Bars_{trend\ after\ first\ promotion\ with\ no\ active\ protected}/
+Bars_{trend\ after\ first\ promotion}
+]
+
+If no promotion ever occurs in the episode, report `NA` plus the diagnostic `NO_PROTECTED_PROMOTION`.
+
+### 13.13 Structural Event Matching
+
+Two events are match-eligible when:
+
+- event type is identical;
+- reference kind is identical;
+- event timestamps are within the BASE timeframe bar-distance window;
+- normalized reference-price distance is ≤ 1.0 ATR14 at the later event timestamp.
+
+Matching is one-to-one, monotonic and lexicographic using the same priority order as swing matching.
+
+### 13.14 Event Stability and Delay
+
+[
+EventStability = \frac{2M}{N_A+N_B}
+]
+
+Matched-event delay is absolute occurrence-bar distance; report median, IQR and p90.
+
+If both event sets are empty, Event Stability is reported as `NA`.
+
+### 13.15 Event-Order Consistency
+
+For the event-token sequences `(event_type, reference_kind)`, compute the Longest Common Subsequence length `LCS`.
+
+[
+EventOrderConsistency = \frac{LCS}{\max(N_A,N_B)}
+]
+
+If both sequences are empty, report `NA`.
+
+### 13.16 Parameter Plateau Width
+
+Plateau Width is the number of connected parameter profiles/cells in the frozen local-stability graph.
+
+### 13.17 Cross-Asset / Cross-Timeframe Stability
+
+No composite score is created.
+
+For each core metric, report across the relevant asset/timeframe cells:
+
+- median;
+- IQR;
+- minimum;
+- maximum;
+- flagged cells outside frozen DEV reference bands.
+
+### 13.18 Data-Anomaly Sensitivity
+
+Data-Anomaly Sensitivity is validated using controlled synthetic/reference perturbations, not by treating real missing data as negative evidence.
+
+Report:
+
+- invariant failures;
+- swing/event count deltas;
+- regime-state deltas;
+- determinism status.
+
+### 13.19 Matching-Sensitivity Diagnostic
+
+For every comparison, report Swing Stability under:
+
+- STRICT;
+- BASE;
+- WIDE.
+
+The BASE result is primary. STRICT/WIDE are diagnostics only.
