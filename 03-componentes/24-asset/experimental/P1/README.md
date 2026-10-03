@@ -1,9 +1,9 @@
 # Asset PRO — P1 / D1 Structural Validation
 
-**Status:** DESIGN FROZEN / NON-NORMATIVE  
+**Status:** DESIGN FROZEN — REVISION 01 / IMPLEMENTATION IN PROGRESS / NON-NORMATIVE  
 **Experiment:** ASSET-P1-D1-001  
 **P0 dependency:** SATISFIED — ASSET-P0-001 PASS  
-**Implementation status:** NOT STARTED  
+**Implementation status:** IN PROGRESS  
 **Execution status:** NOT STARTED
 
 ---
@@ -32,7 +32,19 @@ Holdout results may not be used for parameter retuning.
 - `P1_DECISION_RULES.md`
 - `P1_FREEZE_CHECKLIST.md`
 - `P1_DESIGN_FREEZE_RECORD.md`
+- `P1_DESIGN_FREEZE_REVISION_01.md`
 
 Design Freeze is complete.
 
 The next phase is implementation toward a separate Execution Freeze. No formal P1 run is authorized before Execution Freeze.
+
+
+## Active Design Baseline
+
+The original Design Freeze remains historical evidence.
+
+Active implementation baseline:
+
+> **Design Freeze Revision 01**
+
+Revision 01 preserves the original sample calendar but adds synchronized-venue-gap Analysis Islands and deterministic operational definitions required by the implementation.
