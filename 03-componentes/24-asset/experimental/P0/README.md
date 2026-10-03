@@ -1,9 +1,9 @@
 # Asset PRO — P0 Data & Causal Replay Integrity
 
-**Status:** EXECUTION FROZEN / NON-NORMATIVE  
+**Status:** P0 PASS / NON-NORMATIVE  
 **Pilot:** P0  
 **Date:** 2026-10-02  
-**Execution status:** NOT STARTED
+**Execution status:** COMPLETE — PASS
 
 ---
 
@@ -67,8 +67,8 @@ Still pending:
 
 `COMPLETE`
 
-The formal P0 execution is authorized but has **not started**.
+Formal P0 execution completed successfully. See `P0_DECISION_RECORD.md`.
 
 ## Gate
 
-P1 remains blocked until the P0 Decision Record records `PASS`.
+P1 is **UNBLOCKED** because `P0_DECISION_RECORD.md` records `PASS`.
